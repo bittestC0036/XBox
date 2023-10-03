@@ -1,0 +1,802 @@
+ D 드라이브의 볼륨: 새 볼륨
+ 볼륨 일련 번호: BEB7-7D8C
+
+ D:\Prism-Samples-Wpf-master\01-BootstrapperShell\BootstrapperShell\bin\Debug\netcoreapp3.1 디렉터리
+
+2022-08-16  오후 11:52             5,139 BootstrapperShell.deps.json
+2022-08-16  오후 11:52               313 BootstrapperShell.runtimeconfig.dev.json
+2022-08-16  오후 11:52               161 BootstrapperShell.runtimeconfig.json
+               3개 파일               5,613 바이트
+
+ D:\Prism-Samples-Wpf-master\01-BootstrapperShell\BootstrapperShell\obj 디렉터리
+
+2022-08-23  오전 12:45             3,250 BootstrapperShell.csproj.nuget.dgspec.json
+2022-08-16  오전 12:56            15,130 project.assets.json
+               2개 파일              18,380 바이트
+
+ D:\Prism-Samples-Wpf-master\01-BootstrapperShell\BootstrapperShell\obj\Debug\netcoreapp3.1 디렉터리
+
+2022-08-16  오전 12:59             5,042 BootstrapperShell.designer.deps.json
+2022-08-16  오전 12:59               540 BootstrapperShell.designer.runtimeconfig.json
+               2개 파일               5,582 바이트
+
+ D:\Prism-Samples-Wpf-master\02-Regions\Regions\bin\Debug\netcoreapp3.1 디렉터리
+
+2022-08-16  오후 11:52             5,109 Regions.deps.json
+2022-08-16  오후 11:52               313 Regions.runtimeconfig.dev.json
+2022-08-16  오후 11:52               161 Regions.runtimeconfig.json
+               3개 파일               5,583 바이트
+
+ D:\Prism-Samples-Wpf-master\02-Regions\Regions\obj 디렉터리
+
+2022-08-16  오전 12:56            15,040 project.assets.json
+2022-08-23  오전 12:45             3,100 Regions.csproj.nuget.dgspec.json
+               2개 파일              18,140 바이트
+
+ D:\Prism-Samples-Wpf-master\02-Regions\Regions\obj\Debug\netcoreapp3.1 디렉터리
+
+2022-08-16  오전 01:10             5,042 Regions.designer.deps.json
+2022-08-16  오전 01:10               540 Regions.designer.runtimeconfig.json
+               2개 파일               5,582 바이트
+
+ D:\Prism-Samples-Wpf-master\03-CustomRegions\Regions\bin\Debug\netcoreapp3.1 디렉터리
+
+2022-08-16  오후 11:52             5,109 Regions.deps.json
+2022-08-16  오후 11:52               313 Regions.runtimeconfig.dev.json
+2022-08-16  오후 11:52               161 Regions.runtimeconfig.json
+               3개 파일               5,583 바이트
+
+ D:\Prism-Samples-Wpf-master\03-CustomRegions\Regions\obj 디렉터리
+
+2022-08-16  오전 12:56            15,058 project.assets.json
+2022-08-23  오전 12:45             3,130 Regions.csproj.nuget.dgspec.json
+               2개 파일              18,188 바이트
+
+ D:\Prism-Samples-Wpf-master\03-CustomRegions\Regions\obj\Debug\netcoreapp3.1 디렉터리
+
+2022-08-16  오전 01:11             5,042 Regions.designer.deps.json
+2022-08-16  오전 01:11               540 Regions.designer.runtimeconfig.json
+               2개 파일               5,582 바이트
+
+ D:\Prism-Samples-Wpf-master\04-ViewDiscovery\ViewDiscovery\bin\Debug\netcoreapp3.1 디렉터리
+
+2022-08-17  오전 12:16             5,127 ViewDiscovery.deps.json
+2022-08-16  오후 11:52               313 ViewDiscovery.runtimeconfig.dev.json
+2022-08-16  오후 11:52               161 ViewDiscovery.runtimeconfig.json
+               3개 파일               5,601 바이트
+
+ D:\Prism-Samples-Wpf-master\04-ViewDiscovery\ViewDiscovery\obj 디렉터리
+
+2022-08-16  오전 12:56            15,094 project.assets.json
+2022-08-23  오전 12:45             3,190 ViewDiscovery.csproj.nuget.dgspec.json
+               2개 파일              18,284 바이트
+
+ D:\Prism-Samples-Wpf-master\04-ViewDiscovery\ViewDiscovery\obj\Debug\netcoreapp3.1 디렉터리
+
+2022-08-17  오전 12:07             5,042 ViewDiscovery.designer.deps.json
+2022-08-17  오전 12:07               540 ViewDiscovery.designer.runtimeconfig.json
+               2개 파일               5,582 바이트
+
+ D:\Prism-Samples-Wpf-master\05-ViewInjection\ViewInjection\bin\Debug\netcoreapp3.1 디렉터리
+
+2022-08-16  오후 11:52             5,139 BootstrapperShell.deps.json
+2022-08-16  오후 11:52               313 BootstrapperShell.runtimeconfig.dev.json
+2022-08-16  오후 11:52               161 BootstrapperShell.runtimeconfig.json
+               3개 파일               5,613 바이트
+
+ D:\Prism-Samples-Wpf-master\05-ViewInjection\ViewInjection\obj 디렉터리
+
+2022-08-16  오전 12:56            15,098 project.assets.json
+2022-08-23  오전 12:45             3,194 ViewInjection.csproj.nuget.dgspec.json
+               2개 파일              18,292 바이트
+
+ D:\Prism-Samples-Wpf-master\05-ViewInjection\ViewInjection\obj\Debug\netcoreapp3.1 디렉터리
+
+2022-08-17  오전 12:21             5,042 BootstrapperShell.designer.deps.json
+2022-08-17  오전 12:21               540 BootstrapperShell.designer.runtimeconfig.json
+               2개 파일               5,582 바이트
+
+ D:\Prism-Samples-Wpf-master\06-ViewActivationDeactivation\ActivationDeactivation\bin\Debug\netcoreapp3.1 디렉터리
+
+2022-08-16  오후 11:52             5,160 ActiviationDeactiviation.deps.json
+2022-08-16  오후 11:52               313 ActiviationDeactiviation.runtimeconfig.dev.json
+2022-08-16  오후 11:52               161 ActiviationDeactiviation.runtimeconfig.json
+               3개 파일               5,634 바이트
+
+ D:\Prism-Samples-Wpf-master\06-ViewActivationDeactivation\ActivationDeactivation\obj 디렉터리
+
+2022-08-23  오전 12:45             3,347 ActivationDeactivation.csproj.nuget.dgspec.json
+2022-08-16  오전 12:56            15,189 project.assets.json
+               2개 파일              18,536 바이트
+
+ D:\Prism-Samples-Wpf-master\06-ViewActivationDeactivation\ActivationDeactivation\obj\Debug\netcoreapp3.1 디렉터리
+
+2022-08-17  오전 01:26             5,042 ActiviationDeactiviation.designer.deps.json
+2022-08-17  오전 01:26               540 ActiviationDeactiviation.designer.runtimeconfig.json
+               2개 파일               5,582 바이트
+
+ D:\Prism-Samples-Wpf-master\07-Modules - AppConfig\ModuleA\bin\Debug\netcoreapp3.1 디렉터리
+
+2022-08-17  오전 01:32             2,275 ModuleA.deps.json
+               1개 파일               2,275 바이트
+
+ D:\Prism-Samples-Wpf-master\07-Modules - AppConfig\ModuleA\obj 디렉터리
+
+2022-08-23  오전 12:45             3,158 ModuleA.csproj.nuget.dgspec.json
+2022-08-16  오전 12:56             6,850 project.assets.json
+               2개 파일              10,008 바이트
+
+ D:\Prism-Samples-Wpf-master\07-Modules - AppConfig\ModuleA\obj\Debug\netcoreapp3.1 디렉터리
+
+2022-08-17  오전 01:33             1,994 ModuleA.designer.deps.json
+2022-08-17  오전 01:33               484 ModuleA.designer.runtimeconfig.json
+               2개 파일               2,478 바이트
+
+ D:\Prism-Samples-Wpf-master\07-Modules - AppConfig\Modules\bin\Debug\netcoreapp3.1 디렉터리
+
+2022-08-17  오전 01:32             2,275 ModuleA.deps.json
+2022-08-16  오후 11:52             5,109 Modules.deps.json
+2022-08-16  오후 11:52               313 Modules.runtimeconfig.dev.json
+2022-08-16  오후 11:52               161 Modules.runtimeconfig.json
+               4개 파일               7,858 바이트
+
+ D:\Prism-Samples-Wpf-master\07-Modules - AppConfig\Modules\obj 디렉터리
+
+2022-08-23  오전 12:45             3,160 Modules.csproj.nuget.dgspec.json
+2022-08-16  오전 12:56            15,076 project.assets.json
+               2개 파일              18,236 바이트
+
+ D:\Prism-Samples-Wpf-master\07-Modules - AppConfig\Modules\obj\Debug\netcoreapp3.1 디렉터리
+
+2022-08-17  오전 01:32             5,042 Modules.designer.deps.json
+2022-08-17  오전 01:32               540 Modules.designer.runtimeconfig.json
+               2개 파일               5,582 바이트
+
+ D:\Prism-Samples-Wpf-master\07-Modules - Code\ModuleA\bin\Debug\netcoreapp3.1 디렉터리
+
+2022-08-16  오후 11:51             2,275 ModuleA.deps.json
+               1개 파일               2,275 바이트
+
+ D:\Prism-Samples-Wpf-master\07-Modules - Code\ModuleA\obj 디렉터리
+
+2022-08-23  오전 12:45             3,133 ModuleA.csproj.nuget.dgspec.json
+2022-08-16  오전 12:56             6,835 project.assets.json
+               2개 파일               9,968 바이트
+
+ D:\Prism-Samples-Wpf-master\07-Modules - Code\Modules\bin\Debug\netcoreapp3.1 디렉터리
+
+2022-08-16  오후 11:52             5,421 Modules.deps.json
+2022-08-16  오후 11:52               313 Modules.runtimeconfig.dev.json
+2022-08-16  오후 11:52               161 Modules.runtimeconfig.json
+               3개 파일               5,895 바이트
+
+ D:\Prism-Samples-Wpf-master\07-Modules - Code\Modules\obj 디렉터리
+
+2022-08-23  오전 12:45             6,352 Modules.csproj.nuget.dgspec.json
+2022-08-16  오전 12:56            15,905 project.assets.json
+               2개 파일              22,257 바이트
+
+ D:\Prism-Samples-Wpf-master\07-Modules - Code\Modules\obj\Debug\netcoreapp3.1 디렉터리
+
+2022-08-17  오전 01:35             5,042 Modules.designer.deps.json
+2022-08-17  오전 01:35               540 Modules.designer.runtimeconfig.json
+               2개 파일               5,582 바이트
+
+ D:\Prism-Samples-Wpf-master\07-Modules - Directory\ModuleA\bin\Debug\netcoreapp3.1 디렉터리
+
+2022-08-16  오후 11:52             2,275 ModuleA.deps.json
+               1개 파일               2,275 바이트
+
+ D:\Prism-Samples-Wpf-master\07-Modules - Directory\ModuleA\obj 디렉터리
+
+2022-08-23  오전 12:45             3,158 ModuleA.csproj.nuget.dgspec.json
+2022-08-16  오전 12:56             6,850 project.assets.json
+               2개 파일              10,008 바이트
+
+ D:\Prism-Samples-Wpf-master\07-Modules - Directory\ModuleA\obj\Debug\netcoreapp3.1 디렉터리
+
+2022-08-17  오전 01:41             1,994 ModuleA.designer.deps.json
+2022-08-17  오전 01:41               484 ModuleA.designer.runtimeconfig.json
+               2개 파일               2,478 바이트
+
+ D:\Prism-Samples-Wpf-master\07-Modules - Directory\Modules\bin\Debug\netcoreapp3.1 디렉터리
+
+2022-08-16  오후 11:52             5,109 Modules.deps.json
+2022-08-16  오후 11:52               313 Modules.runtimeconfig.dev.json
+2022-08-16  오후 11:52               161 Modules.runtimeconfig.json
+               3개 파일               5,583 바이트
+
+ D:\Prism-Samples-Wpf-master\07-Modules - Directory\Modules\obj 디렉터리
+
+2022-08-23  오전 12:45             3,160 Modules.csproj.nuget.dgspec.json
+2022-08-16  오전 12:56            15,076 project.assets.json
+               2개 파일              18,236 바이트
+
+ D:\Prism-Samples-Wpf-master\07-Modules - LoadManual\ModuleA\bin\Debug\netcoreapp3.1 디렉터리
+
+2022-08-16  오후 11:51             2,275 ModuleA.deps.json
+               1개 파일               2,275 바이트
+
+ D:\Prism-Samples-Wpf-master\07-Modules - LoadManual\ModuleA\obj 디렉터리
+
+2022-08-23  오전 12:45             3,163 ModuleA.csproj.nuget.dgspec.json
+2022-08-16  오전 12:56             6,853 project.assets.json
+               2개 파일              10,016 바이트
+
+ D:\Prism-Samples-Wpf-master\07-Modules - LoadManual\Modules\bin\Debug\netcoreapp3.1 디렉터리
+
+2022-08-16  오후 11:52             5,421 Modules.deps.json
+2022-08-16  오후 11:52               313 Modules.runtimeconfig.dev.json
+2022-08-16  오후 11:52               161 Modules.runtimeconfig.json
+               3개 파일               5,895 바이트
+
+ D:\Prism-Samples-Wpf-master\07-Modules - LoadManual\Modules\obj 디렉터리
+
+2022-08-23  오전 12:45             6,418 Modules.csproj.nuget.dgspec.json
+2022-08-16  오전 12:56            15,935 project.assets.json
+               2개 파일              22,353 바이트
+
+ D:\Prism-Samples-Wpf-master\07-Modules - Xaml\ModuleA\bin\Debug\netcoreapp3.1 디렉터리
+
+2022-08-16  오후 11:51             2,275 ModuleA.deps.json
+               1개 파일               2,275 바이트
+
+ D:\Prism-Samples-Wpf-master\07-Modules - Xaml\ModuleA\obj 디렉터리
+
+2022-08-23  오전 12:45             3,133 ModuleA.csproj.nuget.dgspec.json
+2022-08-16  오전 12:56             6,835 project.assets.json
+               2개 파일               9,968 바이트
+
+ D:\Prism-Samples-Wpf-master\07-Modules - Xaml\Modules\bin\Debug\netcoreapp3.1 디렉터리
+
+2022-08-16  오후 11:52             5,421 Modules.deps.json
+2022-08-16  오후 11:52               313 Modules.runtimeconfig.dev.json
+2022-08-16  오후 11:52               161 Modules.runtimeconfig.json
+               3개 파일               5,895 바이트
+
+ D:\Prism-Samples-Wpf-master\07-Modules - Xaml\Modules\obj 디렉터리
+
+2022-08-23  오전 12:45             6,352 Modules.csproj.nuget.dgspec.json
+2022-08-16  오전 12:56            15,905 project.assets.json
+               2개 파일              22,257 바이트
+
+ D:\Prism-Samples-Wpf-master\08-ViewModelLocator\ViewModelLocator\bin\Debug\netcoreapp3.1 디렉터리
+
+2022-08-16  오후 11:52             5,136 ViewModelLocator.deps.json
+2022-08-16  오후 11:52               313 ViewModelLocator.runtimeconfig.dev.json
+2022-08-16  오후 11:52               161 ViewModelLocator.runtimeconfig.json
+               3개 파일               5,610 바이트
+
+ D:\Prism-Samples-Wpf-master\08-ViewModelLocator\ViewModelLocator\obj 디렉터리
+
+2022-08-16  오전 12:56            15,121 project.assets.json
+2022-08-23  오전 12:45             3,235 ViewModelLocator.csproj.nuget.dgspec.json
+               2개 파일              18,356 바이트
+
+ D:\Prism-Samples-Wpf-master\08-ViewModelLocator\ViewModelLocator\obj\Debug\netcoreapp3.1 디렉터리
+
+2022-08-17  오전 01:55             5,042 ViewModelLocator.designer.deps.json
+2022-08-17  오전 01:55               540 ViewModelLocator.designer.runtimeconfig.json
+               2개 파일               5,582 바이트
+
+ D:\Prism-Samples-Wpf-master\09-ChangeConvention\ViewModelLocator\bin\Debug\netcoreapp3.1 디렉터리
+
+2022-08-16  오후 11:52             5,136 ViewModelLocator.deps.json
+2022-08-16  오후 11:52               313 ViewModelLocator.runtimeconfig.dev.json
+2022-08-16  오후 11:52               161 ViewModelLocator.runtimeconfig.json
+               3개 파일               5,610 바이트
+
+ D:\Prism-Samples-Wpf-master\09-ChangeConvention\ViewModelLocator\obj 디렉터리
+
+2022-08-16  오전 12:56            15,121 project.assets.json
+2022-08-23  오전 12:45             3,235 ViewModelLocator.csproj.nuget.dgspec.json
+               2개 파일              18,356 바이트
+
+ D:\Prism-Samples-Wpf-master\09-ChangeConvention\ViewModelLocator\obj\Debug\netcoreapp3.1 디렉터리
+
+2022-08-22  오전 02:15             5,042 ViewModelLocator.designer.deps.json
+2022-08-22  오전 02:15               540 ViewModelLocator.designer.runtimeconfig.json
+               2개 파일               5,582 바이트
+
+ D:\Prism-Samples-Wpf-master\10-CustomRegistrations\ViewModelLocator\bin\Debug\netcoreapp3.1 디렉터리
+
+2022-08-16  오후 11:52             5,136 ViewModelLocator.deps.json
+2022-08-16  오후 11:52               313 ViewModelLocator.runtimeconfig.dev.json
+2022-08-16  오후 11:52               161 ViewModelLocator.runtimeconfig.json
+               3개 파일               5,610 바이트
+
+ D:\Prism-Samples-Wpf-master\10-CustomRegistrations\ViewModelLocator\obj 디렉터리
+
+2022-08-16  오전 12:56            15,130 project.assets.json
+2022-08-23  오전 12:45             3,250 ViewModelLocator.csproj.nuget.dgspec.json
+               2개 파일              18,380 바이트
+
+ D:\Prism-Samples-Wpf-master\10-CustomRegistrations\ViewModelLocator\obj\Debug\netcoreapp3.1 디렉터리
+
+2022-08-22  오전 02:19             5,042 ViewModelLocator.designer.deps.json
+2022-08-22  오전 02:19               540 ViewModelLocator.designer.runtimeconfig.json
+               2개 파일               5,582 바이트
+
+ D:\Prism-Samples-Wpf-master\11-UsingDelegateCommands\UsingDelegateCommands\bin\Debug\netcoreapp3.1 디렉터리
+
+2022-08-16  오후 11:52             5,151 UsingDelegateCommands.deps.json
+2022-08-16  오후 11:52               313 UsingDelegateCommands.runtimeconfig.dev.json
+2022-08-16  오후 11:52               161 UsingDelegateCommands.runtimeconfig.json
+               3개 파일               5,625 바이트
+
+ D:\Prism-Samples-Wpf-master\11-UsingDelegateCommands\UsingDelegateCommands\obj 디렉터리
+
+2022-08-16  오전 12:56            15,166 project.assets.json
+2022-08-23  오전 12:45             3,310 UsingDelegateCommands.csproj.nuget.dgspec.json
+               2개 파일              18,476 바이트
+
+ D:\Prism-Samples-Wpf-master\11-UsingDelegateCommands\UsingDelegateCommands\obj\Debug\netcoreapp3.1 디렉터리
+
+2022-08-22  오전 02:24             5,042 UsingDelegateCommands.designer.deps.json
+2022-08-22  오전 02:24               540 UsingDelegateCommands.designer.runtimeconfig.json
+               2개 파일               5,582 바이트
+
+ D:\Prism-Samples-Wpf-master\12-UsingCompositeCommands\ModuleA\bin\Debug\netcoreapp3.1 디렉터리
+
+2022-08-22  오전 02:32             2,668 ModuleA.deps.json
+               1개 파일               2,668 바이트
+
+ D:\Prism-Samples-Wpf-master\12-UsingCompositeCommands\ModuleA\obj 디렉터리
+
+2022-08-23  오전 12:45             6,679 ModuleA.csproj.nuget.dgspec.json
+2022-08-16  오전 12:56             7,980 project.assets.json
+               2개 파일              14,659 바이트
+
+ D:\Prism-Samples-Wpf-master\12-UsingCompositeCommands\UsingCompositeCommands\bin\Debug\netcoreapp3.1 디렉터리
+
+2022-08-22  오전 02:31             5,910 UsingCompositeCommands.deps.json
+2022-08-22  오전 02:31               313 UsingCompositeCommands.runtimeconfig.dev.json
+2022-08-22  오전 02:31               161 UsingCompositeCommands.runtimeconfig.json
+               3개 파일               6,384 바이트
+
+ D:\Prism-Samples-Wpf-master\12-UsingCompositeCommands\UsingCompositeCommands\obj 디렉터리
+
+2022-08-16  오전 12:56            17,196 project.assets.json
+2022-08-23  오전 12:45            10,410 UsingCompositeCommands.csproj.nuget.dgspec.json
+               2개 파일              27,606 바이트
+
+ D:\Prism-Samples-Wpf-master\12-UsingCompositeCommands\UsingCompositeCommands\obj\Debug\netcoreapp3.1 디렉터리
+
+2022-08-22  오전 02:32             5,042 UsingCompositeCommands.designer.deps.json
+2022-08-22  오전 02:32               540 UsingCompositeCommands.designer.runtimeconfig.json
+               2개 파일               5,582 바이트
+
+ D:\Prism-Samples-Wpf-master\12-UsingCompositeCommands\UsingCompositeCommands.Core\bin\Debug\netcoreapp3.1 디렉터리
+
+2022-08-22  오전 02:32             1,078 UsingCompositeCommands.Core.deps.json
+               1개 파일               1,078 바이트
+
+ D:\Prism-Samples-Wpf-master\12-UsingCompositeCommands\UsingCompositeCommands.Core\obj 디렉터리
+
+2022-08-16  오전 12:56             4,314 project.assets.json
+2022-08-23  오전 12:45             3,374 UsingCompositeCommands.Core.csproj.nuget.dgspec.json
+               2개 파일               7,688 바이트
+
+ D:\Prism-Samples-Wpf-master\13-IActiveAwareCommands\ModuleA\bin\Debug\netcoreapp3.1 디렉터리
+
+2022-08-22  오전 02:46             2,668 ModuleA.deps.json
+               1개 파일               2,668 바이트
+
+ D:\Prism-Samples-Wpf-master\13-IActiveAwareCommands\ModuleA\obj 디렉터리
+
+2022-08-23  오전 12:45             6,657 ModuleA.csproj.nuget.dgspec.json
+2022-08-16  오전 12:56             7,970 project.assets.json
+               2개 파일              14,627 바이트
+
+ D:\Prism-Samples-Wpf-master\13-IActiveAwareCommands\UsingCompositeCommands\bin\Debug\netcoreapp3.1 디렉터리
+
+2022-08-16  오후 11:52             5,910 UsingCompositeCommands.deps.json
+2022-08-16  오후 11:52               313 UsingCompositeCommands.runtimeconfig.dev.json
+2022-08-16  오후 11:52               161 UsingCompositeCommands.runtimeconfig.json
+               3개 파일               6,384 바이트
+
+ D:\Prism-Samples-Wpf-master\13-IActiveAwareCommands\UsingCompositeCommands\obj 디렉터리
+
+2022-08-16  오전 12:56            17,182 project.assets.json
+2022-08-23  오전 12:45            10,372 UsingCompositeCommands.csproj.nuget.dgspec.json
+               2개 파일              27,554 바이트
+
+ D:\Prism-Samples-Wpf-master\13-IActiveAwareCommands\UsingCompositeCommands\obj\Debug\netcoreapp3.1 디렉터리
+
+2022-08-22  오전 02:46             5,042 UsingCompositeCommands.designer.deps.json
+2022-08-22  오전 02:46               540 UsingCompositeCommands.designer.runtimeconfig.json
+               2개 파일               5,582 바이트
+
+ D:\Prism-Samples-Wpf-master\13-IActiveAwareCommands\UsingCompositeCommands.Core\bin\Debug\netcoreapp3.1 디렉터리
+
+2022-08-22  오전 02:46             1,078 UsingCompositeCommands.Core.deps.json
+               1개 파일               1,078 바이트
+
+ D:\Prism-Samples-Wpf-master\13-IActiveAwareCommands\UsingCompositeCommands.Core\obj 디렉터리
+
+2022-08-16  오전 12:56             4,308 project.assets.json
+2022-08-23  오전 12:45             3,364 UsingCompositeCommands.Core.csproj.nuget.dgspec.json
+               2개 파일               7,672 바이트
+
+ D:\Prism-Samples-Wpf-master\14-UsingEventAggregator\ModuleA\bin\Debug\netcoreapp3.1 디렉터리
+
+2022-08-22  오전 02:58             2,660 ModuleA.deps.json
+               1개 파일               2,660 바이트
+
+ D:\Prism-Samples-Wpf-master\14-UsingEventAggregator\ModuleA\obj 디렉터리
+
+2022-08-23  오전 12:45             6,633 ModuleA.csproj.nuget.dgspec.json
+2022-08-16  오전 12:56             7,944 project.assets.json
+               2개 파일              14,577 바이트
+
+ D:\Prism-Samples-Wpf-master\14-UsingEventAggregator\ModuleB\bin\Debug\netcoreapp3.1 디렉터리
+
+2022-08-22  오전 02:58             2,660 ModuleB.deps.json
+               1개 파일               2,660 바이트
+
+ D:\Prism-Samples-Wpf-master\14-UsingEventAggregator\ModuleB\obj 디렉터리
+
+2022-08-23  오전 12:45             6,633 ModuleB.csproj.nuget.dgspec.json
+2022-08-16  오전 12:56             7,944 project.assets.json
+               2개 파일              14,577 바이트
+
+ D:\Prism-Samples-Wpf-master\14-UsingEventAggregator\UsingEventAggregator\bin\Debug\netcoreapp3.1 디렉터리
+
+2022-08-22  오전 02:58             6,255 UsingEventAggregator.deps.json
+2022-08-22  오전 02:58               313 UsingEventAggregator.runtimeconfig.dev.json
+2022-08-22  오전 02:58               161 UsingEventAggregator.runtimeconfig.json
+               3개 파일               6,729 바이트
+
+ D:\Prism-Samples-Wpf-master\14-UsingEventAggregator\UsingEventAggregator\obj 디렉터리
+
+2022-08-16  오전 12:56            18,036 project.assets.json
+2022-08-23  오전 12:45            13,875 UsingEventAggregator.csproj.nuget.dgspec.json
+               2개 파일              31,911 바이트
+
+ D:\Prism-Samples-Wpf-master\14-UsingEventAggregator\UsingEventAggregator\obj\Debug\netcoreapp3.1 디렉터리
+
+2022-08-22  오전 02:58             5,042 UsingEventAggregator.designer.deps.json
+2022-08-22  오전 02:58               540 UsingEventAggregator.designer.runtimeconfig.json
+               2개 파일               5,582 바이트
+
+ D:\Prism-Samples-Wpf-master\14-UsingEventAggregator\UsingEventAggregator.Core\bin\Debug\netcoreapp3.1 디렉터리
+
+2022-08-22  오전 02:58             1,072 UsingEventAggregator.Core.deps.json
+               1개 파일               1,072 바이트
+
+ D:\Prism-Samples-Wpf-master\14-UsingEventAggregator\UsingEventAggregator.Core\obj 디렉터리
+
+2022-08-16  오전 12:56             4,296 project.assets.json
+2022-08-23  오전 12:45             3,344 UsingEventAggregator.Core.csproj.nuget.dgspec.json
+               2개 파일               7,640 바이트
+
+ D:\Prism-Samples-Wpf-master\15-FilteringEvents\ModuleA\bin\Debug\netcoreapp3.1 디렉터리
+
+2022-08-23  오전 12:20             2,628 ModuleA.deps.json
+               1개 파일               2,628 바이트
+
+ D:\Prism-Samples-Wpf-master\15-FilteringEvents\ModuleA\obj 디렉터리
+
+2022-08-23  오전 12:45             6,570 ModuleA.csproj.nuget.dgspec.json
+2022-08-16  오전 12:56             7,879 project.assets.json
+               2개 파일              14,449 바이트
+
+ D:\Prism-Samples-Wpf-master\15-FilteringEvents\ModuleB\bin\Debug\netcoreapp3.1 디렉터리
+
+2022-08-23  오전 12:20             2,628 ModuleB.deps.json
+               1개 파일               2,628 바이트
+
+ D:\Prism-Samples-Wpf-master\15-FilteringEvents\ModuleB\obj 디렉터리
+
+2022-08-23  오전 12:45             6,570 ModuleB.csproj.nuget.dgspec.json
+2022-08-16  오전 12:56             7,879 project.assets.json
+               2개 파일              14,449 바이트
+
+ D:\Prism-Samples-Wpf-master\15-FilteringEvents\UsingEventAggregator\bin\Debug\netcoreapp3.1 디렉터리
+
+2022-08-23  오전 12:20             6,207 UsingEventAggregator.deps.json
+2022-08-23  오전 12:20               313 UsingEventAggregator.runtimeconfig.dev.json
+2022-08-23  오전 12:20               161 UsingEventAggregator.runtimeconfig.json
+               3개 파일               6,681 바이트
+
+ D:\Prism-Samples-Wpf-master\15-FilteringEvents\UsingEventAggregator\obj 디렉터리
+
+2022-08-16  오전 12:56            17,935 project.assets.json
+2022-08-23  오전 12:45            13,732 UsingEventAggregator.csproj.nuget.dgspec.json
+               2개 파일              31,667 바이트
+
+ D:\Prism-Samples-Wpf-master\15-FilteringEvents\UsingEventAggregator\obj\Debug\netcoreapp3.1 디렉터리
+
+2022-08-22  오전 03:07             5,042 UsingEventAggregator.designer.deps.json
+2022-08-22  오전 03:07               540 UsingEventAggregator.designer.runtimeconfig.json
+               2개 파일               5,582 바이트
+
+ D:\Prism-Samples-Wpf-master\15-FilteringEvents\UsingEventAggregator.Core\bin\Debug\netcoreapp3.1 디렉터리
+
+2022-08-23  오전 12:20             1,048 BootstrapperShell.deps.json
+               1개 파일               1,048 바이트
+
+ D:\Prism-Samples-Wpf-master\15-FilteringEvents\UsingEventAggregator.Core\obj 디렉터리
+
+2022-08-16  오전 12:56             4,273 project.assets.json
+2022-08-23  오전 12:45             3,311 UsingEventAggregator.Core.csproj.nuget.dgspec.json
+               2개 파일               7,584 바이트
+
+ D:\Prism-Samples-Wpf-master\16-RegionContext\ModuleA\bin\Debug\netcoreapp3.1 디렉터리
+
+2022-08-23  오전 12:23             2,275 ModuleA.deps.json
+               1개 파일               2,275 바이트
+
+ D:\Prism-Samples-Wpf-master\16-RegionContext\ModuleA\obj 디렉터리
+
+2022-08-23  오전 12:45             3,128 ModuleA.csproj.nuget.dgspec.json
+2022-08-16  오전 12:56             6,832 project.assets.json
+               2개 파일               9,960 바이트
+
+ D:\Prism-Samples-Wpf-master\16-RegionContext\RegionContext\bin\Debug\netcoreapp3.1 디렉터리
+
+2022-08-23  오전 12:23             5,439 RegionContext.deps.json
+2022-08-23  오전 12:23               313 RegionContext.runtimeconfig.dev.json
+2022-08-23  오전 12:23               161 RegionContext.runtimeconfig.json
+               3개 파일               5,913 바이트
+
+ D:\Prism-Samples-Wpf-master\16-RegionContext\RegionContext\obj 디렉터리
+
+2022-08-16  오전 12:56            15,936 project.assets.json
+2022-08-23  오전 12:45             6,401 RegionContext.csproj.nuget.dgspec.json
+               2개 파일              22,337 바이트
+
+ D:\Prism-Samples-Wpf-master\16-RegionContext\RegionContext\obj\Debug\netcoreapp3.1 디렉터리
+
+2022-08-23  오전 12:23             5,042 RegionContext.designer.deps.json
+2022-08-23  오전 12:23               540 RegionContext.designer.runtimeconfig.json
+               2개 파일               5,582 바이트
+
+ D:\Prism-Samples-Wpf-master\17-BasicRegionNavigation\BasicRegionNavigation\bin\Debug\netcoreapp3.1 디렉터리
+
+2022-08-16  오후 11:52             5,463 BasicRegionNavigation.deps.json
+2022-08-16  오후 11:52               313 BasicRegionNavigation.runtimeconfig.dev.json
+2022-08-16  오후 11:52               161 BasicRegionNavigation.runtimeconfig.json
+               3개 파일               5,937 바이트
+
+ D:\Prism-Samples-Wpf-master\17-BasicRegionNavigation\BasicRegionNavigation\obj 디렉터리
+
+2022-08-23  오전 12:45             6,569 BasicRegionNavigation.csproj.nuget.dgspec.json
+2022-08-16  오전 12:56            16,024 project.assets.json
+               2개 파일              22,593 바이트
+
+ D:\Prism-Samples-Wpf-master\17-BasicRegionNavigation\BasicRegionNavigation\obj\Debug\netcoreapp3.1 디렉터리
+
+2022-08-23  오전 12:33             5,042 BasicRegionNavigation.designer.deps.json
+2022-08-23  오전 12:33               540 BasicRegionNavigation.designer.runtimeconfig.json
+               2개 파일               5,582 바이트
+
+ D:\Prism-Samples-Wpf-master\17-BasicRegionNavigation\ModuleA\bin\Debug\netcoreapp3.1 디렉터리
+
+2022-08-16  오후 11:52             2,275 ModuleA.deps.json
+               1개 파일               2,275 바이트
+
+ D:\Prism-Samples-Wpf-master\17-BasicRegionNavigation\ModuleA\obj 디렉터리
+
+2022-08-23  오전 12:45             3,168 ModuleA.csproj.nuget.dgspec.json
+2022-08-16  오전 12:56             6,856 project.assets.json
+               2개 파일              10,024 바이트
+
+ D:\Prism-Samples-Wpf-master\18-NavigationCallback\BasicRegionNavigation\bin\Debug\netcoreapp3.1 디렉터리
+
+2022-08-16  오후 11:52             5,463 BasicRegionNavigation.deps.json
+2022-08-16  오후 11:52               313 BasicRegionNavigation.runtimeconfig.dev.json
+2022-08-16  오후 11:52               161 BasicRegionNavigation.runtimeconfig.json
+               3개 파일               5,937 바이트
+
+ D:\Prism-Samples-Wpf-master\18-NavigationCallback\BasicRegionNavigation\obj 디렉터리
+
+2022-08-23  오전 12:45             6,536 BasicRegionNavigation.csproj.nuget.dgspec.json
+2022-08-16  오전 12:56            16,009 project.assets.json
+               2개 파일              22,545 바이트
+
+ D:\Prism-Samples-Wpf-master\18-NavigationCallback\BasicRegionNavigation\obj\Debug\netcoreapp3.1 디렉터리
+
+2022-08-23  오전 12:34             5,042 BasicRegionNavigation.designer.deps.json
+2022-08-23  오전 12:34               540 BasicRegionNavigation.designer.runtimeconfig.json
+               2개 파일               5,582 바이트
+
+ D:\Prism-Samples-Wpf-master\18-NavigationCallback\ModuleA\bin\Debug\netcoreapp3.1 디렉터리
+
+2022-08-16  오후 11:52             2,275 ModuleA.deps.json
+               1개 파일               2,275 바이트
+
+ D:\Prism-Samples-Wpf-master\18-NavigationCallback\ModuleA\obj 디렉터리
+
+2022-08-23  오전 12:45             3,153 ModuleA.csproj.nuget.dgspec.json
+2022-08-16  오전 12:56             6,847 project.assets.json
+               2개 파일              10,000 바이트
+
+ D:\Prism-Samples-Wpf-master\19-NavigationParticipation\ModuleA\bin\Debug\netcoreapp3.1 디렉터리
+
+2022-08-23  오전 12:45             2,275 ModuleA.deps.json
+               1개 파일               2,275 바이트
+
+ D:\Prism-Samples-Wpf-master\19-NavigationParticipation\ModuleA\obj 디렉터리
+
+2022-08-23  오전 12:45             3,178 ModuleA.csproj.nuget.dgspec.json
+2022-08-16  오전 12:56             6,862 project.assets.json
+               2개 파일              10,040 바이트
+
+ D:\Prism-Samples-Wpf-master\19-NavigationParticipation\NavigationParticipation\bin\Debug\netcoreapp3.1 디렉터리
+
+2022-08-23  오전 12:45             5,469 NavigationParticipation.deps.json
+2022-08-23  오전 12:45               313 NavigationParticipation.runtimeconfig.dev.json
+2022-08-23  오전 12:45               161 NavigationParticipation.runtimeconfig.json
+               3개 파일               5,943 바이트
+
+ D:\Prism-Samples-Wpf-master\19-NavigationParticipation\NavigationParticipation\obj 디렉터리
+
+2022-08-23  오전 12:45             6,611 NavigationParticipation.csproj.nuget.dgspec.json
+2022-08-16  오전 12:56            16,046 project.assets.json
+               2개 파일              22,657 바이트
+
+ D:\Prism-Samples-Wpf-master\19-NavigationParticipation\NavigationParticipation\obj\Debug\netcoreapp3.1 디렉터리
+
+2022-08-23  오전 12:46             5,042 NavigationParticipation.designer.deps.json
+2022-08-23  오전 12:46               540 NavigationParticipation.designer.runtimeconfig.json
+               2개 파일               5,582 바이트
+
+ D:\Prism-Samples-Wpf-master\20-NavigateToExistingViews\ModuleA\bin\Debug\netcoreapp3.1 디렉터리
+
+2022-08-16  오후 11:52             2,275 ModuleA.deps.json
+               1개 파일               2,275 바이트
+
+ D:\Prism-Samples-Wpf-master\20-NavigateToExistingViews\ModuleA\obj 디렉터리
+
+2022-08-23  오전 12:45             3,178 ModuleA.csproj.nuget.dgspec.json
+2022-08-16  오전 12:56             6,862 project.assets.json
+               2개 파일              10,040 바이트
+
+ D:\Prism-Samples-Wpf-master\20-NavigateToExistingViews\NavigationParticipation\bin\Debug\netcoreapp3.1 디렉터리
+
+2022-08-16  오후 11:52             5,469 NavigationParticipation.deps.json
+2022-08-16  오후 11:52               313 NavigationParticipation.runtimeconfig.dev.json
+2022-08-16  오후 11:52               161 NavigationParticipation.runtimeconfig.json
+               3개 파일               5,943 바이트
+
+ D:\Prism-Samples-Wpf-master\20-NavigateToExistingViews\NavigationParticipation\obj 디렉터리
+
+2022-08-23  오전 12:45             6,611 NavigationParticipation.csproj.nuget.dgspec.json
+2022-08-16  오전 12:56            16,046 project.assets.json
+               2개 파일              22,657 바이트
+
+ D:\Prism-Samples-Wpf-master\20-NavigateToExistingViews\NavigationParticipation\obj\Debug\netcoreapp3.1 디렉터리
+
+2022-08-23  오전 12:46             5,042 NavigationParticipation.designer.deps.json
+2022-08-23  오전 12:46               540 NavigationParticipation.designer.runtimeconfig.json
+               2개 파일               5,582 바이트
+
+ D:\Prism-Samples-Wpf-master\21-PassingParameters\ModuleA\bin\Debug\netcoreapp3.1 디렉터리
+
+2022-08-16  오후 11:52             2,275 ModuleA.deps.json
+               1개 파일               2,275 바이트
+
+ D:\Prism-Samples-Wpf-master\21-PassingParameters\ModuleA\obj 디렉터리
+
+2022-08-23  오전 12:45             3,148 ModuleA.csproj.nuget.dgspec.json
+2022-08-16  오전 12:56             6,844 project.assets.json
+               2개 파일               9,992 바이트
+
+ D:\Prism-Samples-Wpf-master\21-PassingParameters\PassingParameters\bin\Debug\netcoreapp3.1 디렉터리
+
+2022-08-16  오후 11:52             5,451 PassingParameters.deps.json
+2022-08-16  오후 11:52               313 PassingParameters.runtimeconfig.dev.json
+2022-08-16  오후 11:52               161 PassingParameters.runtimeconfig.json
+               3개 파일               5,925 바이트
+
+ D:\Prism-Samples-Wpf-master\21-PassingParameters\PassingParameters\obj 디렉터리
+
+2022-08-23  오전 12:45             6,485 PassingParameters.csproj.nuget.dgspec.json
+2022-08-16  오전 12:56            15,980 project.assets.json
+               2개 파일              22,465 바이트
+
+ D:\Prism-Samples-Wpf-master\21-PassingParameters\PassingParameters\obj\Debug\netcoreapp3.1 디렉터리
+
+2022-08-23  오전 12:48             5,042 PassingParameters.designer.deps.json
+2022-08-23  오전 12:48               540 PassingParameters.designer.runtimeconfig.json
+               2개 파일               5,582 바이트
+
+ D:\Prism-Samples-Wpf-master\22-ConfirmCancelNavigation\ConfirmCancelNavigation\bin\Debug\netcoreapp3.1 디렉터리
+
+2022-08-16  오후 11:52             5,469 ConfirmCancelNavigation.deps.json
+2022-08-16  오후 11:52               313 ConfirmCancelNavigation.runtimeconfig.dev.json
+2022-08-16  오후 11:52               161 ConfirmCancelNavigation.runtimeconfig.json
+               3개 파일               5,943 바이트
+
+ D:\Prism-Samples-Wpf-master\22-ConfirmCancelNavigation\ConfirmCancelNavigation\obj 디렉터리
+
+2022-08-23  오전 12:45             6,611 ConfirmCancelNavigation.csproj.nuget.dgspec.json
+2022-08-16  오전 12:56            16,046 project.assets.json
+               2개 파일              22,657 바이트
+
+ D:\Prism-Samples-Wpf-master\22-ConfirmCancelNavigation\ModuleA\bin\Debug\netcoreapp3.1 디렉터리
+
+2022-08-16  오후 11:52             2,275 ModuleA.deps.json
+               1개 파일               2,275 바이트
+
+ D:\Prism-Samples-Wpf-master\22-ConfirmCancelNavigation\ModuleA\obj 디렉터리
+
+2022-08-23  오전 12:45             3,178 ModuleA.csproj.nuget.dgspec.json
+2022-08-16  오전 12:56             6,862 project.assets.json
+               2개 파일              10,040 바이트
+
+ D:\Prism-Samples-Wpf-master\23-RegionMemberLifetime\ModuleA\bin\Debug\netcoreapp3.1 디렉터리
+
+2022-08-16  오후 11:52             2,275 ModuleA.deps.json
+               1개 파일               2,275 바이트
+
+ D:\Prism-Samples-Wpf-master\23-RegionMemberLifetime\ModuleA\obj 디렉터리
+
+2022-08-23  오전 12:45             3,163 ModuleA.csproj.nuget.dgspec.json
+2022-08-16  오전 12:56             6,853 project.assets.json
+               2개 파일              10,016 바이트
+
+ D:\Prism-Samples-Wpf-master\23-RegionMemberLifetime\RegionMemberLifetime\bin\Debug\netcoreapp3.1 디렉터리
+
+2022-08-16  오후 11:52             5,460 RegionMemberLifetime.deps.json
+2022-08-16  오후 11:52               313 RegionMemberLifetime.runtimeconfig.dev.json
+2022-08-16  오후 11:52               161 RegionMemberLifetime.runtimeconfig.json
+               3개 파일               5,934 바이트
+
+ D:\Prism-Samples-Wpf-master\23-RegionMemberLifetime\RegionMemberLifetime\obj 디렉터리
+
+2022-08-16  오전 12:56            16,013 project.assets.json
+2022-08-23  오전 12:45             6,548 RegionMemberLifetime.csproj.nuget.dgspec.json
+               2개 파일              22,561 바이트
+
+ D:\Prism-Samples-Wpf-master\24-NavigationJournal\ModuleA\bin\Debug\netcoreapp3.1 디렉터리
+
+2022-08-16  오후 11:52             2,275 ModuleA.deps.json
+               1개 파일               2,275 바이트
+
+ D:\Prism-Samples-Wpf-master\24-NavigationJournal\ModuleA\obj 디렉터리
+
+2022-08-23  오전 12:45             3,148 ModuleA.csproj.nuget.dgspec.json
+2022-08-16  오전 12:56             6,844 project.assets.json
+               2개 파일               9,992 바이트
+
+ D:\Prism-Samples-Wpf-master\24-NavigationJournal\NavigationJournal\bin\Debug\netcoreapp3.1 디렉터리
+
+2022-08-16  오후 11:52             5,451 NavigationJournal.deps.json
+2022-08-16  오후 11:52               313 NavigationJournal.runtimeconfig.dev.json
+2022-08-16  오후 11:52               161 NavigationJournal.runtimeconfig.json
+               3개 파일               5,925 바이트
+
+ D:\Prism-Samples-Wpf-master\24-NavigationJournal\NavigationJournal\obj 디렉터리
+
+2022-08-23  오전 12:45             6,485 NavigationJournal.csproj.nuget.dgspec.json
+2022-08-16  오전 12:56            15,980 project.assets.json
+               2개 파일              22,465 바이트
+
+ D:\Prism-Samples-Wpf-master\29-InvokeCommandAction\UsingInvokeCommandAction\bin\Debug\netcoreapp3.1 디렉터리
+
+2022-08-16  오후 11:52             5,160 UsingInvokeCommandAction.deps.json
+2022-08-16  오후 11:52               313 UsingInvokeCommandAction.runtimeconfig.dev.json
+2022-08-16  오후 11:52               161 UsingInvokeCommandAction.runtimeconfig.json
+               3개 파일               5,634 바이트
+
+ D:\Prism-Samples-Wpf-master\29-InvokeCommandAction\UsingInvokeCommandAction\obj 디렉터리
+
+2022-08-16  오전 12:56            15,178 project.assets.json
+2022-08-23  오전 12:45             3,330 UsingInvokeCommandAction.csproj.nuget.dgspec.json
+               2개 파일              18,508 바이트
+
+ D:\Prism-Samples-Wpf-master\Prism-Samples-Wpf\bin\Debug\netcoreapp3.1 디렉터리
+
+2022-08-17  오전 01:32             2,275 ModuleA.deps.json
+               1개 파일               2,275 바이트
+
+ D:\Prism-Samples-Wpf-master\Prism-Samples-Wpf\bin\Debug\netcoreapp3.1\Modules 디렉터리
+
+2022-08-16  오후 11:52             2,275 ModuleA.deps.json
+               1개 파일               2,275 바이트
+
+     전체 파일:
+             268개 파일           1,241,672 바이트
+               0개 디렉터리  434,213,687,296 바이트 남음
