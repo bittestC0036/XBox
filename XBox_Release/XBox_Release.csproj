@@ -267,6 +267,9 @@
       <SubType>Designer</SubType>
     </ApplicationDefinition>
     <Compile Include="Etc\StandardBootstrapper.cs" />
+    <Compile Include="Etc\UserControl\ICON\_Img_.xaml.cs">
+      <DependentUpon>_Img_.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Etc\UserControl\Number.xaml.cs">
       <DependentUpon>Number.xaml</DependentUpon>
     </Compile>
@@ -283,12 +286,12 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
-    <Compile Include="IShell.cs" />
+    <Compile Include="Shell\IShell.cs" />
     <Compile Include="Etc\ObservableObject.cs" />
-    <Compile Include="ShellView.xaml.cs">
+    <Compile Include="Shell\ShellView.xaml.cs">
       <DependentUpon>ShellView.xaml</DependentUpon>
     </Compile>
-    <Compile Include="ShellViewModel.cs" />
+    <Compile Include="Shell\ShellViewModel.cs" />
     <Compile Include="Etc\UserControl\Dialog\MoveToLineWindow.xaml.cs">
       <DependentUpon>MoveToLineWindow.xaml</DependentUpon>
     </Compile>
@@ -298,8 +301,8 @@
     <Compile Include="Etc\UserControl\Dialog\SearchWindow.xaml.cs">
       <DependentUpon>SearchWindow.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Etc\UserControl\ICON\_File_.xaml.cs">
-      <DependentUpon>_File_.xaml</DependentUpon>
+    <Compile Include="Etc\UserControl\ICON\_TxT_.xaml.cs">
+      <DependentUpon>_TxT_.xaml</DependentUpon>
     </Compile>
     <Compile Include="Etc\UserControl\ICON\_Folder_.xaml.cs">
       <DependentUpon>_Folder_.xaml</DependentUpon>
@@ -307,6 +310,10 @@
     <Compile Include="Etc\UserControl\TextEditor.xaml.cs">
       <DependentUpon>TextEditor.xaml</DependentUpon>
     </Compile>
+    <Page Include="Etc\UserControl\ICON\_Img_.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
     <Page Include="Etc\UserControl\Number.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -319,11 +326,11 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="ShellView.xaml">
+    <Page Include="Shell\ShellView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Etc\UserControl\ICON\_File_.xaml">
+    <Page Include="Etc\UserControl\ICON\_TxT_.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
@@ -400,8 +407,9 @@
   <ItemGroup>
     <Resource Include="Etc\Resources\Code_Image.JPG" />
   </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
-    <Folder Include="Shell\" />
+    <None Include="Resources\zipFile_Image.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

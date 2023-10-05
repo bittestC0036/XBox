@@ -16,11 +16,13 @@ using System.Windows.Shapes;
 namespace XBox
 {
     /// <summary>
-    /// File.xaml에 대한 상호 작용 논리
+    /// _Folder_.xaml에 대한 상호 작용 논리
     /// </summary>
-    public partial class _File_ : UserControl
+    //public delegate void _expandedCallBack(object sender, RoutedEventArgs e);
+    public partial class _Img_ : TreeViewItem
     {
-        public _File_()
+        //public event _expandedCallBack _expandedCallBack;
+        public _Img_()
         {
             InitializeComponent();
         }

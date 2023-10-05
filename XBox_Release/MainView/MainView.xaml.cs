@@ -27,6 +27,8 @@ namespace XBox
     {
         public List<string> sTxt_list = new List<string>();
 
+        public List<string> sImage_list = new List<string>();
+
         public List<string> vs = new List<string>();
 
         public TreeViewItem SelectedTreeviewItem = new TreeViewItem();
@@ -69,6 +71,22 @@ namespace XBox
                         for (int nCnt = 0; nCnt < strTemp.Length; nCnt++)
                         {
                             sTxt_list.Add(strTemp[nCnt]);
+                        }
+                    }
+                }
+                sTxt_list.Add("");
+
+                if (sLine.IndexOf("IMAGETYPE") > -1)
+                {
+                    var strTemp = sLine.Split('=');
+
+                    strTemp = strTemp[1].Split(',');
+
+                    for (int nCnt = 0; nCnt < strTemp.Length; nCnt++)
+                    {
+                        if(false==string.IsNullOrWhiteSpace(strTemp[nCnt].ToString()))
+                        {
+                            sImage_list.Add(strTemp[nCnt].ToString());
                         }
                     }
                 }
@@ -119,6 +137,47 @@ namespace XBox
             sw.Write(".java     ,".Replace(" ", ""));
             sw.Write(".class     ".Replace(" ", ""));
             sw.WriteLine("");
+
+
+            sw.Write("IMAGETYPE=");
+            sw.Write(".BMP      ,".Replace(" ", ""));
+            sw.Write(".RLE      ,".Replace(" ", ""));            
+            sw.Write(".JPEG      ,".Replace(" ", ""));
+            sw.Write(".JPG      ,".Replace(" ", ""));            
+            sw.Write(".GIF      ,".Replace(" ", ""));
+            sw.Write(".PNG      ,".Replace(" ", ""));            
+            sw.Write(".PSD      ,".Replace(" ", ""));
+            sw.Write(".PDD      ,".Replace(" ", ""));            
+            sw.Write(".TIFF      ,".Replace(" ", ""));
+            sw.Write(".TIF      ,".Replace(" ", ""));            
+            sw.Write(".Exif      ,".Replace(" ", ""));
+            sw.Write(".PDF      ,".Replace(" ", ""));            
+            sw.Write(".RAW      ,".Replace(" ", ""));
+            sw.Write(".AI      ,".Replace(" ", ""));            
+            sw.Write(".PCX      ,".Replace(" ", ""));
+            sw.Write(".EPS      ,".Replace(" ", ""));
+            sw.Write(".SVG      ,".Replace(" ", ""));            
+            sw.Write(".SVGZ      ,".Replace(" ", ""));
+            sw.Write(".IFF      ,".Replace(" ", ""));            
+            sw.Write(".FPX      ,".Replace(" ", ""));
+            sw.Write(".FRM      ,".Replace(" ", ""));            
+            sw.Write(".PCT      ,".Replace(" ", ""));
+            sw.Write(".PIC      ,".Replace(" ", ""));            
+            sw.Write(".PXR      ,".Replace(" ", ""));
+            sw.Write(".SCT      ,".Replace(" ", ""));            
+            sw.Write(".TGA      ,".Replace(" ", ""));
+            sw.Write(".VDA      ,".Replace(" ", ""));            
+            sw.Write(".ICB      ,".Replace(" ", ""));
+            sw.Write(".VST      ,".Replace(" ", ""));            
+            sw.Write(".PPM      ,".Replace(" ", ""));
+            sw.Write(".PGM      ,".Replace(" ", ""));            
+            sw.Write(".PBM      ,".Replace(" ", ""));
+            sw.Write(".PNM      ,".Replace(" ", ""));            
+            sw.Write(".WEBP      ,".Replace(" ", ""));
+            sw.Write(".BPG      ,".Replace(" ", ""));            
+            sw.Write(".CGM      ,".Replace(" ", ""));
+            sw.Write(".SVG      ,".Replace(" ", ""));            
+            sw.Write(".HEIC      ,".Replace(" ", ""));
             sw.Close();
         }
 
@@ -151,13 +210,10 @@ namespace XBox
             SelectedTreeviewItem = temp_treeview_item;
         }
 
-        //private TreeViewItem MakeFolderTree(string FolderPath)
         private _Folder_ MakeFolderTree(string FolderPath)
         {
             var di_folder = new DirectoryInfo(FolderPath);
-            var temp_tv_item = new _Folder_(); //{ Header = di_folder.Name, Tag = di_folder.FullName, Background = Brushes.Gray };
-
-            //int nSize = 100;
+            var temp_tv_item = new _Folder_();
 
             temp_tv_item.TB_Header.Content = di_folder.Name;
             temp_tv_item.Tag = di_folder.FullName;
@@ -191,31 +247,57 @@ namespace XBox
                 var fi = di_spath.GetFiles();
                 for (int nCnt = 0; nCnt < fi.Count(); nCnt++)
                 {
-                    var temp = new _File_();
-                    temp.Height = 40;
-                    temp.TB_Header.Content = fi[nCnt].Name;
-                    temp.Tag = fi[nCnt].FullName;
-                    temp.MouseDown += Temp_MouseDown;
-                    temp.MouseDoubleClick += Temp_MouseDoubleClick;
-                    if (vs.IndexOf(temp.Tag.ToString()) == -1)
+                    if(sTxt_list.IndexOf(fi[nCnt].Extension)>-1)
                     {
-                        x.Items.Add(temp);
-                        vs.Add(temp.Tag.ToString());
+                        var temp = new _TxT_();
+                        temp.Height = 40;
+                        temp.TB_Header.Content = fi[nCnt].Name;
+                        temp.Tag = fi[nCnt].FullName;
+                        temp.MouseDown += Temp_MouseDown;
+                        temp.MouseDoubleClick += Temp_MouseDoubleClick;
+                        if (vs.IndexOf(temp.Tag.ToString()) == -1)
+                        {
+                            x.Items.Add(temp);
+                            vs.Add(temp.Tag.ToString());
+                        }
                     }
+                    else if (sImage_list.IndexOf(fi[nCnt].Extension) > -1)
+                    {
+                        var temp = new _Img_();
+                        temp.Height = 40;
+                        temp.TB_Header.Content = fi[nCnt].Name;
+                        temp.Tag = fi[nCnt].FullName;
+                        temp.MouseDown += Temp_MouseDown;
+                        temp.MouseDoubleClick += Temp_MouseDoubleClick;
+                        if (vs.IndexOf(temp.Tag.ToString()) == -1)
+                        {
+                            x.Items.Add(temp);
+                            vs.Add(temp.Tag.ToString());
+                        }
+                    }
+
                 }
             }
         }
 
         private void Temp_MouseDown(object sender, MouseButtonEventArgs e)
         {
-            var x = sender as _File_;
-            var fi_item = new FileInfo(x.Tag.ToString());
-
-            if (sTxt_list.IndexOf(fi_item.Extension) > -1)
+            if ( sender is _TxT_)
             {
+                var x = sender as _TxT_;
+                var fi_item = new FileInfo(x.Tag.ToString());
                 this.TB_Content.TB_Content.Text = File.ReadAllText(x.Tag.ToString());
             }
-            else
+            else if(sender is _Img_)
+            {
+                this.TB_Content.Visibility = Visibility.Collapsed;
+                this.Img_Content.Visibility = Visibility.Visible;
+                BitmapImage bitmapImage = new BitmapImage();
+                bitmapImage.BeginInit();
+                bitmapImage.UriSource = new Uri((sender as _Img_).Tag.ToString(), UriKind.Absolute);
+                bitmapImage.EndInit();
+                this.Img_Content.Source = bitmapImage;
+            }else
             {
 
             }
@@ -223,7 +305,7 @@ namespace XBox
 
         private void Temp_MouseDoubleClick(object sender, MouseButtonEventArgs e)
         {
-            var x = sender as _File_;
+            var x = sender as _TxT_;
 
             if (null == x)
                 return;
@@ -317,12 +399,49 @@ namespace XBox
         {
             var Y = sender as TreeView;
 
-            if (Y.SelectedItem is _File_)
-                ShowFilePropertise(Y.SelectedItem as _File_);
+            if (Y.SelectedItem is _TxT_)
+                ShowFilePropertise(Y.SelectedItem as _TxT_);
+
+            if(Y.SelectedItem is _Img_)
+                ShowImgPropertise(Y.SelectedItem as _Img_);
 
             else if (Y.SelectedItem is _Folder_)
                 ShowFolderPropertise(Y.SelectedItem as _Folder_);
 
+        }
+
+        private void ShowImgPropertise(_Img_ img_)
+        {
+            string sFilePath = string.Empty;
+            FileInfo fi = null;
+            string sFinfo = string.Empty;
+
+            sFilePath = img_.Tag.ToString();
+            fi = new FileInfo(sFilePath);
+
+            this.TB_Content.Visibility = Visibility.Collapsed;
+            this.Img_Content.Visibility = Visibility.Visible;
+
+            BitmapImage bitmapImage = new BitmapImage();
+            bitmapImage.BeginInit();
+            bitmapImage.UriSource = new Uri(sFilePath, UriKind.Absolute);
+            bitmapImage.EndInit();
+            this.Img_Content.Source = bitmapImage;
+
+
+            sFinfo = string.Format("File Name :{0}         \n" +
+                                       "Create Date:{1}        \n" +
+                                       "Modification Date:{2}  \n",
+                                       fi.Name,
+                                       fi.CreationTime.ToString("yyyy-MM-HH-mm"),
+                                       fi.LastWriteTime);
+
+            TB_Content.StatusBarCallBack += SetStatus;
+            TB_Content.ReplaceCallBack += TB_Content_ReplaceCallBack;
+            TB_Content.SearchCallBack += TB_Content_SearchCallBack;
+            TB_Content.MoveToLineCallBack += TB_Content_MoveToLineCallBack;
+
+            TB_Properties.Text = sFinfo;
         }
 
         private void ShowFolderPropertise(_Folder_ x)
@@ -344,7 +463,7 @@ namespace XBox
             TB_Content.TB_Content.Text = string.Empty;
         }
 
-        private void ShowFilePropertise(_File_ x)
+        private void ShowFilePropertise(_TxT_ x)
         {
             string sFilePath = string.Empty;
             FileInfo fi = null;
@@ -352,11 +471,10 @@ namespace XBox
 
             sFilePath = x.Tag.ToString();
             fi = new FileInfo(sFilePath);
-            if (sTxt_list.IndexOf(fi.Extension) == -1)
-            {
-                MessageBox.Show("file type is not Text");
-                return;
-            }
+
+            this.TB_Content.Visibility = Visibility.Visible;
+            this.Img_Content.Visibility = Visibility.Collapsed;
+
 
             TB_Content.TB_Content.Text = File.ReadAllText(sFilePath);
             sFinfo = string.Format("File Name :{0}         \n" +
@@ -372,11 +490,6 @@ namespace XBox
             TB_Content.MoveToLineCallBack += TB_Content_MoveToLineCallBack;
 
             TB_Properties.Text = sFinfo;
-        }
-
-        private void TB_Content_StatusBarCallBack(string sLog)
-        {
-            throw new NotImplementedException();
         }
 
         private void TB_Content_MoveToLineCallBack(int nIndex)
@@ -422,29 +535,31 @@ namespace XBox
 
         private void Btn_SetDialog(object sender, RoutedEventArgs e)
         {
-            TB_RootPath.Text = "";
+            Reset();
             CommonOpenFileDialog cofd = new CommonOpenFileDialog();
             cofd.IsFolderPicker = true;
 
             if (cofd.ShowDialog() == CommonFileDialogResult.Ok)
             {
                 TB_RootPath.Text = cofd.FileName;
-            }
 
+                INITUI(TB_RootPath.Text.ToString());
+
+                Tap1.Title = TB_RootPath.Text.ToString();
+
+                vs.Clear();
+                var temp = folderTreeView.Items[0] as TreeViewItem;
+                temp.IsExpanded = true;
+            }
+        }
+
+        private void Reset()
+        {
+            TB_RootPath.Text = "";
             folderTreeView.Items.Clear();
             TB_Content.TB_Content.Text = string.Empty;
             TB_Properties.Text = string.Empty;
-
-            if ("" == TB_RootPath.Text.ToString())
-                return;
-
-            INITUI(TB_RootPath.Text.ToString());
-
-            Tap1.Title = TB_RootPath.Text.ToString();
-
-            vs.Clear();
-            var temp = folderTreeView.Items[0] as TreeViewItem;
-            temp.IsExpanded = true;
+            Img_Content.Source = null;
         }
 
         private void Tap1_Closing(object sender, System.ComponentModel.CancelEventArgs e)

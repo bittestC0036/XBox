@@ -40,16 +40,27 @@ using System.Windows;
                                               // 리소스가 없는 경우에 사용됨)
 )]
 
+// 23/03/20 2.0.1.4 beta 2 Release
+// Summary File 에 Hifi file path 부분 NUL으로 표기
+// 되는 부분 임시 대책으로
+//[assembly: AssemblyVersion("2.0.1.4")]
 
-// 어셈블리의 버전 정보는 다음 네 가지 값으로 구성됩니다.
-//
-//      주 버전
-//      부 버전 
-//      빌드 번호
-//      수정 버전
-//
-// 모든 값을 지정하거나 아래와 같이 '*'를 사용하여 빌드 번호 및 수정 번호를
-// 기본값으로 할 수 있습니다.
-// [assembly: AssemblyVersion("1.0.*")]
-[assembly: AssemblyVersion("1.0.0.0")]
-[assembly: AssemblyFileVersion("1.0.0.0")]
+// 23/10/04 v0.7
+// UI 설계
+// 전체적인 구성 완료 
+//[assembly: AssemblyVersion("0.7")]
+
+// 23/10/06 v0.9
+// Text 파일만 읽는 _File_ 에서 _TxT_ 명칭 변경
+// 이미지 파일도 Display 할 수 있는 아이콘 및 이미지 뷰어 기능 구현
+[assembly: AssemblyVersion("0.9")]
+
+// 아이콘 관련하여 
+// Zip 파일 과 Etc 파일을 제어할 수 있는 아이콘 및 관련 기능 구현 예정
+
+//TextEditor 관련하여
+//줄이동, 단어 바꾸기, 단어 찾기 기능 구현 예정
+
+//로그 관련하여
+//DB 스키마 활용하여 관련 기능 구현 예정
+//[assembly: AssemblyVersion("1.0")]
