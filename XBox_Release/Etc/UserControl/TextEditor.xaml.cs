@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
@@ -37,13 +38,19 @@ namespace XBox
 
         public MoveToLineWindow MoveToLineWindow;
 
+        public int nKeyCnt = -1; // 총 있는 값
+
+        public int nfoundnCnt = -1; // 총 있는 값
+
         public TextEditor()
         {
             InitializeComponent();
 
             SearchWindow = new SearchWindow();
+            SearchWindow.BtnSearch.Click += BtnSearch_Click;
 
             ReplaceWindow = new ReplaceWindow();
+            ReplaceWindow.Btn_Replace.Click += Btn_Replace_Click;
 
             MoveToLineWindow = new MoveToLineWindow();
 
@@ -51,6 +58,92 @@ namespace XBox
             ReplaceWindow.Visibility = Visibility.Collapsed;
             MoveToLineWindow.Visibility = Visibility.Collapsed;
 
+        }
+
+        public string sBeforeSearchKeyword = string.Empty;
+        int index_Search = -1;
+        private void BtnSearch_Click(object sender, RoutedEventArgs e)
+        {
+            string sSearchKeyword = SearchWindow.TB_Keyword.Text.ToString();
+
+            if (sBeforeSearchKeyword != sSearchKeyword)
+            {
+                index_Search = -1;
+            }
+
+            if (string.IsNullOrWhiteSpace(sSearchKeyword))
+            {
+                MessageBox.Show(string.Format("Please Check Keywrod again"));
+                return;
+            }
+
+
+            index_Search = TB_Content.Text.ToString().IndexOf(sSearchKeyword, index_Search + 1);
+
+            if (index_Search >= 0)
+            {
+                TB_Content.Select(index_Search, sSearchKeyword.Length); // 해당 위치로 선택
+                TB_Content.Focus(); // TextBox에 포커스 설정
+            }
+
+            if (TB_Content.Text.ToString().IndexOf(sSearchKeyword, index_Search + 1) >= 0)
+            {
+                SearchWindow.BtnSearch.Content = "다음 찾기";
+            }
+            else
+            {
+                SearchWindow.BtnSearch.Content = "찾기";
+            }
+
+            if (index_Search == -1)
+            {
+                MessageBox.Show($"'{sSearchKeyword}'를 찾을 수 없습니다.");
+            }
+        }
+
+        public string sBeforeReplace_SearchKeyword = string.Empty;
+        public string sBeforeReplace_ReplaceKeyword = string.Empty;
+        int index_Replace = -1;
+
+        private void Btn_Replace_Click(object sender, RoutedEventArgs e)
+        {
+            string sSearchKeyword = ReplaceWindow.TB_Search.Text.ToString();
+
+            string sReplaceKeyword = ReplaceWindow.TB_Replace.Text.ToString();
+
+            if (sBeforeSearchKeyword != sSearchKeyword)
+            {
+                index_Replace = -1;
+            }
+
+            if (string.IsNullOrWhiteSpace(sSearchKeyword))
+            {
+                MessageBox.Show(string.Format("Please Check Keywrod again"));
+                return;
+            }
+
+
+            index_Replace = TB_Content.Text.ToString().IndexOf(sSearchKeyword, index_Replace + 1);
+
+            if (index_Replace >= 0)
+            {
+                TB_Content.Select(index_Replace, sSearchKeyword.Length); // 해당 위치로 선택
+                TB_Content.Focus(); // TextBox에 포커스 설정
+            }
+
+            if (TB_Content.Text.ToString().IndexOf(sSearchKeyword, index_Replace + 1) >= 0)
+            {
+                SearchWindow.BtnSearch.Content = "다음 바꾸기";
+            }
+            else
+            {
+                SearchWindow.BtnSearch.Content = "바꾸기";
+            }
+
+            if (index_Replace == -1)
+            {
+                MessageBox.Show($"'{sSearchKeyword}'를 찾을 수 없습니다.");
+            }
         }
 
         private void Content_TextChanged(object sender, TextChangedEventArgs e)
@@ -140,6 +233,22 @@ namespace XBox
                     ReplaceWindow.Show();
                 }
                 StatusBarCallBack("바꾸기");
+            }
+        }
+
+        private void SearchWindow_SearchCallBack(string sLog)
+        {
+            string sTextEditor_Content=this.TB_Content.Text.ToString();
+            int nCnt = -1;
+
+            if(sTextEditor_Content.IndexOf(sLog) >-1)
+            {
+                MatchCollection matches = Regex.Matches(sTextEditor_Content, sLog);
+            }
+            else
+            {
+                MessageBox.Show(string.Format("{0} is nothing .\n" +
+                    "Please Check it again", sLog));
             }
         }
 

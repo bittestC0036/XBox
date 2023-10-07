@@ -26,5 +26,12 @@ namespace XBox
             this.Width = 400;
             this.Height = 200;
         }
+
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+            //Btn_Replace.Content = "";
+
+            this.Close();
+        }
     }
 }

@@ -30,7 +30,7 @@
                 <ColumnDefinition Width="*"/>
             </Grid.ColumnDefinitions>
             <Label    Grid.Column="0"  Content="찾을 내용" />
-            <TextBox  Grid.Column="2" Grid.ColumnSpan="2" Text="KeyWord" BorderBrush="Black" BorderThickness="1" Padding="1"/>
+            <TextBox   x:Name="TB_Keyword"       Grid.Column="2" Grid.ColumnSpan="2" Text="KeyWord" BorderBrush="Black" BorderThickness="1" Padding="1"/>
         </Grid>
         
         <Grid Grid.Row="2">
@@ -39,7 +39,7 @@
                 <ColumnDefinition Width="10"/>
                 <ColumnDefinition Width="*"/>
             </Grid.ColumnDefinitions>
-            <Button   Grid.Column="0" Content="Search" />
+            <Button  x:Name="BtnSearch" Grid.Column="0" Content="Search" />
             <Button   Grid.Column="2" Content="Close" />
         </Grid>
     </Grid>
