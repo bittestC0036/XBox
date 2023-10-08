@@ -9,6 +9,7 @@
              xmlns:cal="http://www.caliburnproject.org"
              d:DataContext="{d:DesignInstance {x:Type local:MainViewModel},
              IsDesignTimeCreatable=False}"
+             cal:Message.Attach="[Event Loaded]=[Action Window_Loaded($dataContext)]"
              d:DesignHeight="450" d:DesignWidth="800">
     <avalonDock:DockingManager x:Name="dockManager" Visibility="Visible" >
         <avalonDock:LayoutRoot>
@@ -62,29 +63,34 @@
                                         <RowDefinition Height="0.1*"/>
                                         <RowDefinition Height="*"/>
                                     </Grid.RowDefinitions>
-                                    <TextBox Grid.Column="1" IsReadOnly="True" Name="TB_RootPath" Style="{StaticResource TB_RootPathStyle}"   />
-                                    <Button  Grid.Column="3" Content="경로 설정" Click="Btn_SetDialog"  
-                                             CommandParameter="{Binding RelativeSource={RelativeSource Mode=FindAncestor,AncestorType=UserControl}}" />
-                                    <TextBox  Grid.Row="2" Grid.Column="1" Grid.ColumnSpan="3" TextChanged="TextBox_TextChanged"  />
+                                    <TextBox Grid.Column="1" IsReadOnly="True" Name="TB_RootPath" 
+                                             Style="{StaticResource TB_RootPathStyle}"   />
+                                    
+                                    <Button  Grid.Column="3" Content="경로 설정" 
+                                             cal:Message.Attach="[Event Click] = [Action Btn_SetPath()]"/>
+                                    
+                                    <TextBox  Grid.Row="2" Grid.Column="1" Grid.ColumnSpan="3" 
+                                              cal:Message.Attach="[Event TextChanged] = [Action FindFileName()]"/>
                                 </Grid>
+                                
                                 <GridSplitter Grid.Row="2"    
                                               HorizontalAlignment="Stretch"
                                               VerticalAlignment="Center"
                                               Background="Black" 
                                               ShowsPreview="True"
                                               Height="5"/>
+                                
                                 <Grid Grid.Row="3">
                                     <Grid.ColumnDefinitions>
                                         <ColumnDefinition Width="*"/>
                                         <ColumnDefinition Width="Auto"/>
                                         <ColumnDefinition Width="*"/>
                                     </Grid.ColumnDefinitions>
-                                    <!--
-                                    <TreeView Grid.Column="0" x:Name="folderTreeView"  />
-                                    -->
+
                                     <Grid Grid.Column="0">
                                         <TreeView x:Name="folderTreeView"/>
                                     </Grid>
+                                    
                                     <GridSplitter   Grid.Column="1"
                                                     Background="Black" 
                                                     ShowsPreview="True"
@@ -100,6 +106,7 @@
                                         </Grid.RowDefinitions>
 
                                         <local:TextEditor  x:Name="TB_Content" />
+                                        
                                         <Image   x:Name="Img_Content"      Visibility="Collapsed" />
 
                                         <GridSplitter Grid.Row="1"
@@ -109,9 +116,6 @@
                                                       ShowsPreview="True"
                                                       Height="5"/>
                                         <TextBox x:Name="TB_Properties"    Grid.Row="2"    Style="{StaticResource Properties}"/>
-                                        <!--
-                                        CommandParameter="{Binding RelativeSource={RelativeSource Mode=FindAncestor,AncestorType=Window}}"
-                                        -->
                                     </Grid>
                                 </Grid>
                                 <Grid Grid.Row="4" Background="YellowGreen">
