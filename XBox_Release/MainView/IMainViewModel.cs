@@ -8,6 +8,10 @@ namespace XBox
 {
     public interface IMainViewModel
     {
-        void ShowMessage(string msg);
+        void Window_Loaded(object dataContext);
+
+        void Btn_SetPath();
+
+        void FindFileName();
     }
 }

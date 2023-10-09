@@ -2,6 +2,8 @@
 using Microsoft.WindowsAPICodePack.Dialogs;
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
+using System.ComponentModel;
 using System.ComponentModel.Composition;
 using System.IO;
 using System.Linq;
@@ -9,13 +11,14 @@ using System.Reflection;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
+using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using Xceed.Wpf.AvalonDock.Layout;
 
 namespace XBox
 {
     [Export(typeof(IMainViewModel))]
-    public sealed partial class MainViewModel : Screen,IMainViewModel
+    public sealed class MainViewModel : ObservableObject, IMainViewModel, INotifyPropertyChanged
     {
         public List<string> sTxt_list = new List<string>();
 
@@ -27,17 +30,174 @@ namespace XBox
 
         public MainView _MainView_ = null;
 
+        private string _TB_RootPath_Text = "";
+        public string TB_RootPath_Text
+        {
+            get { return _TB_RootPath_Text; }
+            set
+            {
+                SetProperty(ref _TB_RootPath_Text, value);
+            }
+        }
+
+        private string _Tap1_Title = "";
+        public string Tap1_Title
+        {
+            get { return _Tap1_Title; }
+            set
+            {
+                SetProperty(ref _Tap1_Title, value);
+            }
+        }
+
+        private string _folderTreeview_Tag = "";
+        public string folderTreeview_Tag
+        {
+            get { return _folderTreeview_Tag; }
+            set
+            {
+                SetProperty(ref _folderTreeview_Tag, value);
+            }
+        }
+
+        private string _TB_Content_Text = "";
+        public string TB_Content_Text
+        {
+            get { return _TB_Content_Text; }
+            set
+            {
+                SetProperty(ref _TB_Content_Text, value);
+            }
+        }
+
+        private string _TB_Content_Content = "";
+        public string TB_Content_Content
+        {
+            get { return _TB_Content_Content; }
+            set
+            {
+                SetProperty(ref _TB_Content_Content, value);
+            }
+        }
+
+        private string _TB_Properties_Text = "";
+        public string TB_Properties_Text
+        {
+            get
+            {
+                return _TB_Properties_Text;
+            }
+            set
+            {
+                SetProperty(ref _TB_Properties_Text, value);
+            }
+        }
+
+        private ImageSource _Image_Content_Source = null;
+
+        public ImageSource Image_Content_Source
+        {
+            get
+            {
+                return _Image_Content_Source;
+            }
+            set
+            {
+                SetProperty(ref _Image_Content_Source, value);
+            }
+        }
+
+        private Visibility _TB_Content_Visability = Visibility.Visible;
+
+        public Visibility TB_Content_Visability
+        {
+            get { return _TB_Content_Visability; }
+            set
+            {
+                SetProperty(ref _TB_Content_Visability, value);
+            }
+        }
+
+        private Visibility _Img_Content_Visability = Visibility.Collapsed;
+
+        public Visibility Img_Content_Visability
+        {
+            get { return _Img_Content_Visability; }
+            set
+            {
+                SetProperty(ref _Img_Content_Visability, value);
+            }
+        }
+
+        private ObservableCollection<TreeViewItem> _FolderTreeview_items = new ObservableCollection<TreeViewItem>();
+
+        public ObservableCollection<TreeViewItem> FolderTreeview_items
+        {
+            get
+            {
+                return _FolderTreeview_items;
+            }
+            set
+            {
+                SetProperty(ref _FolderTreeview_items, value);
+            }
+        }
+
+        private ObservableCollection<LayoutContent> _TopTap_items = new ObservableCollection<LayoutContent>();
+
+        public ObservableCollection<LayoutContent> TopTap_items
+        {
+            get
+            {
+                return _TopTap_items;
+            }
+            set
+            {
+                SetProperty(ref _TopTap_items, value);
+            }
+        }
+
+        public static readonly DependencyProperty SelectedTopTapIndexProperty =
+        DependencyProperty.RegisterAttached("SelectedTopTapIndex", typeof(int), typeof(MainViewModel), new PropertyMetadata(0));
+
+        //public static readonly DependencyProperty MinAccessLevelProperty =
+        //DependencyProperty.RegisterAttached("MinAccessLevel", typeof(AccessLevel), typeof(AccessManager), new PropertyMetadata(OnMinAccessLevelChanged));
+
+
+        // MyProperty의 CLR 프로퍼티를 정의합니다.
+        private int _SelectedTopTapIndex = 0;
+        public int SelectedTopTapIndex
+        {
+            //get { return (int)GetValue(SelectedTopTapIndexProperty); }
+            //set { SetProperty(MyPropertyProperty, value); }
+            get
+            {
+                return _SelectedTopTapIndex;
+            }
+            set
+            {
+                SetProperty(ref _SelectedTopTapIndex, value);
+            }
+        }
+
+
+        #region Creator
         [ImportingConstructor]
         public MainViewModel()
         {
             SetTextType();
         }
 
-        public void Window_Loaded(object dataContext)
+        private void INITUI(string rootFolderPath = null)
         {
-            var x = dataContext as MainViewModel;
+            if (rootFolderPath == null)
+            {
+                rootFolderPath = @"D:\Job"; // 설정한 폴더 경로로 변경하세요.
+                return;
+            }
 
-            _MainView_ = x.GetView() as MainView;
+            TB_RootPath_Text = rootFolderPath;            
+            FolderTreeview_items.Add(MakeFolderTree(TB_RootPath_Text));
         }
 
         private void SetTextType()
@@ -180,7 +340,16 @@ namespace XBox
             sw.Write(".HEIC      ,".Replace(" ", ""));
             sw.Close();
         }
+        #endregion Creator
 
+        #region Event Command
+        public void Window_Loaded(object dataContext)
+        {
+            var x = dataContext as MainViewModel;
+
+
+            //_MainView_ = x.GetView() as MainView;
+        }
         public void Btn_SetPath()
         {
             Reset();
@@ -189,14 +358,15 @@ namespace XBox
 
             if (cofd.ShowDialog() == CommonFileDialogResult.Ok)
             {
-                _MainView_.TB_RootPath.Text = cofd.FileName;
+                TB_RootPath_Text = cofd.FileName;
+                
+                INITUI(TB_RootPath_Text);
 
-                INITUI(_MainView_.TB_RootPath.Text.ToString());
-
-                _MainView_.Tap1.Title = _MainView_.TB_RootPath.Text.ToString();
+                Tap1_Title = TB_RootPath_Text;
 
                 vs.Clear();
-                var temp = _MainView_.folderTreeView.Items[0] as TreeViewItem;
+
+                var temp = FolderTreeview_items[0] as TreeViewItem;
                 temp.IsExpanded = true;
             }
         }
@@ -205,140 +375,18 @@ namespace XBox
         {
 
         }
+        #endregion Event Command
+
+        #region Instance Method
 
         private void Reset()
         {
-            _MainView_.TB_RootPath.Text = "";
-            _MainView_.folderTreeView.Items.Clear();
-            _MainView_.TB_Content.TB_Content.Text = string.Empty;
-            _MainView_.TB_Properties.Text = string.Empty;
-            _MainView_.Img_Content.Source = null;
-        }
+            _TB_RootPath_Text = "";
+            FolderTreeview_items.Clear();
+            _TB_Content_Content = string.Empty;
+            _TB_Properties_Text = string.Empty;
+            _Image_Content_Source = null;
 
-        private void INITUI(string rootFolderPath = null)
-        {
-            if (rootFolderPath == null)
-            {
-                rootFolderPath = @"D:\Job"; // 설정한 폴더 경로로 변경하세요.
-                return;
-            }
-
-            _MainView_.folderTreeView.Tag = rootFolderPath;
-            _MainView_.folderTreeView.PreviewKeyDown += FolderTreeView_PreviewKeyDown;
-            _MainView_.folderTreeView.SelectedItemChanged += Treeview_SelectedChanged;
-            _MainView_.folderTreeView.Items.Add(MakeFolderTree(rootFolderPath));
-        }
-
-        private void Treeview_SelectedChanged(object sender, RoutedEventArgs e)
-        {
-            var Y = sender as TreeView;
-
-            if (Y.SelectedItem is _TxT_)
-                ShowFilePropertise(Y.SelectedItem as _TxT_);
-
-            else if (Y.SelectedItem is _Img_)
-                ShowImgPropertise(Y.SelectedItem as _Img_);
-
-            else if (Y.SelectedItem is _Folder_)
-                ShowFolderPropertise(Y.SelectedItem as _Folder_);
-
-        }
-        
-        private void ShowImgPropertise(_Img_ img_)
-        {
-            string sFilePath = string.Empty;
-            FileInfo fi = null;
-            string sFinfo = string.Empty;
-
-            sFilePath = img_.Tag.ToString();
-            fi = new FileInfo(sFilePath);
-
-            _MainView_.TB_Content.Visibility = Visibility.Collapsed;
-            _MainView_.Img_Content.Visibility = Visibility.Visible;
-
-            BitmapImage bitmapImage = new BitmapImage();
-            bitmapImage.BeginInit();
-            bitmapImage.UriSource = new Uri(sFilePath, UriKind.Absolute);
-            bitmapImage.EndInit();
-            _MainView_.Img_Content.Source = bitmapImage;
-
-
-            sFinfo = string.Format("File Name :{0}         \n" +
-                                       "Create Date:{1}        \n" +
-                                       "Modification Date:{2}  \n",
-                                       fi.Name,
-                                       fi.CreationTime.ToString("yyyy-MM-HH-mm"),
-                                       fi.LastWriteTime);
-
-            _MainView_. TB_Content.StatusBarCallBack += SetStatus;
-            _MainView_. TB_Content.ReplaceCallBack += TB_Content_ReplaceCallBack;
-            _MainView_. TB_Content.SearchCallBack += TB_Content_SearchCallBack;
-            _MainView_. TB_Content.MoveToLineCallBack += TB_Content_MoveToLineCallBack;
-
-            _MainView_.TB_Properties.Text = sFinfo;
-        }
-
-        private void ShowFolderPropertise(_Folder_ x)
-        {
-            string sFolderPath = string.Empty;
-            DirectoryInfo di = null;
-            string sDirInfo = string.Empty;
-
-            sFolderPath = x.Tag.ToString();
-            di = new DirectoryInfo(sFolderPath);
-            sDirInfo = string.Format("File Name :{0}         \n" +
-                                          "Create Date:{1}        \n" +
-                                          "Modification Date:{2}  \n",
-                                          di.Name,
-                                          di.CreationTime.ToString("yyyy-MM-HH-mm"),
-                                          di.LastWriteTime
-                                          );
-            _MainView_.TB_Properties.Text = sDirInfo;
-            _MainView_. TB_Content.TB_Content.Text = string.Empty;
-        }
-
-        private void ShowFilePropertise(_TxT_ x)
-        {
-            string sFilePath = string.Empty;
-            FileInfo fi = null;
-            string sFinfo = string.Empty;
-
-            sFilePath = x.Tag.ToString();
-            fi = new FileInfo(sFilePath);
-
-            _MainView_.TB_Content.Visibility = Visibility.Visible;
-            _MainView_.Img_Content.Visibility = Visibility.Collapsed;
-
-
-            _MainView_.TB_Content.TB_Content.Text = File.ReadAllText(sFilePath);
-            sFinfo = string.Format("File Name :{0}         \n" +
-                                       "Create Date:{1}        \n" +
-                                       "Modification Date:{2}  \n",
-                                       fi.Name,
-                                       fi.CreationTime.ToString("yyyy-MM-HH-mm"),
-                                       fi.LastWriteTime);
-
-            _MainView_.TB_Content.StatusBarCallBack += SetStatus;
-            _MainView_.TB_Content.ReplaceCallBack += TB_Content_ReplaceCallBack;
-            _MainView_.TB_Content.SearchCallBack += TB_Content_SearchCallBack;
-            _MainView_.TB_Content.MoveToLineCallBack += TB_Content_MoveToLineCallBack;
-
-            _MainView_.TB_Properties.Text = sFinfo;
-        }
-
-        private void FolderTreeView_PreviewKeyDown(object sender, KeyEventArgs e)
-        {
-            var x = sender as TreeView;
-
-            if (x == null)
-                return;
-
-            var temp_treeview_item = x.SelectedItem as TreeViewItem;
-
-            if (temp_treeview_item == null)
-                return;
-
-            SelectedTreeviewItem = temp_treeview_item;
         }
 
         private _Folder_ MakeFolderTree(string FolderPath)
@@ -368,6 +416,116 @@ namespace XBox
             }
         }
 
+        private void ShowImgPropertise(_Img_ img_)
+        {
+            string sFilePath = string.Empty;
+            FileInfo fi = null;
+            string sFinfo = string.Empty;
+
+            sFilePath = img_.Tag.ToString();
+            fi = new FileInfo(sFilePath);
+
+            TB_Content_Visability = Visibility.Visible;
+            _Img_Content_Visability = Visibility.Collapsed;
+
+            BitmapImage bitmapImage = new BitmapImage();
+            bitmapImage.BeginInit();
+            bitmapImage.UriSource = new Uri(sFilePath, UriKind.Absolute);
+            bitmapImage.EndInit();
+            _Image_Content_Source = bitmapImage;
+            
+            sFinfo = string.Format("File Name :{0}         \n" +
+                                       "Create Date:{1}        \n" +
+                                       "Modification Date:{2}  \n",
+                                       fi.Name,
+                                       fi.CreationTime.ToString("yyyy-MM-HH-mm"),
+                                       fi.LastWriteTime);
+            _TB_Properties_Text = sFinfo;
+        }
+
+        private void ShowFolderPropertise(_Folder_ x)
+        {
+            string sFolderPath = string.Empty;
+            DirectoryInfo di = null;
+            string sDirInfo = string.Empty;
+
+            sFolderPath = x.Tag.ToString();
+            di = new DirectoryInfo(sFolderPath);
+            sDirInfo = string.Format("File Name :{0}         \n" +
+                                          "Create Date:{1}        \n" +
+                                          "Modification Date:{2}  \n",
+                                          di.Name,
+                                          di.CreationTime.ToString("yyyy-MM-HH-mm"),
+                                          di.LastWriteTime
+                                          );
+            _TB_Properties_Text = sDirInfo;
+            _TB_Content_Content = string.Empty;
+        }
+
+        private void ShowFilePropertise(_TxT_ x)
+        {
+            string sFilePath = string.Empty;
+            FileInfo fi = null;
+            string sFinfo = string.Empty;
+
+            sFilePath = x.Tag.ToString();
+            fi = new FileInfo(sFilePath);
+
+            _TB_Content_Visability = Visibility.Visible;
+            _Img_Content_Visability = Visibility.Collapsed;
+
+            TB_Content_Content = File.ReadAllText(sFilePath);
+            sFinfo = string.Format("File Name :{0}         \n" +
+                                       "Create Date:{1}        \n" +
+                                       "Modification Date:{2}  \n",
+                                       fi.Name,
+                                       fi.CreationTime.ToString("yyyy-MM-HH-mm"),
+                                       fi.LastWriteTime);
+            TB_Properties_Text = sFinfo;
+        }
+
+        #endregion Instance Method
+
+        #region Event 
+
+        private void Treeview_SelectedChanged(object sender, RoutedEventArgs e)
+        {
+            var Y = sender as TreeView;
+
+            if (Y.SelectedItem is _TxT_)
+                ShowFilePropertise(Y.SelectedItem as _TxT_);
+
+            else if (Y.SelectedItem is _Img_)
+                ShowImgPropertise(Y.SelectedItem as _Img_);
+
+            else if (Y.SelectedItem is _Folder_)
+                ShowFolderPropertise(Y.SelectedItem as _Folder_);
+
+        }
+
+        public void FolderTreeView_PreviewKeyDown(object sender)
+        {
+            var x = sender as TreeView;
+        }
+
+        public void Treeview_SelectedChanged(object sender )
+        {
+            var x = sender as TreeView;
+
+            var Y = sender as TreeView;
+
+            if (Y.SelectedItem is _TxT_)
+                ShowFilePropertise(Y.SelectedItem as _TxT_);
+
+            else if (Y.SelectedItem is _Img_)
+                ShowImgPropertise(Y.SelectedItem as _Img_);
+
+            else if (Y.SelectedItem is _Folder_)
+                ShowFolderPropertise(Y.SelectedItem as _Folder_);
+        }
+
+
+
         private void Temp_tv_item_Expanded(object sender, RoutedEventArgs e)
         {
             var x = sender as _Folder_;
@@ -393,10 +551,89 @@ namespace XBox
             }
         }
 
-        public void ShowMessage(string msg)
+        private void Temp_MouseDown(object sender, MouseButtonEventArgs e)
         {
-            System.Diagnostics.Debug.WriteLine(msg);
+            if (sender is _TxT_)
+            {
+                var x = sender as _TxT_;
+                var fi_item = new FileInfo(x.Tag.ToString());
+                TB_Content_Content = File.ReadAllText(x.Tag.ToString());
+            }
+            else if (sender is _Img_)
+            {
+                TB_Content_Visability = Visibility.Collapsed;
+                Img_Content_Visability = Visibility.Visible;
+
+                BitmapImage bitmapImage = new BitmapImage();
+                bitmapImage.BeginInit();
+                bitmapImage.UriSource = new Uri((sender as _Img_).Tag.ToString(), UriKind.Absolute);
+                bitmapImage.EndInit();
+                _Image_Content_Source= bitmapImage;
+            }
+            else
+            {
+
+            }
         }
+
+        private void Temp_MouseDoubleClick(object sender, MouseButtonEventArgs e)
+        {
+            var x = sender as _TxT_;
+
+            if (null == x)
+                return;
+
+            var TEMP = new LayoutDocument();
+
+            TEMP.Title = x.TB_Header.ToString().Split(':')[1];
+
+            var Temp_TB = new TextEditor();
+
+            Temp_TB.TB_Content.Text = File.ReadAllText(x.Tag.ToString());
+
+            Temp_TB.TB_Content.Tag = x.Tag.ToString();
+
+            Temp_TB.TB_Content.IsReadOnly = false;
+
+            //Temp_TB.StatusBarCallBack += SetStatus;
+
+            var fi = new FileInfo(x.Tag.ToString());
+
+            if (sTxt_list.IndexOf(fi.Extension) == -1)
+            {
+                MessageBox.Show("file type is not Text");
+                return;
+            }
+
+            TEMP.Content = Temp_TB;
+            bool bCheck = true;
+
+            for (int nCnt = 0; nCnt < TopTap_items.Count; nCnt++)
+            {
+                bCheck = bCheck & TopTap_items[nCnt].Title != TEMP.Title;
+            }
+
+            if (true == bCheck)
+            {
+                TopTap_items.Add(TEMP);
+
+                _SelectedTopTapIndex = TopTap_items.Count - 1;
+            }
+            else
+            {
+                for (int nCnt = 0; nCnt < _MainView_.TopTap.Children.Count; nCnt++)
+                {
+                    if (_MainView_.TopTap.Children[nCnt].Title == TEMP.Title)
+                    {
+                        _MainView_.TopTap.SelectedContentIndex = nCnt;
+                    }
+                }
+            }
+        }
+
+        #endregion Event
+
+        #region CallBack Method
 
         private void Log(string sLog)
         {
@@ -458,85 +695,13 @@ namespace XBox
         {
 
         }
+        #endregion CallBack Method
 
 
-        private void Temp_MouseDown(object sender, MouseButtonEventArgs e)
-        {
-            if (sender is _TxT_)
-            {
-                var x = sender as _TxT_;
-                var fi_item = new FileInfo(x.Tag.ToString());
-                _MainView_.TB_Content.TB_Content.Text = File.ReadAllText(x.Tag.ToString());
-            }
-            else if (sender is _Img_)
-            {
-                _MainView_.TB_Content.Visibility = Visibility.Collapsed;
-                _MainView_.Img_Content.Visibility = Visibility.Visible;
-                BitmapImage bitmapImage = new BitmapImage();
-                bitmapImage.BeginInit();
-                bitmapImage.UriSource = new Uri((sender as _Img_).Tag.ToString(), UriKind.Absolute);
-                bitmapImage.EndInit();
-                _MainView_.Img_Content.Source = bitmapImage;
-            }
-            else
-            {
 
-            }
-        }
 
-        private void Temp_MouseDoubleClick(object sender, MouseButtonEventArgs e)
-        {
-            var x = sender as _TxT_;
 
-            if (null == x)
-                return;
 
-            var TEMP = new LayoutDocument();
-
-            TEMP.Title = x.TB_Header.ToString().Split(':')[1];
-
-            var Temp_TB = new TextEditor();
-
-            Temp_TB.TB_Content.Text = File.ReadAllText(x.Tag.ToString());
-
-            Temp_TB.TB_Content.Tag = x.Tag.ToString();
-
-            Temp_TB.TB_Content.IsReadOnly = false;
-
-            Temp_TB.StatusBarCallBack += SetStatus;
-
-            var fi = new FileInfo(x.Tag.ToString());
-
-            if (sTxt_list.IndexOf(fi.Extension) == -1)
-            {
-                MessageBox.Show("file type is not Text");
-                return;
-            }
-
-            TEMP.Content = Temp_TB;
-            bool bCheck = true;
-
-            for (int nCnt = 0; nCnt < _MainView_.TopTap.Children.Count; nCnt++)
-            {
-                bCheck = bCheck & _MainView_.TopTap.Children[nCnt].Title != TEMP.Title;
-            }
-            
-            if (true == bCheck)
-            {
-                _MainView_.TopTap.Children.Add(TEMP);
-                _MainView_.TopTap.SelectedContentIndex = _MainView_.TopTap.Children.Count - 1;
-            }
-            else
-            {
-                for (int nCnt = 0; nCnt < _MainView_.TopTap.Children.Count; nCnt++)
-                {
-                    if (_MainView_.TopTap.Children[nCnt].Title == TEMP.Title)
-                    {
-                        _MainView_.TopTap.SelectedContentIndex = nCnt;
-                    }
-                }
-            }
-        }
 
     }
 }

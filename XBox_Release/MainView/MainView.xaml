@@ -15,8 +15,8 @@
         <avalonDock:LayoutRoot>
             <avalonDock:LayoutPanel>
                 <avalonDock:LayoutDocumentPaneGroup>
-                    <avalonDock:LayoutDocumentPane x:Name="TopTap">
-                        <avalonDock:LayoutDocument x:Name="Tap1" Title="Document Root" Closing="Tap1_Closing">
+                    <avalonDock:LayoutDocumentPane x:Name="TopTap" >
+                        <avalonDock:LayoutDocument x:Name="Tap1" Title="{Binding Tap1_Title}" Closing="Tap1_Closing">
                             <Grid x:Name="Root">
                                 <Grid.Resources>
                                     <Style TargetType="{x:Type TextBox}">
@@ -64,8 +64,9 @@
                                         <RowDefinition Height="*"/>
                                     </Grid.RowDefinitions>
                                     <TextBox Grid.Column="1" IsReadOnly="True" Name="TB_RootPath" 
+                                             Text="{Binding TB_RootPath_Text}"
                                              Style="{StaticResource TB_RootPathStyle}"   />
-                                    
+
                                     <Button  Grid.Column="3" Content="경로 설정" 
                                              cal:Message.Attach="[Event Click] = [Action Btn_SetPath()]"/>
                                     
@@ -88,7 +89,9 @@
                                     </Grid.ColumnDefinitions>
 
                                     <Grid Grid.Column="0">
-                                        <TreeView x:Name="folderTreeView"/>
+                                        <TreeView x:Name="folderTreeView" ItemsSource="{Binding FolderTreeview_items}"
+                                                  cal:Message.Attach="[Event PressKeyDown] = [Action FolderTreeView_PreviewKeyDown($self]
+                                                  [Event SelectedItemChanged] = [Action ]"/>
                                     </Grid>
                                     
                                     <GridSplitter   Grid.Column="1"
@@ -105,7 +108,8 @@
                                             <RowDefinition Height="*" />
                                         </Grid.RowDefinitions>
 
-                                        <local:TextEditor  x:Name="TB_Content" />
+                                        <local:TextEditor  x:Name="TB_Content" Content="{Binding TB_Content_Content }"
+                                                           />
                                         
                                         <Image   x:Name="Img_Content"      Visibility="Collapsed" />
 
