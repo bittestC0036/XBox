@@ -10,7 +10,8 @@
              d:DataContext="{d:DesignInstance {x:Type local:MainViewModel},
              IsDesignTimeCreatable=False}"
              cal:Message.Attach="[Event Loaded]=[Action Window_Loaded($dataContext,$view)]"
-             d:DesignHeight="800" d:DesignWidth="1000">
+             d:DesignHeight="600" d:DesignWidth="800"
+             >
     <avalonDock:DockingManager x:Name="dockManager"  Visibility="Visible"  >
 
         <avalonDock:LayoutRoot x:Name="LayoutRoot">
@@ -111,8 +112,7 @@
 
                                         <local:TextEditor  x:Name="TB_Content" 
                                                            sTB_Content="{Binding TB_Content_Content , Mode=TwoWay}"
-                                                           Visibility="{Binding TB_Content_Visability}"
-                                                           />
+                                                           Visibility="{Binding TB_Content_Visability}"  />
 
 
                                         <Image   x:Name="Img_Content"   Visibility="{Binding Img_Content_Visability }"  Source="{Binding Image_Content_Source}"/>

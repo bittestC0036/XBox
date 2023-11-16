@@ -6,8 +6,17 @@ using System.Threading.Tasks;
 
 namespace XBox
 {
-    public interface IShell : IDisposable
+    public interface IShell : IWindow,IDisposable
     {
+        double dHeight { get; set; }
 
+        double dWidth { get; set; }
+    }
+
+    public interface IWindow
+    {
+        double dHeight { get; set; }
+
+        double dWidth { get; set; }
     }
 }

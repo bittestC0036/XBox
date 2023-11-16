@@ -8,6 +8,7 @@ using System.ComponentModel.Composition;
 using System.IO;
 using System.Linq;
 using System.Reflection;
+using System.Text;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
@@ -114,8 +115,8 @@ namespace XBox
             }
         }
 
-        private string _TB_Content_Content = "";
-        public string TB_Content_Content
+        private StringBuilder _TB_Content_Content = new StringBuilder("");
+        public StringBuilder TB_Content_Content
         {
             get { return _TB_Content_Content; }
             set
@@ -173,9 +174,6 @@ namespace XBox
             }
         }
 
-
-
-
         #endregion Binding Property
 
         #region Creator
@@ -192,6 +190,7 @@ namespace XBox
                 rootFolderPath = @"D:\Job"; // 설정한 폴더 경로로 변경하세요.
                 return;
             }
+
 
             TB_RootPath_Text = rootFolderPath;            
             FolderTreeview_items.Add(MakeFolderTree(TB_RootPath_Text));
@@ -349,6 +348,7 @@ namespace XBox
             var y = view as MainView;
 
             _MainView_ = y;
+
         }
 
         public void Btn_SetPath()
@@ -385,8 +385,6 @@ namespace XBox
         {
             _TB_RootPath_Text = "";
             FolderTreeview_items.Clear();
-            _TB_Content_Content = string.Empty;
-            _TB_Properties_Text = string.Empty;
             _Image_Content_Source = null;
 
         }
@@ -419,6 +417,9 @@ namespace XBox
             }
         }
 
+        string sBeforeFolder_Path = "";
+        private object stringBuilder;
+
         private void Temp_tv_item_Selected(object sender, RoutedEventArgs e)
         {
             if ( sender is _Folder_) 
@@ -426,7 +427,12 @@ namespace XBox
                 var x = sender as _Folder_;
                 if(x.IsSelected)
                 {
-                    ShowFolderPropertise(x);
+                    if(sBeforeFolder_Path==x.Tag.ToString())
+                    {
+                        sBeforeFolder_Path = x.Tag.ToString();
+                        ShowFolderPropertise(x);
+                    }
+
                 }
             }
         }
@@ -491,7 +497,7 @@ namespace XBox
                                           di.LastWriteTime
                                           );
             TB_Properties_Text = sDirInfo;
-            TB_Content_Content = string.Empty;
+            TB_Content_Content = new StringBuilder();
         }
 
 
@@ -550,8 +556,12 @@ namespace XBox
             if( sender is _TxT_)
             {
                 var x = sender as _TxT_;
-                var fi_item = new FileInfo(x.Tag.ToString());
-                TB_Content_Content = File.ReadAllText(x.Tag.ToString());
+                if(x.IsSelected)
+                {
+                    var fi_item = new FileInfo(x.Tag.ToString());
+                    TB_Content_Content = Set(File.ReadAllText(x.Tag.ToString()));
+                }
+
 
                 ShowTXTPropertise(x);
             }
@@ -604,7 +614,7 @@ namespace XBox
             {
                 var x = sender as _TxT_;
                 var fi_item = new FileInfo(x.Tag.ToString());
-                TB_Content_Content = File.ReadAllText(x.Tag.ToString());
+                TB_Content_Content = Set(File.ReadAllText(x.Tag.ToString()));
 
                 ShowTXTPropertise(x);
             }
@@ -643,7 +653,7 @@ namespace XBox
 
             //Temp_TB.sTB_Content= File.ReadAllText(x.Tag.ToString());    //Temp_TB.TB_Content.Text = File.ReadAllText(x.Tag.ToString());
 
-            TEMP_TextEditor.sTB_Content = File.ReadAllText(x.Tag.ToString());
+            TEMP_TextEditor.sTB_Content = Set(File.ReadAllText(x.Tag.ToString()));
 
             TEMP_TextEditor.Tag = x.Tag.ToString();
 
@@ -713,6 +723,10 @@ namespace XBox
                 //}
         }
 
+        public StringBuilder Set(string msg)
+        {   
+            return new StringBuilder(msg);
+        }
         private void TopTap_ChildrenTreeChanged(object sender, ChildrenTreeChangedEventArgs e)
         {
             var x = sender as LayoutDocumentPane;
@@ -726,7 +740,7 @@ namespace XBox
 
 #endregion Event
 
-#region CallBack Method
+        #region CallBack Method
 
         private void Log(string sLog)
         {

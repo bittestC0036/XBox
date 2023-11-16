@@ -6,14 +6,13 @@ using System.Threading.Tasks;
 
 namespace XBox
 {
-    public interface IMainViewModel
+    public interface IMainViewModel 
     {
         void Window_Loaded(object dataContext, object view);
 
         void Btn_SetPath();
 
         void FindFileName();
-
 
     }
 }

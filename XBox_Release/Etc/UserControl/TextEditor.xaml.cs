@@ -43,16 +43,16 @@ namespace XBox
 
         public int nfoundnCnt = -1; // 총 있는 값
 
-        public string sTB_Content 
+        public StringBuilder sTB_Content 
         {
-            get { return (string)GetValue(sTB_ContentProperty); }
+            get { return (StringBuilder)GetValue(sTB_ContentProperty); }
             set { SetValue(sTB_ContentProperty, value); }
         }
 
         public static DependencyProperty sTB_ContentProperty =
-            DependencyProperty.Register("sTB_Content", typeof(string),typeof(TextEditor),
-            new FrameworkPropertyMetadata("", FrameworkPropertyMetadataOptions.BindsTwoWayByDefault));
-
+            DependencyProperty.Register("sTB_Content", typeof(StringBuilder),typeof(TextEditor),
+            new FrameworkPropertyMetadata(new StringBuilder(""), FrameworkPropertyMetadataOptions.BindsTwoWayByDefault));
+        StringBuilder sBeforeData = new StringBuilder("");
         public TextEditor()
         {
             InitializeComponent();
@@ -63,12 +63,15 @@ namespace XBox
                 {
                     // 여기에 Text 변경 시 실행할 코드를 추가
                     // 예를 들어 YourTextChanged 이벤트를 발생시킬 수 있습니다.
+                    (sender as TextEditor).TB_Content.Text = sTB_Content.ToString();
                     var x = sender as TextEditor;
                     //x.TB_Content.Text = sTB_Content;
                    
                     Content_TextChanged(x.TB_Content, null);
                     //RaiseEvent(new RoutedEventArgs(YourTextChangedEvent));
                 });
+
+
 
 
             SearchWindow = new SearchWindow();
@@ -171,29 +174,40 @@ namespace XBox
             }
         }
 
+        public StringBuilder Set(string msg)
+        {
+            return new StringBuilder(msg);
+        }
+
         private void Content_TextChanged(object sender, TextChangedEventArgs e)
         {
             var x = sender as TextBox;
 
+
+            if (x.Text == sBeforeData.ToString())
+            {
+                return;
+            }
+            sBeforeData = Set(x.Text.ToString());
+
             if (x == null)
                 return;
 
-            if(sTB_Content==string.Empty)//if (x.Text == string.Empty)
+            if(sTB_Content.ToString()==string.Empty)
             {
                 TBL_LineNumber.Text = string.Empty;
                 return;
             }
 
-
-            var sContent = sTB_Content;//var sContent = x.Text.ToString().Split('\n');
+            var sContent = sTB_Content;
 
             TBL_LineNumber.Text = "";
-            TB_Content.Text = sTB_Content;
 
-            for (int nCnt=1;nCnt<sContent.Count()+10;nCnt++)
+            for (int nCnt=1;nCnt<= sContent.ToString().Split('\n').Count();nCnt++)
             {
-                TBL_LineNumber.Text += nCnt + "\n";
+                TBL_LineNumber.Text += (nCnt).ToString() + Environment.NewLine;
             }
+
 
             int caretIndex = x.CaretIndex;
             int lineIndex = x.GetLineIndexFromCharacterIndex(caretIndex);

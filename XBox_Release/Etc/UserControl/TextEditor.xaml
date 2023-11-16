@@ -26,21 +26,6 @@
         <ScrollViewer Name="TBScrollViewer" Grid.Column="1" HorizontalScrollBarVisibility="Auto" 
                       VerticalScrollBarVisibility="Auto"
                       ScrollChanged="TBScrollViewer_ScrollChanged">
-            <!--
-            <TextBox Name="TB_Content" 
-                     Text="{Binding sTB_ContentProperty, Mode=TwoWay}"
-                     TextWrapping="Wrap" 
-                     VerticalScrollBarVisibility="Auto" 
-                     HorizontalScrollBarVisibility="Auto"
-                     BorderThickness="2" BorderBrush="White"
-                     ScrollViewer.ScrollChanged="Content_ScrollChanged"
-                     PreviewKeyDown="TB_Content_PreviewKeyDown"
-                     TextChanged="Content_TextChanged"
-                     AcceptsReturn="True"
-                     IsReadOnly="True">
-            </TextBox>
-            -->
-
             <TextBox Name="TB_Content" 
                      Text="{Binding sTB_ContentProperty, Mode=TwoWay}"
                      TextWrapping="Wrap" 
