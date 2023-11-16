@@ -13,14 +13,14 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace XBox
+namespace XBox.Etc.UserControl.ICON
 {
     /// <summary>
-    /// File.xaml에 대한 상호 작용 논리
+    /// _Video_.xaml에 대한 상호 작용 논리
     /// </summary>
-    public partial class _TxT_ : TreeViewItem
+    public partial class _Video_ : UserControl
     {
-        public _TxT_()
+        public _Video_()
         {
             InitializeComponent();
         }

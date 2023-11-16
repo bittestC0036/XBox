@@ -26,17 +26,61 @@ namespace XBox
 
         public List<string> vs = new List<string>();
 
-        public TreeViewItem SelectedTreeviewItem = new TreeViewItem();
-
         public MainView _MainView_ = null;
+
+        #region Binding Property
+
+        private ObservableCollection<TreeViewItem> _FolderTreeview_items = new ObservableCollection<TreeViewItem>();
+
+        public ObservableCollection<TreeViewItem> FolderTreeview_items
+        {
+            get
+            {
+                return _FolderTreeview_items;
+            }
+            set
+            {
+                SetProperty(ref _FolderTreeview_items, value);
+            }
+        }
+
+        private ObservableCollection<LayoutContent> _TopTap_items = new ObservableCollection<LayoutContent>();
+
+        public ObservableCollection<LayoutContent> TopTap_items
+        {
+            get
+            {
+                return _TopTap_items;
+            }
+            set
+            {
+                SetProperty(ref _TopTap_items, value);
+            }
+        }
 
         private string _TB_RootPath_Text = "";
         public string TB_RootPath_Text
         {
-            get { return _TB_RootPath_Text; }
+            get 
+            { 
+                return _TB_RootPath_Text; 
+            }
             set
             {
                 SetProperty(ref _TB_RootPath_Text, value);
+            }
+        }
+
+        private string _sStatusBarText = "";
+        public string sStatusBarText
+        {
+            get
+            {
+                return _sStatusBarText;
+            }
+            set
+            {
+                SetProperty(ref _sStatusBarText, value);
             }
         }
 
@@ -129,57 +173,10 @@ namespace XBox
             }
         }
 
-        private ObservableCollection<TreeViewItem> _FolderTreeview_items = new ObservableCollection<TreeViewItem>();
-
-        public ObservableCollection<TreeViewItem> FolderTreeview_items
-        {
-            get
-            {
-                return _FolderTreeview_items;
-            }
-            set
-            {
-                SetProperty(ref _FolderTreeview_items, value);
-            }
-        }
-
-        private ObservableCollection<LayoutContent> _TopTap_items = new ObservableCollection<LayoutContent>();
-
-        public ObservableCollection<LayoutContent> TopTap_items
-        {
-            get
-            {
-                return _TopTap_items;
-            }
-            set
-            {
-                SetProperty(ref _TopTap_items, value);
-            }
-        }
-
-        public static readonly DependencyProperty SelectedTopTapIndexProperty =
-        DependencyProperty.RegisterAttached("SelectedTopTapIndex", typeof(int), typeof(MainViewModel), new PropertyMetadata(0));
-
-        //public static readonly DependencyProperty MinAccessLevelProperty =
-        //DependencyProperty.RegisterAttached("MinAccessLevel", typeof(AccessLevel), typeof(AccessManager), new PropertyMetadata(OnMinAccessLevelChanged));
 
 
-        // MyProperty의 CLR 프로퍼티를 정의합니다.
-        private int _SelectedTopTapIndex = 0;
-        public int SelectedTopTapIndex
-        {
-            //get { return (int)GetValue(SelectedTopTapIndexProperty); }
-            //set { SetProperty(MyPropertyProperty, value); }
-            get
-            {
-                return _SelectedTopTapIndex;
-            }
-            set
-            {
-                SetProperty(ref _SelectedTopTapIndex, value);
-            }
-        }
 
+        #endregion Binding Property
 
         #region Creator
         [ImportingConstructor]
@@ -230,10 +227,12 @@ namespace XBox
 
                         for (int nCnt = 0; nCnt < strTemp.Length; nCnt++)
                         {
-                            sTxt_list.Add(strTemp[nCnt]);
+                            sTxt_list.Add(strTemp[nCnt].ToUpper());
                         }
                     }
                 }
+                sTxt_list.Add(".taos_lin".ToUpper());
+                sTxt_list.Add(".bat".ToUpper());
                 sTxt_list.Add("");
 
                 if (sLine.IndexOf("IMAGETYPE") > -1)
@@ -269,33 +268,33 @@ namespace XBox
             StreamWriter sw = new StreamWriter(sConfigPath);
 
             sw.Write("TXTLOADTYPE=");
-            sw.Write(".txt      ,".Replace(" ", ""));
-            sw.Write(".c        ,".Replace(" ", ""));
-            sw.Write(".cs       ,".Replace(" ", ""));
-            sw.Write(".cpp      ,".Replace(" ", ""));
-            sw.Write(".log      ,".Replace(" ", ""));
-            sw.Write(".h        ,".Replace(" ", ""));
-            sw.Write(".csv      ,".Replace(" ", ""));
-            sw.Write(".xml      ,".Replace(" ", ""));
-            sw.Write(".json     ,".Replace(" ", ""));
-            sw.Write(".html     ,".Replace(" ", ""));
-            sw.Write(".css      ,".Replace(" ", ""));
-            sw.Write(".cfg      ,".Replace(" ", ""));
-            sw.Write(".ini      ,".Replace(" ", ""));
-            sw.Write(".sql      ,".Replace(" ", ""));
-            sw.Write(".config   ,".Replace(" ", ""));
-            sw.Write(".pro      ,".Replace(" ", ""));
-            sw.Write(".pro.user ,".Replace(" ", ""));
-            sw.Write(".csproj   ,".Replace(" ", ""));
-            sw.Write(".settings ,".Replace(" ", ""));
-            sw.Write(".sln      ,".Replace(" ", ""));
-            sw.Write(".ui       ,".Replace(" ", ""));
-            sw.Write(".idx      ,".Replace(" ", ""));
-            sw.Write(".suo      ,".Replace(" ", ""));
-            sw.Write(".o        ,".Replace(" ", ""));
-            sw.Write(".obj      ,".Replace(" ", ""));
-            sw.Write(".java     ,".Replace(" ", ""));
-            sw.Write(".class     ".Replace(" ", ""));
+            sw.Write(".txt      ,".Replace(" ", "").ToUpper());
+            sw.Write(".c        ,".Replace(" ", "").ToUpper());
+            sw.Write(".cs       ,".Replace(" ", "").ToUpper());
+            sw.Write(".cpp      ,".Replace(" ", "").ToUpper());
+            sw.Write(".log      ,".Replace(" ", "").ToUpper());
+            sw.Write(".h        ,".Replace(" ", "").ToUpper());
+            sw.Write(".csv      ,".Replace(" ", "").ToUpper());
+            sw.Write(".xml      ,".Replace(" ", "").ToUpper());
+            sw.Write(".json     ,".Replace(" ", "").ToUpper());
+            sw.Write(".html     ,".Replace(" ", "").ToUpper());
+            sw.Write(".css      ,".Replace(" ", "").ToUpper());
+            sw.Write(".cfg      ,".Replace(" ", "").ToUpper());
+            sw.Write(".ini      ,".Replace(" ", "").ToUpper());
+            sw.Write(".sql      ,".Replace(" ", "").ToUpper());
+            sw.Write(".config   ,".Replace(" ", "").ToUpper());
+            sw.Write(".pro      ,".Replace(" ", "").ToUpper());
+            sw.Write(".pro.user ,".Replace(" ", "").ToUpper());
+            sw.Write(".csproj   ,".Replace(" ", "").ToUpper());
+            sw.Write(".settings ,".Replace(" ", "").ToUpper());
+            sw.Write(".sln      ,".Replace(" ", "").ToUpper());
+            sw.Write(".ui       ,".Replace(" ", "").ToUpper());
+            sw.Write(".idx      ,".Replace(" ", "").ToUpper());
+            sw.Write(".suo      ,".Replace(" ", "").ToUpper());
+            sw.Write(".o        ,".Replace(" ", "").ToUpper());
+            sw.Write(".obj      ,".Replace(" ", "").ToUpper());
+            sw.Write(".java     ,".Replace(" ", "").ToUpper());
+            sw.Write(".class     ".Replace(" ", "").ToUpper());
             sw.WriteLine("");
 
 
@@ -343,13 +342,15 @@ namespace XBox
         #endregion Creator
 
         #region Event Command
-        public void Window_Loaded(object dataContext)
+        public void Window_Loaded(object dataContext, object view)
         {
             var x = dataContext as MainViewModel;
 
+            var y = view as MainView;
 
-            //_MainView_ = x.GetView() as MainView;
+            _MainView_ = y;
         }
+
         public void Btn_SetPath()
         {
             Reset();
@@ -366,7 +367,7 @@ namespace XBox
 
                 vs.Clear();
 
-                var temp = FolderTreeview_items[0] as TreeViewItem;
+                var temp = FolderTreeview_items[0];
                 temp.IsExpanded = true;
             }
         }
@@ -375,6 +376,7 @@ namespace XBox
         {
 
         }
+        
         #endregion Event Command
 
         #region Instance Method
@@ -399,12 +401,13 @@ namespace XBox
 
             try
             {
-                temp_tv_item.Expanded += Temp_tv_item_Expanded;
                 if (di_folder.GetDirectories().Count() > 0)
                 {
                     foreach (var item in di_folder.GetDirectories())
                     {
                         temp_tv_item.Items.Add(MakeFolderTree(item.FullName));
+                        temp_tv_item.Selected += Temp_tv_item_Selected;
+                        temp_tv_item.Expanded += Temp_tv_item_Expanded;
                     }
                 }
                 return temp_tv_item;
@@ -416,31 +419,60 @@ namespace XBox
             }
         }
 
-        private void ShowImgPropertise(_Img_ img_)
+        private void Temp_tv_item_Selected(object sender, RoutedEventArgs e)
+        {
+            if ( sender is _Folder_) 
+            {
+                var x = sender as _Folder_;
+                if(x.IsSelected)
+                {
+                    ShowFolderPropertise(x);
+                }
+            }
+        }
+
+        private void ShowTXTPropertise(_TxT_ txt)
         {
             string sFilePath = string.Empty;
             FileInfo fi = null;
             string sFinfo = string.Empty;
 
-            sFilePath = img_.Tag.ToString();
+            sFilePath = txt.Tag.ToString();
             fi = new FileInfo(sFilePath);
 
             TB_Content_Visability = Visibility.Visible;
-            _Img_Content_Visability = Visibility.Collapsed;
+            Img_Content_Visability = Visibility.Collapsed;
 
-            BitmapImage bitmapImage = new BitmapImage();
-            bitmapImage.BeginInit();
-            bitmapImage.UriSource = new Uri(sFilePath, UriKind.Absolute);
-            bitmapImage.EndInit();
-            _Image_Content_Source = bitmapImage;
-            
             sFinfo = string.Format("File Name :{0}         \n" +
                                        "Create Date:{1}        \n" +
                                        "Modification Date:{2}  \n",
                                        fi.Name,
                                        fi.CreationTime.ToString("yyyy-MM-HH-mm"),
                                        fi.LastWriteTime);
-            _TB_Properties_Text = sFinfo;
+            TB_Properties_Text = sFinfo;
+            SetStatus(txt.Tag.ToString() + " Open");
+        }
+
+        private void ShowImgPropertise(_Img_ Img)
+        {
+            string sFilePath = string.Empty;
+            FileInfo fi = null;
+            string sFinfo = string.Empty;
+
+            sFilePath = Img.Tag.ToString();
+            fi = new FileInfo(sFilePath);
+
+            Img_Content_Visability = Visibility.Collapsed; //TB_Content_Visability = Visibility.Visible;
+            Img_Content_Visability = Visibility.Visible ;  //Img_Content_Visability = Visibility.Collapsed;
+
+            sFinfo = string.Format("File Name :{0}         \n" +
+                                       "Create Date:{1}        \n" +
+                                       "Modification Date:{2}  \n",
+                                       fi.Name,
+                                       fi.CreationTime.ToString("yyyy-MM-HH-mm"),
+                                       fi.LastWriteTime);
+            TB_Properties_Text = sFinfo;
+            SetStatus(Img.Tag.ToString() + " Open");
         }
 
         private void ShowFolderPropertise(_Folder_ x)
@@ -451,77 +483,26 @@ namespace XBox
 
             sFolderPath = x.Tag.ToString();
             di = new DirectoryInfo(sFolderPath);
-            sDirInfo = string.Format("File Name :{0}         \n" +
+            sDirInfo = string.Format("Folder Name :{0}         \n" +
                                           "Create Date:{1}        \n" +
                                           "Modification Date:{2}  \n",
                                           di.Name,
                                           di.CreationTime.ToString("yyyy-MM-HH-mm"),
                                           di.LastWriteTime
                                           );
-            _TB_Properties_Text = sDirInfo;
-            _TB_Content_Content = string.Empty;
+            TB_Properties_Text = sDirInfo;
+            TB_Content_Content = string.Empty;
         }
 
-        private void ShowFilePropertise(_TxT_ x)
-        {
-            string sFilePath = string.Empty;
-            FileInfo fi = null;
-            string sFinfo = string.Empty;
-
-            sFilePath = x.Tag.ToString();
-            fi = new FileInfo(sFilePath);
-
-            _TB_Content_Visability = Visibility.Visible;
-            _Img_Content_Visability = Visibility.Collapsed;
-
-            TB_Content_Content = File.ReadAllText(sFilePath);
-            sFinfo = string.Format("File Name :{0}         \n" +
-                                       "Create Date:{1}        \n" +
-                                       "Modification Date:{2}  \n",
-                                       fi.Name,
-                                       fi.CreationTime.ToString("yyyy-MM-HH-mm"),
-                                       fi.LastWriteTime);
-            TB_Properties_Text = sFinfo;
-        }
 
         #endregion Instance Method
 
         #region Event 
 
-        private void Treeview_SelectedChanged(object sender, RoutedEventArgs e)
+
+        public void FolderTreeView_PreviewKeyDown()
         {
-            var Y = sender as TreeView;
-
-            if (Y.SelectedItem is _TxT_)
-                ShowFilePropertise(Y.SelectedItem as _TxT_);
-
-            else if (Y.SelectedItem is _Img_)
-                ShowImgPropertise(Y.SelectedItem as _Img_);
-
-            else if (Y.SelectedItem is _Folder_)
-                ShowFolderPropertise(Y.SelectedItem as _Folder_);
-
-        }
-
-        public void FolderTreeView_PreviewKeyDown(object sender)
-        {
-            var x = sender as TreeView;
-        }
-
-        public void Treeview_SelectedChanged(object sender )
-        {
-            var x = sender as TreeView;
-
-            var Y = sender as TreeView;
-
-            if (Y.SelectedItem is _TxT_)
-                ShowFilePropertise(Y.SelectedItem as _TxT_);
-
-            else if (Y.SelectedItem is _Img_)
-                ShowImgPropertise(Y.SelectedItem as _Img_);
-
-            else if (Y.SelectedItem is _Folder_)
-                ShowFolderPropertise(Y.SelectedItem as _Folder_);
+            System.Diagnostics.Debug.WriteLine("Hello");
         }
 
 
@@ -536,28 +517,43 @@ namespace XBox
                 var fi = di_spath.GetFiles();
                 for (int nCnt = 0; nCnt < fi.Count(); nCnt++)
                 {
-                    var temp = new _TxT_();
-                    temp.Height = 40;
-                    temp.TB_Header.Content = fi[nCnt].Name;
-                    temp.Tag = fi[nCnt].FullName;
-                    temp.MouseDown += Temp_MouseDown;
-                    temp.MouseDoubleClick += Temp_MouseDoubleClick;
-                    if (vs.IndexOf(temp.Tag.ToString()) == -1)
+                    if (sTxt_list.IndexOf(fi[nCnt].Extension.ToUpper()) >-1)
                     {
-                        x.Items.Add(temp);
-                        vs.Add(temp.Tag.ToString());
+                        _TxT_ Temp = new _TxT_();
+                        Temp.Height = 40;
+                        Temp.TB_Header.Content = fi[nCnt].Name;
+                        Temp.Tag = fi[nCnt].FullName;
+
+                        Temp.MouseDoubleClick += Temp_MouseDoubleClick;
+                        Temp.Selected += Temp_Selected;
+                        //Temp.MouseUp += Temp_MouseUp;
+                        
+                        AddFileList(Temp, x);
+                    }
+
+                    else if (sImage_list.IndexOf(fi[nCnt].Extension.ToUpper()) > -1)
+                    {
+                        _Img_ Temp = new _Img_();
+                        Temp.Height = 40;
+                        Temp.TB_Header.Content = fi[nCnt].Name;
+                        Temp.Tag = fi[nCnt].FullName;
+                        Temp.Selected += Temp_Selected;
+                        //Temp.MouseUp += Temp_MouseUp;
+                        AddFileList(Temp, x);
                     }
                 }
             }
         }
 
-        private void Temp_MouseDown(object sender, MouseButtonEventArgs e)
+        private void Temp_Selected(object sender, RoutedEventArgs e)
         {
-            if (sender is _TxT_)
+            if( sender is _TxT_)
             {
                 var x = sender as _TxT_;
                 var fi_item = new FileInfo(x.Tag.ToString());
                 TB_Content_Content = File.ReadAllText(x.Tag.ToString());
+
+                ShowTXTPropertise(x);
             }
             else if (sender is _Img_)
             {
@@ -568,72 +564,169 @@ namespace XBox
                 bitmapImage.BeginInit();
                 bitmapImage.UriSource = new Uri((sender as _Img_).Tag.ToString(), UriKind.Absolute);
                 bitmapImage.EndInit();
-                _Image_Content_Source= bitmapImage;
-            }
-            else
-            {
+                Image_Content_Source = bitmapImage;
 
+                ShowImgPropertise(sender as _Img_);
+            }
+            //else if (sender is _Video_)
+            //{
+            //
+            //}
+        }
+
+        private void AddFileList(object temp, _Folder_ x)
+        {
+            if(temp is _TxT_)
+            {
+                var m_TxT = temp as _TxT_;
+                if (vs.IndexOf(m_TxT.Tag.ToString()) == -1)
+                {
+                    x.Items.Add(temp);
+                    vs.Add(m_TxT.Tag.ToString());
+                }
+            }
+
+            if(temp is _Img_)
+            {
+                var m_TxT = temp as _Img_;
+                if (vs.IndexOf(m_TxT.Tag.ToString()) == -1)
+                {
+                    x.Items.Add(temp);
+                    vs.Add(m_TxT.Tag.ToString());
+                }
+            }
+
+        }
+
+        private void Temp_MouseUp(object sender, MouseButtonEventArgs e)
+        {
+            if (sender is _TxT_)
+            {
+                var x = sender as _TxT_;
+                var fi_item = new FileInfo(x.Tag.ToString());
+                TB_Content_Content = File.ReadAllText(x.Tag.ToString());
+
+                ShowTXTPropertise(x);
+            }
+            else if (sender is _Img_)
+            {
+                TB_Content_Visability = Visibility.Collapsed;
+                Img_Content_Visability = Visibility.Visible;
+
+                BitmapImage bitmapImage = new BitmapImage();
+                bitmapImage.BeginInit();
+                bitmapImage.UriSource = new Uri((sender as _Img_).Tag.ToString(), UriKind.Absolute);
+                bitmapImage.EndInit();
+                Image_Content_Source = bitmapImage;
+
+                ShowImgPropertise(sender as _Img_);
             }
         }
 
         private void Temp_MouseDoubleClick(object sender, MouseButtonEventArgs e)
         {
             var x = sender as _TxT_;
-
+        
             if (null == x)
                 return;
-
+        
             var TEMP = new LayoutDocument();
 
+            TEMP.IsEnabled = true;
+            
+            TEMP.IsSelected = true;
+
+
             TEMP.Title = x.TB_Header.ToString().Split(':')[1];
+        
+            var TEMP_TextEditor = new TextEditor();
 
-            var Temp_TB = new TextEditor();
+            //Temp_TB.sTB_Content= File.ReadAllText(x.Tag.ToString());    //Temp_TB.TB_Content.Text = File.ReadAllText(x.Tag.ToString());
 
-            Temp_TB.TB_Content.Text = File.ReadAllText(x.Tag.ToString());
+            TEMP_TextEditor.sTB_Content = File.ReadAllText(x.Tag.ToString());
 
-            Temp_TB.TB_Content.Tag = x.Tag.ToString();
+            TEMP_TextEditor.Tag = x.Tag.ToString();
 
-            Temp_TB.TB_Content.IsReadOnly = false;
+            TEMP_TextEditor.TB_Content.IsReadOnly = false;
 
-            //Temp_TB.StatusBarCallBack += SetStatus;
-
+            //_MainView_.TopTap.ChildrenTreeChanged += TopTap_ChildrenTreeChanged;
+            
+           
             var fi = new FileInfo(x.Tag.ToString());
-
-            if (sTxt_list.IndexOf(fi.Extension) == -1)
+        
+            if (sTxt_list.IndexOf(fi.Extension.ToUpper()) == -1)
             {
                 MessageBox.Show("file type is not Text");
                 return;
             }
 
-            TEMP.Content = Temp_TB;
-            bool bCheck = true;
+            //TEMP.Content = TEMP_TextEditor;
+            TEMP_TextEditor.ForceCursor = true;
+            LayoutDocument TEMP_Content = new LayoutDocument();
+            TEMP_Content.Content = TEMP_TextEditor;
+            TEMP.Content = TEMP_Content;
 
+            TEMP_Content.IsSelected = true;
+            //TEMP_Content.IsVisible = true;
+            TEMP_Content.CanFloat = true;
+            TEMP_Content.IsEnabled = true;
+
+            //TEMP
+            //TEMP_Content.Content
+
+            //TEMP.Content=
+
+            bool bCheck = true;
+        
             for (int nCnt = 0; nCnt < TopTap_items.Count; nCnt++)
-            {
-                bCheck = bCheck & TopTap_items[nCnt].Title != TEMP.Title;
-            }
+          {
+              bCheck = bCheck & TopTap_items[nCnt].Title != TEMP.Title;
+          }
 
             if (true == bCheck)
             {
-                TopTap_items.Add(TEMP);
+                //TopTap_items.Add(TEMP);
 
-                _SelectedTopTapIndex = TopTap_items.Count - 1;
+                //_MainView_.TopTap.Children.Add(TEMP);
+
+                _MainView_.TopTap.InsertChildAt(_MainView_.TopTap.Children.Count, TEMP);
+
+                _MainView_.TopTap.SelectedContentIndex = _MainView_.TopTap.Children.Count;
+
+                _MainView_.TopTap.Children[_MainView_.TopTap.Children.Count-1].IsActive = true;
+
+                //_MainView_.TopTap.Children[_MainView_.TopTap.Children.Count]
+
+                //_MainView_.TopTap.ChildrenSorted;
+
             }
             else
             {
-                for (int nCnt = 0; nCnt < _MainView_.TopTap.Children.Count; nCnt++)
-                {
-                    if (_MainView_.TopTap.Children[nCnt].Title == TEMP.Title)
-                    {
-                        _MainView_.TopTap.SelectedContentIndex = nCnt;
-                    }
-                }
+            
             }
+                //for (int nCnt = 0; nCnt < _MainView_.TopTap.Children.Count; nCnt++)
+                //{
+                //    if (_MainView_.TopTap.Children[nCnt].Title == TEMP.Title)
+                //    {
+                //        _MainView_.TopTap.SelectedContentIndex = nCnt;
+                //    }
+                //}
         }
 
-        #endregion Event
+        private void TopTap_ChildrenTreeChanged(object sender, ChildrenTreeChangedEventArgs e)
+        {
+            var x = sender as LayoutDocumentPane;
 
-        #region CallBack Method
+            //e.Change=ChildrenTreeChange
+
+            //x.IsVisible = true;
+
+            //x.SelectedContentIndex = x.ChildrenCount;
+        }
+
+#endregion Event
+
+#region CallBack Method
 
         private void Log(string sLog)
         {
@@ -646,9 +739,9 @@ namespace XBox
             Directory.CreateDirectory(sDirPath);
 
             {
-                string date = DateTime.Now.ToString("yyyy'-'MM'-'dd");
+                //string date = DateTime.Now.ToString("yyyy'-'MM'-'dd");
 
-                date = date.Replace("-", "_");
+                string date = DateTime.Now.ToString("yyyy'_'MM'_'dd");
 
                 string projectName = Assembly.GetExecutingAssembly().GetName().Name + ".log";
 
@@ -670,38 +763,11 @@ namespace XBox
 
         private void SetStatus(string sLog)
         {
-            _MainView_.Tb_StatusBar.Text = sLog;
+            //_MainView_.Tb_StatusBar.Text = sLog;
+            sStatusBarText = sLog;
         }
 
-        private void TB_Content_MoveToLineCallBack(int nIndex)
-        {
-            int lineIdx = nIndex;
-
-            if (lineIdx >= 0 && lineIdx < _MainView_.TB_Content.TB_Content.LineCount)
-            {
-                int lineStartPosition = _MainView_.TB_Content.TB_Content.GetCharacterIndexFromLineIndex(lineIdx);
-                int lineEndPosition = _MainView_.TB_Content.TB_Content.GetCharacterIndexFromLineIndex(lineIdx + 1);
-                _MainView_.TB_Content.TB_Content.Focus();
-                _MainView_.TB_Content.TB_Content.Select(lineStartPosition, lineEndPosition - lineStartPosition);
-            }
-        }
-
-        private void TB_Content_SearchCallBack(string sLog)
-        {
-
-        }
-
-        private void TB_Content_ReplaceCallBack(string sSearchWord, string sReplaceWord)
-        {
-
-        }
-        #endregion CallBack Method
-
-
-
-
-
-
+#endregion CallBack Method
 
     }
 }

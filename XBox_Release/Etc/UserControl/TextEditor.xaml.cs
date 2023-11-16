@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.IO;
 using System.Linq;
 using System.Text;
@@ -42,9 +43,33 @@ namespace XBox
 
         public int nfoundnCnt = -1; // 총 있는 값
 
+        public string sTB_Content 
+        {
+            get { return (string)GetValue(sTB_ContentProperty); }
+            set { SetValue(sTB_ContentProperty, value); }
+        }
+
+        public static DependencyProperty sTB_ContentProperty =
+            DependencyProperty.Register("sTB_Content", typeof(string),typeof(TextEditor),
+            new FrameworkPropertyMetadata("", FrameworkPropertyMetadataOptions.BindsTwoWayByDefault));
+
         public TextEditor()
         {
             InitializeComponent();
+
+            // PropertyChanged 이벤트 핸들러 추가
+            DependencyPropertyDescriptor.FromProperty(sTB_ContentProperty, typeof(TextEditor))
+                .AddValueChanged(this, (sender, args) =>
+                {
+                    // 여기에 Text 변경 시 실행할 코드를 추가
+                    // 예를 들어 YourTextChanged 이벤트를 발생시킬 수 있습니다.
+                    var x = sender as TextEditor;
+                    //x.TB_Content.Text = sTB_Content;
+                   
+                    Content_TextChanged(x.TB_Content, null);
+                    //RaiseEvent(new RoutedEventArgs(YourTextChangedEvent));
+                });
+
 
             SearchWindow = new SearchWindow();
             SearchWindow.BtnSearch.Click += BtnSearch_Click;
@@ -153,16 +178,18 @@ namespace XBox
             if (x == null)
                 return;
 
-            if (x.Text == string.Empty)
+            if(sTB_Content==string.Empty)//if (x.Text == string.Empty)
             {
                 TBL_LineNumber.Text = string.Empty;
                 return;
             }
 
 
-            var sContent = x.Text.ToString().Split('\n');
+            var sContent = sTB_Content;//var sContent = x.Text.ToString().Split('\n');
 
             TBL_LineNumber.Text = "";
+            TB_Content.Text = sTB_Content;
+
             for (int nCnt=1;nCnt<sContent.Count()+10;nCnt++)
             {
                 TBL_LineNumber.Text += nCnt + "\n";

@@ -407,7 +407,9 @@
   <ItemGroup>
     <Resource Include="Etc\Resources\Code_Image.JPG" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Resource Include="Etc\Resources\Video.PNG" />
+  </ItemGroup>
   <ItemGroup>
     <None Include="Etc\Resources\zipFile_Image.png" />
   </ItemGroup>

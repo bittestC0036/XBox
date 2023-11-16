@@ -28,7 +28,22 @@ namespace XBox
         public MainView()
         {
             InitializeComponent();
-        }
+
+            //TopTap.
+            //Child
+
+            //TopTap.ChildrenTreeChanged
+
+            //TopTap.Children
+
+            //TopTap.
+
+            //dockManager.
+
+            //TopTap.Children.Add(new LayoutDocument() { Title = "1" });
+
+
+;        }
 
         private void Tap1_Closing(object sender, System.ComponentModel.CancelEventArgs e)
         {
