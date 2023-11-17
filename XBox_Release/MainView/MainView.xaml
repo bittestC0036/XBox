@@ -18,7 +18,7 @@
             <avalonDock:LayoutPanel>
                 <avalonDock:LayoutDocumentPaneGroup >
                     <avalonDock:LayoutDocumentPane x:Name="TopTap"   >
-                        <avalonDock:LayoutDocument   x:Name="Tap1"   Closing="Tap1_Closing">
+                        <avalonDock:LayoutDocument   x:Name="Tap1" Title="{Binding Tap1_Title}"   Closing="Tap1_Closing">
                             <Grid x:Name="Root">
                                 <Grid.Resources>
                                     <Style TargetType="{x:Type TextBox}">
@@ -87,7 +87,7 @@
                                     <Grid.ColumnDefinitions>
                                         <ColumnDefinition Width="*"/>
                                         <ColumnDefinition Width="Auto"/>
-                                        <ColumnDefinition Width="*"/>
+                                        <ColumnDefinition Width="{Binding dWidth}"/>
                                     </Grid.ColumnDefinitions>
 
                                     <Grid Grid.Column="0">
@@ -106,9 +106,15 @@
                                         <Grid.RowDefinitions>
                                             <RowDefinition Height="*" />
                                             <RowDefinition Height="Auto" />
-                                            <RowDefinition Height="*" />
+                                            <RowDefinition Height="{Binding dHeight}" />
                                         </Grid.RowDefinitions>
 
+
+                                        <!--
+                                        <local:TextEditor  x:Name="TB_Content" 
+                                                           sTB_Content="{Binding TB_Content_Content , Mode=TwoWay}"
+                                                           Visibility="{Binding TB_Content_Visability}"  />
+                                        -->
 
                                         <local:TextEditor  x:Name="TB_Content" 
                                                            sTB_Content="{Binding TB_Content_Content , Mode=TwoWay}"

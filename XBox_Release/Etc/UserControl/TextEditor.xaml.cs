@@ -26,7 +26,7 @@ namespace XBox
     public delegate void MoveToLineCallBack(int nIndex);
     public delegate void ReplaceCallBack(string sSearchWord, string sReplaceWord);
 
-    public partial class TextEditor : UserControl
+    public partial class TextEditor : UserControl 
     {
         public event StatusBarCallBack StatusBarCallBack;
         public event SearchCallBack SearchCallBack;
@@ -43,19 +43,42 @@ namespace XBox
 
         public int nfoundnCnt = -1; // 총 있는 값
 
-        public StringBuilder sTB_Content 
+        //public StringBuilder sTB_Content 
+        //{
+        //    get { return (StringBuilder)GetValue(sTB_ContentProperty); }
+        //    set { SetValue(sTB_ContentProperty, value); }
+        //}
+
+        public string sTB_Content
         {
-            get { return (StringBuilder)GetValue(sTB_ContentProperty); }
-            set { SetValue(sTB_ContentProperty, value); }
+            get {
+                //this.TB_Content
+                return (string)GetValue(sTB_ContentProperty);
+            }
+            set {
+                    SetValue(sTB_ContentProperty, value); 
+                }
+            
         }
 
+
         public static DependencyProperty sTB_ContentProperty =
-            DependencyProperty.Register("sTB_Content", typeof(StringBuilder),typeof(TextEditor),
-            new FrameworkPropertyMetadata(new StringBuilder(""), FrameworkPropertyMetadataOptions.BindsTwoWayByDefault));
-        StringBuilder sBeforeData = new StringBuilder("");
+            DependencyProperty.Register("sTB_Content", typeof(string),typeof(TextEditor),
+            new FrameworkPropertyMetadata("", FrameworkPropertyMetadataOptions.BindsTwoWayByDefault));
+        //StringBuilder sBeforeData = new StringBuilder("");
+
+        //public static DependencyProperty sTB_ContentProperty =
+        //DependencyProperty.Register("sTB_Content", typeof(string), typeof(TextBox),
+        //new FrameworkPropertyMetadata("", FrameworkPropertyMetadataOptions.BindsTwoWayByDefault));
         public TextEditor()
         {
             InitializeComponent();
+
+            Binding binding = new Binding("sTB_Content");
+            binding.Source = this;
+            this.TB_Content.SetBinding(TextBox.TextProperty, binding);
+
+            //this.TB_Content.Text
 
             // PropertyChanged 이벤트 핸들러 추가
             DependencyPropertyDescriptor.FromProperty(sTB_ContentProperty, typeof(TextEditor))
@@ -63,13 +86,19 @@ namespace XBox
                 {
                     // 여기에 Text 변경 시 실행할 코드를 추가
                     // 예를 들어 YourTextChanged 이벤트를 발생시킬 수 있습니다.
-                    (sender as TextEditor).TB_Content.Text = sTB_Content.ToString();
-                    var x = sender as TextEditor;
-                    //x.TB_Content.Text = sTB_Content;
-                   
-                    Content_TextChanged(x.TB_Content, null);
+
+                     var x = sender as TextEditor;
+
+                    if(x.TB_Content.Text != sTB_Content.ToString())
+                    {
+                        //(sender as TextEditor).TB_Content.Text = sTB_Content.ToString();
+
+                        Content_TextChanged(x.TB_Content, null);
+                    }
                     //RaiseEvent(new RoutedEventArgs(YourTextChangedEvent));
                 });
+
+            
 
 
 
@@ -183,27 +212,9 @@ namespace XBox
         {
             var x = sender as TextBox;
 
-
-            if (x.Text == sBeforeData.ToString())
-            {
-                return;
-            }
-            sBeforeData = Set(x.Text.ToString());
-
-            if (x == null)
-                return;
-
-            if(sTB_Content.ToString()==string.Empty)
-            {
-                TBL_LineNumber.Text = string.Empty;
-                return;
-            }
-
-            var sContent = sTB_Content;
-
             TBL_LineNumber.Text = "";
 
-            for (int nCnt=1;nCnt<= sContent.ToString().Split('\n').Count();nCnt++)
+            for (int nCnt=1;nCnt<= sTB_Content.ToString().Split('\n').Count();nCnt++)
             {
                 TBL_LineNumber.Text += (nCnt).ToString() + Environment.NewLine;
             }

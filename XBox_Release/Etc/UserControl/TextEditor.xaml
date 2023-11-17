@@ -27,7 +27,7 @@
                       VerticalScrollBarVisibility="Auto"
                       ScrollChanged="TBScrollViewer_ScrollChanged">
             <TextBox Name="TB_Content" 
-                     Text="{Binding sTB_ContentProperty, Mode=TwoWay}"
+                     Text="{Binding sTB_Content}"
                      TextWrapping="Wrap" 
                      VerticalScrollBarVisibility="Auto" 
                      HorizontalScrollBarVisibility="Auto"

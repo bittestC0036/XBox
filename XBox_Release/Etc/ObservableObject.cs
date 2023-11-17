@@ -40,7 +40,7 @@ namespace XBox
         /// Raises this object's PropertyChanged event.
         /// </summary>
         /// <param name="propertyName">The property that has a new value.</param>
-        protected void RaisePropertyChanged(string propertyName)
+        protected void RaisePropertyChanged([CallerMemberName]string propertyName=null)
         {
             this.VerifyPropertyName(propertyName);
 

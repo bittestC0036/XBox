@@ -88,9 +88,12 @@ namespace XBox
         private string _Tap1_Title = "";
         public string Tap1_Title
         {
-            get { return _Tap1_Title; }
+            get { 
+                return _Tap1_Title; 
+                }
             set
             {
+                RaisePropertyChanged();
                 SetProperty(ref _Tap1_Title, value);
             }
         }
@@ -115,8 +118,8 @@ namespace XBox
             }
         }
 
-        private StringBuilder _TB_Content_Content = new StringBuilder("");
-        public StringBuilder TB_Content_Content
+        private string _TB_Content_Content = "";
+        public string TB_Content_Content
         {
             get { return _TB_Content_Content; }
             set
@@ -174,6 +177,39 @@ namespace XBox
             }
         }
 
+
+        public double _dHeight = 0;
+        public double dHeight
+        {
+            get
+            {
+                return _dHeight;
+            }
+            set
+            {
+                _dHeight = value;
+                RaisePropertyChanged();
+                //SetProperty(ref _dHeight, value);
+
+            }
+        }
+
+        public double _dWidth = 0;
+        public double dWidth
+        {
+            get
+            {
+                return _dWidth;
+            }
+            set
+            {
+                _dWidth = value;
+                RaisePropertyChanged();
+                //SetProperty(ref _dWidth, value);
+            }
+        }
+
+
         #endregion Binding Property
 
         #region Creator
@@ -181,6 +217,7 @@ namespace XBox
         public MainViewModel()
         {
             SetTextType();
+            
         }
 
         private void INITUI(string rootFolderPath = null)
@@ -349,6 +386,10 @@ namespace XBox
 
             _MainView_ = y;
 
+            dWidth = 1200;
+
+            dHeight = 100;
+
         }
 
         public void Btn_SetPath()
@@ -427,7 +468,7 @@ namespace XBox
                 var x = sender as _Folder_;
                 if(x.IsSelected)
                 {
-                    if(sBeforeFolder_Path==x.Tag.ToString())
+                    if(sBeforeFolder_Path!=x.Tag.ToString())
                     {
                         sBeforeFolder_Path = x.Tag.ToString();
                         ShowFolderPropertise(x);
@@ -497,7 +538,7 @@ namespace XBox
                                           di.LastWriteTime
                                           );
             TB_Properties_Text = sDirInfo;
-            TB_Content_Content = new StringBuilder();
+            TB_Content_Content = "";
         }
 
 
@@ -559,7 +600,7 @@ namespace XBox
                 if(x.IsSelected)
                 {
                     var fi_item = new FileInfo(x.Tag.ToString());
-                    TB_Content_Content = Set(File.ReadAllText(x.Tag.ToString()));
+                    TB_Content_Content = File.ReadAllText(x.Tag.ToString());
                 }
 
 
@@ -614,7 +655,7 @@ namespace XBox
             {
                 var x = sender as _TxT_;
                 var fi_item = new FileInfo(x.Tag.ToString());
-                TB_Content_Content = Set(File.ReadAllText(x.Tag.ToString()));
+                TB_Content_Content = File.ReadAllText(x.Tag.ToString());
 
                 ShowTXTPropertise(x);
             }
@@ -635,96 +676,62 @@ namespace XBox
 
         private void Temp_MouseDoubleClick(object sender, MouseButtonEventArgs e)
         {
-            var x = sender as _TxT_;
+
         
-            if (null == x)
-                return;
-        
-            var TEMP = new LayoutDocument();
-
-            TEMP.IsEnabled = true;
-            
-            TEMP.IsSelected = true;
-
-
-            TEMP.Title = x.TB_Header.ToString().Split(':')[1];
-        
-            var TEMP_TextEditor = new TextEditor();
-
-            //Temp_TB.sTB_Content= File.ReadAllText(x.Tag.ToString());    //Temp_TB.TB_Content.Text = File.ReadAllText(x.Tag.ToString());
-
-            TEMP_TextEditor.sTB_Content = Set(File.ReadAllText(x.Tag.ToString()));
-
-            TEMP_TextEditor.Tag = x.Tag.ToString();
-
-            TEMP_TextEditor.TB_Content.IsReadOnly = false;
-
-            //_MainView_.TopTap.ChildrenTreeChanged += TopTap_ChildrenTreeChanged;
-            
-           
-            var fi = new FileInfo(x.Tag.ToString());
-        
-            if (sTxt_list.IndexOf(fi.Extension.ToUpper()) == -1)
+            if (sender is _TxT_)
             {
-                MessageBox.Show("file type is not Text");
-                return;
+                var x = sender as _TxT_;
+
+                var fi = new FileInfo(x.Tag.ToString());
+
+                if (sTxt_list.IndexOf(fi.Extension.ToUpper()) == -1)
+                {
+                    MessageBox.Show("file type is not Text");
+                    return;
+                }
+
+                var TEMP = new LayoutDocument();
+
+                TEMP.Title = x.TB_Header.ToString().Split(':')[1];
+
+                var TEMP_TextEditor = new TextEditor();
+
+                TEMP_TextEditor.sTB_Content = File.ReadAllText(x.Tag.ToString());
+
+                TEMP_TextEditor.Tag = x.Tag.ToString();
+
+                TEMP_TextEditor.TB_Content.IsReadOnly = false;
+
+                TEMP.Content = TEMP_TextEditor;
+
+                bool bCheck = true;
+
+                for (int nCnt = 0; nCnt < TopTap_items.Count; nCnt++)
+                {
+                    bCheck = bCheck & TopTap_items[nCnt].Title != TEMP.Title;
+                }
+
+                if (true == bCheck)
+                {
+                    _MainView_.TopTap.InsertChildAt(_MainView_.TopTap.Children.Count, TEMP);
+
+                    _MainView_.TopTap.SelectedContentIndex = _MainView_.TopTap.Children.Count;
+
+                    if (_MainView_.TopTap.Children.Count == 0)
+                    {
+                        _MainView_.TopTap.Children[_MainView_.TopTap.Children.Count].IsActive = true;
+                    }
+                    else
+                    {
+                        _MainView_.TopTap.Children[_MainView_.TopTap.Children.Count - 1].IsActive = true;
+                    }
+                }            
             }
-
-            //TEMP.Content = TEMP_TextEditor;
-            TEMP_TextEditor.ForceCursor = true;
-            LayoutDocument TEMP_Content = new LayoutDocument();
-            TEMP_Content.Content = TEMP_TextEditor;
-            TEMP.Content = TEMP_Content;
-
-            TEMP_Content.IsSelected = true;
-            //TEMP_Content.IsVisible = true;
-            TEMP_Content.CanFloat = true;
-            TEMP_Content.IsEnabled = true;
-
-            //TEMP
-            //TEMP_Content.Content
-
-            //TEMP.Content=
-
-            bool bCheck = true;
-        
-            for (int nCnt = 0; nCnt < TopTap_items.Count; nCnt++)
-          {
-              bCheck = bCheck & TopTap_items[nCnt].Title != TEMP.Title;
-          }
-
-            if (true == bCheck)
-            {
-                //TopTap_items.Add(TEMP);
-
-                //_MainView_.TopTap.Children.Add(TEMP);
-
-                _MainView_.TopTap.InsertChildAt(_MainView_.TopTap.Children.Count, TEMP);
-
-                _MainView_.TopTap.SelectedContentIndex = _MainView_.TopTap.Children.Count;
-
-                _MainView_.TopTap.Children[_MainView_.TopTap.Children.Count-1].IsActive = true;
-
-                //_MainView_.TopTap.Children[_MainView_.TopTap.Children.Count]
-
-                //_MainView_.TopTap.ChildrenSorted;
-
-            }
-            else
-            {
-            
-            }
-                //for (int nCnt = 0; nCnt < _MainView_.TopTap.Children.Count; nCnt++)
-                //{
-                //    if (_MainView_.TopTap.Children[nCnt].Title == TEMP.Title)
-                //    {
-                //        _MainView_.TopTap.SelectedContentIndex = nCnt;
-                //    }
-                //}
         }
 
+
         public StringBuilder Set(string msg)
-        {   
+        {
             return new StringBuilder(msg);
         }
         private void TopTap_ChildrenTreeChanged(object sender, ChildrenTreeChangedEventArgs e)
