@@ -7,17 +7,15 @@
         mc:Ignorable="d"
         Title="MainWindow" Height="450" Width="800">
     <Grid>
+        <!--
         <Grid.ColumnDefinitions>
             <ColumnDefinition/>
             <ColumnDefinition/>
             <ColumnDefinition/>
             <ColumnDefinition/>
         </Grid.ColumnDefinitions>
-        <!--
-        <local:Number x:Name="One" Grid.Column="0" />
-        <TextBox  x:Name="TB_Tag" Grid.Column="1" />
-        <Button  x:Name="Btn" Grid.Column="2" Click="Btn_Click"   />
-        -->
         <local:Watch Grid.Column="0" Grid.ColumnSpan="10" Grid.Row="0" />
+        -->
+        <local:ImageEditor/>
     </Grid>
 </Window>

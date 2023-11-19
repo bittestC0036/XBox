@@ -65,11 +65,7 @@ namespace XBox
         public static DependencyProperty sTB_ContentProperty =
             DependencyProperty.Register("sTB_Content", typeof(string),typeof(TextEditor),
             new FrameworkPropertyMetadata("", FrameworkPropertyMetadataOptions.BindsTwoWayByDefault));
-        //StringBuilder sBeforeData = new StringBuilder("");
 
-        //public static DependencyProperty sTB_ContentProperty =
-        //DependencyProperty.Register("sTB_Content", typeof(string), typeof(TextBox),
-        //new FrameworkPropertyMetadata("", FrameworkPropertyMetadataOptions.BindsTwoWayByDefault));
         public TextEditor()
         {
             InitializeComponent();

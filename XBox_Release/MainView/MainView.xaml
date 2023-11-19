@@ -18,7 +18,7 @@
             <avalonDock:LayoutPanel>
                 <avalonDock:LayoutDocumentPaneGroup >
                     <avalonDock:LayoutDocumentPane x:Name="TopTap"   >
-                        <avalonDock:LayoutDocument   x:Name="Tap1" Title="{Binding Tap1_Title}"   Closing="Tap1_Closing">
+                        <avalonDock:LayoutDocument   x:Name="Tap1"  Title="Root Folder Path" Closing="Tap1_Closing">
                             <Grid x:Name="Root">
                                 <Grid.Resources>
                                     <Style TargetType="{x:Type TextBox}">
@@ -72,8 +72,8 @@
                                     <Button  Grid.Column="3" Content="경로 설정" 
                                              cal:Message.Attach="[Event Click] = [Action Btn_SetPath()]"/>
 
-                                    <TextBox  Grid.Row="2" Grid.Column="1" Grid.ColumnSpan="3" 
-                                              cal:Message.Attach="[Event TextChanged] = [Action FindFileName()]"/>
+                                    <TextBox  Grid.Row="2" Grid.Column="1" Grid.ColumnSpan="3" Margin="0,0,0,5"
+                                              cal:Message.Attach="[Event TextChanged] = [Action FindFileName($self)]"/>
                                 </Grid>
 
                                 <GridSplitter Grid.Row="2"    
@@ -110,12 +110,6 @@
                                         </Grid.RowDefinitions>
 
 
-                                        <!--
-                                        <local:TextEditor  x:Name="TB_Content" 
-                                                           sTB_Content="{Binding TB_Content_Content , Mode=TwoWay}"
-                                                           Visibility="{Binding TB_Content_Visability}"  />
-                                        -->
-
                                         <local:TextEditor  x:Name="TB_Content" 
                                                            sTB_Content="{Binding TB_Content_Content , Mode=TwoWay}"
                                                            Visibility="{Binding TB_Content_Visability}"  />
@@ -133,7 +127,9 @@
                                     </Grid>
                                 </Grid>
                                 <Grid Grid.Row="4" Background="YellowGreen">
-                                    <TextBlock x:Name="Tb_StatusBar" Style="{StaticResource StatusBar}" Text="{Binding sStatusBarText}" FontSize="12"/>
+                                    <TextBlock x:Name="Tb_StatusBar" Style="{StaticResource StatusBar}" Text="{Binding sStatusBarText}" 
+                                               cal:Message.Attach="[Event MouseDown] = [Action StatusBarClick($self)]"
+                                               FontSize="12"/>
                                 </Grid>
                             </Grid>
 
