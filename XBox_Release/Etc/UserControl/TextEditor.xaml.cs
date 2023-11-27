@@ -70,11 +70,15 @@ namespace XBox
         {
             InitializeComponent();
 
+            //Binding binding = new Binding("sTB_Content");
+            //binding.Source = this;
+            //this.TB_Content.SetBinding(TextBox.TextProperty, binding);
+
+
             Binding binding = new Binding("sTB_Content");
             binding.Source = this;
-            this.TB_Content.SetBinding(TextBox.TextProperty, binding);
+            this.SetBinding(UserControl.TagProperty, binding);
 
-            //this.TB_Content.Text
 
             // PropertyChanged 이벤트 핸들러 추가
             DependencyPropertyDescriptor.FromProperty(sTB_ContentProperty, typeof(TextEditor))
@@ -85,9 +89,9 @@ namespace XBox
 
                      var x = sender as TextEditor;
 
-                    if(x.TB_Content.Text != sTB_Content.ToString())
+                    if(x.TB_Content.Text != File.ReadAllText(x.sTB_Content))
                     {
-                        //(sender as TextEditor).TB_Content.Text = sTB_Content.ToString();
+                        x.TB_Content.Text = File.ReadAllText(x.sTB_Content);
 
                         Content_TextChanged(x.TB_Content, null);
                     }
@@ -210,7 +214,7 @@ namespace XBox
 
             TBL_LineNumber.Text = "";
 
-            for (int nCnt=1;nCnt<= sTB_Content.ToString().Split('\n').Count();nCnt++)
+            for (int nCnt=1;nCnt<= x.Text.Split('\n').Count();nCnt++)
             {
                 TBL_LineNumber.Text += (nCnt).ToString() + Environment.NewLine;
             }
@@ -305,4 +309,5 @@ namespace XBox
 
         }
     }
+
 }

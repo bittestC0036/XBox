@@ -34,8 +34,6 @@ namespace XBox
         public MainViewModel()
         {
             SetTextType();
-
-
         }
 
         private void INITUI(string rootFolderPath = null)
@@ -46,9 +44,8 @@ namespace XBox
                 return;
             }
 
-
-            TB_RootPath_Text = rootFolderPath;
-            FolderTreeview_items.Add(MakeFolderTree(TB_RootPath_Text));
+             
+            TB_RootPath_Text = rootFolderPath; //FolderTreeview_items.Add(MakeFolderTree(TB_RootPath_Text));
         }
 
         private void SetTextType()
@@ -198,19 +195,6 @@ namespace XBox
 
         #region Binding Property
 
-        private ObservableCollection<TreeViewItem> _FolderTreeview_items = new ObservableCollection<TreeViewItem>();
-
-        public ObservableCollection<TreeViewItem> FolderTreeview_items
-        {
-            get
-            {
-                return _FolderTreeview_items;
-            }
-            set
-            {
-                SetProperty(ref _FolderTreeview_items, value);
-            }
-        }
 
         private string _TB_RootPath_Text = "";
         public string TB_RootPath_Text
@@ -358,11 +342,6 @@ namespace XBox
                 TB_RootPath_Text = cofd.FileName;
                 
                 INITUI(TB_RootPath_Text);
-
-                vs.Clear();
-
-                var temp = FolderTreeview_items[0];
-                temp.IsExpanded = true;
             }
         }
 
@@ -401,6 +380,28 @@ namespace XBox
             
         }
 
+
+        public void SelectedItemChanged(object item)
+        {
+            var x = item as FolderTree;
+
+            if(x.SelectedItem is _Folder_)
+            {
+
+            }
+            else
+            {
+                if(x.SelectedItem is _TxT_)
+                {
+                    TB_Content_Content = (x.SelectedItem as _TxT_).Tag.ToString();
+                }
+                else if(x.SelectedItem is _Img_)
+                {
+
+                }
+            }
+        }
+
         #endregion Event Command
 
         #region Instance Method
@@ -408,58 +409,37 @@ namespace XBox
         private void Reset()
         {
             TB_RootPath_Text = "";
-            FolderTreeview_items.Clear();
             Image_Content_Source = null;
-
         }
 
-        private _Folder_ MakeFolderTree(string FolderPath)
-        {
-            var di_folder = new DirectoryInfo(FolderPath);
-            var temp_tv_item = new _Folder_();
-
-            temp_tv_item.TB_Header.Content = di_folder.Name;
-            temp_tv_item.Tag = di_folder.FullName;
-            temp_tv_item.Selected += Folder_Selected;
-            temp_tv_item.Expanded += Folder_Expanded;
-
-            try
-            {
-                if (di_folder.GetDirectories().Count() > 0)
-                {
-                    foreach (var item in di_folder.GetDirectories())
-                    {
-                        temp_tv_item.Items.Add(MakeFolderTree(item.FullName));
-                        
-                    }
-                }
-                return temp_tv_item;
-            }
-            catch (Exception ex)
-            {
-                System.Diagnostics.Debug.WriteLine(string.Format("{0}\n\r{1}", ex.Message, ex.StackTrace));
-                return null;
-            }
-        }
-
-        string sBeforeFolder_Path = "";
-
-        private void Folder_Selected(object sender, RoutedEventArgs e)
-        {
-            if ( sender is _Folder_) 
-            {
-                var x = sender as _Folder_;
-                if(x.IsSelected&&x.IsMouseOver)
-                {
-                    if(sBeforeFolder_Path!=x.Tag.ToString())
-                    {
-                      sBeforeFolder_Path = x.Tag.ToString();
-                      ShowFolderPropertise(x);
-                    }
-
-                }
-            }
-        }
+        //private _Folder_ MakeFolderTree(string FolderPath)
+        //{
+        //    var di_folder = new DirectoryInfo(FolderPath);
+        //    var temp_tv_item = new _Folder_();
+        //
+        //    temp_tv_item.TB_Header.Content = di_folder.Name;
+        //    temp_tv_item.Tag = di_folder.FullName;
+        //    temp_tv_item.Selected += Folder_Selected;
+        //    temp_tv_item.Expanded += Folder_Expanded;
+        //
+        //    try
+        //    {
+        //        if (di_folder.GetDirectories().Count() > 0)
+        //        {
+        //            foreach (var item in di_folder.GetDirectories())
+        //            {
+        //                temp_tv_item.Items.Add(MakeFolderTree(item.FullName));
+        //                
+        //            }
+        //        }
+        //        return temp_tv_item;
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        System.Diagnostics.Debug.WriteLine(string.Format("{0}\n\r{1}", ex.Message, ex.StackTrace));
+        //        return null;
+        //    }
+        //}
 
         private void ShowTXTPropertise(_TxT_ txt)
         {
@@ -470,8 +450,6 @@ namespace XBox
             sFilePath = txt.Tag.ToString();
             fi = new FileInfo(sFilePath);
 
-            TB_Content_Visability = Visibility.Visible;
-            Img_Content_Visability = Visibility.Collapsed;
 
             sFinfo = string.Format("File Name :{0}         \n" +
                                        "Create Date:{1}        \n" +
@@ -479,8 +457,6 @@ namespace XBox
                                        fi.Name,
                                        fi.CreationTime.ToString("yyyy-MM-HH-mm"),
                                        fi.LastWriteTime);
-            TB_Properties_Text = sFinfo;
-            SetStatus(txt.Tag.ToString() + " Open");
         }
 
         private void ShowImgPropertise(_Img_ Img)
@@ -492,8 +468,6 @@ namespace XBox
             sFilePath = Img.Tag.ToString();
             fi = new FileInfo(sFilePath);
 
-            Img_Content_Visability = Visibility.Collapsed; 
-            Img_Content_Visability = Visibility.Visible ;  
 
             sFinfo = string.Format("File Name :{0}         \n" +
                                        "Create Date:{1}        \n" +
@@ -501,8 +475,6 @@ namespace XBox
                                        fi.Name,
                                        fi.CreationTime.ToString("yyyy-MM-HH-mm"),
                                        fi.LastWriteTime);
-            TB_Properties_Text = sFinfo;
-            SetStatus(Img.Tag.ToString() + " Open");
         }
 
         private void ShowFolderPropertise(_Folder_ x)
@@ -520,9 +492,6 @@ namespace XBox
                                           di.CreationTime.ToString("yyyy-MM-HH-mm"),
                                           di.LastWriteTime
                                           );
-            TB_Properties_Text = sDirInfo;
-            TB_Content_Content = "";
-            SetStatus(x.Tag.ToString());
         }
 
 
@@ -531,226 +500,9 @@ namespace XBox
         #region Event 
 
 
-        private void Folder_Expanded(object sender, RoutedEventArgs e)
-        {
-            var x = sender as _Folder_;
-
-            if (x != null)
-            {
-                var di_spath = new DirectoryInfo(x.Tag.ToString());
-                var fi = di_spath.GetFiles();
-                for (int nCnt = 0; nCnt < fi.Count(); nCnt++)
-                {
-                    if (sTxt_list.IndexOf(fi[nCnt].Extension.ToUpper()) >-1)
-                    {
-                        _TxT_ Temp = new _TxT_();
-                        Temp.Height = 40;
-                        Temp.TB_Header.Content = fi[nCnt].Name;
-                        Temp.Tag = fi[nCnt].FullName;
-
-                        Temp.MouseDoubleClick += Temp_MouseDoubleClick;
-                        Temp.Selected += Item_Selected;
-                        
-                        AddFileList(Temp, x);
-                    }
-
-                    else if (sImage_list.IndexOf(fi[nCnt].Extension.ToUpper()) > -1)
-                    {
-                        _Img_ Temp = new _Img_();
-                        Temp.Height = 40;
-                        Temp.TB_Header.Content = fi[nCnt].Name;
-                        Temp.Tag = fi[nCnt].FullName;
-                        Temp.Selected += Folder_Selected;
-                        //Temp.MouseUp += Temp_MouseUp;
-                        AddFileList(Temp, x);
-                    }
-                }
-            }
-        }
-
-        private void Item_Selected(object sender, RoutedEventArgs e)
-        {
-            if( sender is _TxT_)
-            {
-                var x = sender as _TxT_;
-                if(x.IsSelected)
-                {
-                    var fi_item = new FileInfo(x.Tag.ToString());
-                    TB_Content_Content = File.ReadAllText(x.Tag.ToString());
-                }
 
 
-                ShowTXTPropertise(x);
-            }
-            else if (sender is _Img_)
-            {
-                TB_Content_Visability = Visibility.Collapsed;
-                Img_Content_Visability = Visibility.Visible;
-
-                BitmapImage bitmapImage = new BitmapImage();
-                bitmapImage.BeginInit();
-                bitmapImage.UriSource = new Uri((sender as _Img_).Tag.ToString(), UriKind.Absolute);
-                bitmapImage.EndInit();
-                Image_Content_Source = bitmapImage;
-
-                ShowImgPropertise(sender as _Img_);
-            }
-        }
-
-        private void AddFileList(object temp, _Folder_ x)
-        {
-            if(temp is _TxT_)
-            {
-                var m_TxT = temp as _TxT_;
-                if (vs.IndexOf(m_TxT.Tag.ToString()) == -1)
-                {
-                    x.Items.Add(temp);
-                    vs.Add(m_TxT.Tag.ToString());
-                }
-            }
-
-            if(temp is _Img_)
-            {
-                var m_TxT = temp as _Img_;
-                if (vs.IndexOf(m_TxT.Tag.ToString()) == -1)
-                {
-                    x.Items.Add(temp);
-                    vs.Add(m_TxT.Tag.ToString());
-                }
-            }
-
-        }
-
-
-
-        private void Temp_MouseDoubleClick(object sender, MouseButtonEventArgs e)
-        {
-            if (sender is _TxT_)
-            {
-                var x = sender as _TxT_;
-
-                var fi = new FileInfo(x.Tag.ToString());
-
-                if (sTxt_list.IndexOf(fi.Extension.ToUpper()) == -1)
-                {
-                    MessageBox.Show("file type is not Text");
-                    return;
-                }
-
-                var TEMP = new LayoutDocument();
-
-                TEMP.Title = x.TB_Header.ToString().Split(':')[1];
-
-                var TEMP_TextEditor = new TextEditor();
-
-                TEMP_TextEditor.sTB_Content = File.ReadAllText(x.Tag.ToString());
-
-                TEMP_TextEditor.Tag = x.Tag.ToString();
-
-                TEMP_TextEditor.TB_Content.IsReadOnly = false;
-
-                TEMP.Content = TEMP_TextEditor;
-
-                bool bCheck = true; //Root Folder Path
-                int nCnt = 0;
-
-                for (nCnt = 0; nCnt < _MainView_.TopTap.Children.Count; nCnt++)
-                {
-                    if(_MainView_.TopTap.Children[nCnt].Title!= "Root Folder Path")
-                    {
-                        bCheck = bCheck & _MainView_.TopTap.Children[nCnt].Title != TEMP.Title;
-                        if (bCheck == false)
-                            break;
-                    }
-
-                }
-
-                if (true == bCheck)
-                {
-                    //_MainView_.TopTap.InsertChildAt(_MainView_.TopTap.Children.Count, TEMPP
-
-                    _MainView_.TopTap.SelectedContentIndex = _MainView_.TopTap.Children.Count;
-
-                    _MainView_.TopTap.Children.Add(TEMP);
-
-                    if (_MainView_.TopTap.Children.Count == 0)
-                    {
-                        _MainView_.TopTap.Children[_MainView_.TopTap.Children.Count].IsActive = true;
-                    }
-                    else
-                    {
-                        _MainView_.TopTap.Children[_MainView_.TopTap.Children.Count - 1].IsActive = true;
-                    }
-                }
-                else
-                {
-                    _MainView_.TopTap.SelectedContentIndex = nCnt;
-                }
-            }else if(sender is _Img_)
-            {
-                var x = sender as _Img_;
-
-                var fi = new FileInfo(x.Tag.ToString());
-
-                if(sImage_list.IndexOf(fi.Extension.ToUpper())!=-1)
-                {
-                    MessageBox.Show("file type is not Image");
-                    return;
-                }
-
-                var TEMP = new LayoutDocument();
-
-                TEMP.Title = x.TB_Header.ToString().Split(':')[1];
-
-                var TEMP_TextEditor = new TextEditor();
-
-                TEMP_TextEditor.sTB_Content = File.ReadAllText(x.Tag.ToString());
-
-                TEMP_TextEditor.Tag = x.Tag.ToString();
-
-                TEMP_TextEditor.TB_Content.IsReadOnly = false;
-
-                TEMP.Content = TEMP_TextEditor;
-
-                bool bCheck = true; //Root Folder Path
-                int nCnt = 0;
-
-                for (nCnt = 0; nCnt < _MainView_.TopTap.Children.Count; nCnt++)
-                {
-                    if (_MainView_.TopTap.Children[nCnt].Title != "Root Folder Path")
-                    {
-                        bCheck = bCheck & _MainView_.TopTap.Children[nCnt].Title != TEMP.Title;
-                        if (bCheck == false)
-                            break;
-                    }
-
-                }
-
-                if (true == bCheck)
-                {
-                    //_MainView_.TopTap.InsertChildAt(_MainView_.TopTap.Children.Count, TEMPP
-
-                    _MainView_.TopTap.SelectedContentIndex = _MainView_.TopTap.Children.Count;
-
-                    _MainView_.TopTap.Children.Add(TEMP);
-
-                    if (_MainView_.TopTap.Children.Count == 0)
-                    {
-                        _MainView_.TopTap.Children[_MainView_.TopTap.Children.Count].IsActive = true;
-                    }
-                    else
-                    {
-                        _MainView_.TopTap.Children[_MainView_.TopTap.Children.Count - 1].IsActive = true;
-                    }
-                }
-                else
-                {
-                    _MainView_.TopTap.SelectedContentIndex = nCnt;
-                }
-            }
-        }
-
-#endregion Event
+        #endregion Event
 
         #region CallBack Method
 

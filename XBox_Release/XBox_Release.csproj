@@ -267,6 +267,9 @@
       <SubType>Designer</SubType>
     </ApplicationDefinition>
     <Compile Include="Etc\StandardBootstrapper.cs" />
+    <Compile Include="Etc\UserControl\FolderTree.xaml.cs">
+      <DependentUpon>FolderTree.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Etc\UserControl\ICON\_Img_.xaml.cs">
       <DependentUpon>_Img_.xaml</DependentUpon>
     </Compile>
@@ -310,6 +313,10 @@
     <Compile Include="Etc\UserControl\TextEditor.xaml.cs">
       <DependentUpon>TextEditor.xaml</DependentUpon>
     </Compile>
+    <Page Include="Etc\UserControl\FolderTree.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Etc\UserControl\ICON\_Img_.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>

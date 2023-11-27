@@ -91,8 +91,27 @@
                                     </Grid.ColumnDefinitions>
 
                                     <Grid Grid.Column="0">
+                                        
+                                        <!--
                                         <TreeView x:Name="folderTreeView" ItemsSource="{Binding FolderTreeview_items}"
                                                   cal:Message.Attach="[Event PressKeyDown] = [Action FolderTreeView_PreviewKeyDown()]"/>
+                                        -->
+                                        
+                                        <!--
+                                            <local:FolderTree  ItemsSource="{Binding FolderTreeview_items}" />
+                                        -->
+                                        
+                                        <!--
+                                            <TreeView ItemsSource="{Binding FolderTreeview_items}" />
+                                            <local:FolderTree TB_RootPath_Text="{Binding TB_RootPath_Text}" />
+                                        -->
+
+                                        <!--
+                                            <TreeView ItemsSource="{Binding FolderTreeview_items}" />
+                                        -->
+                                        <local:FolderTree sTB_Content="{Binding TB_RootPath_Text}"       
+                                                         
+                                                          cal:Message.Attach="[Event SelectedItemChanged]=[Action SelectedItemChanged($view)]"/>
                                     </Grid>
 
                                     <GridSplitter   Grid.Column="1"
@@ -110,7 +129,7 @@
                                         </Grid.RowDefinitions>
 
 
-                                        <local:TextEditor  x:Name="TB_Content" 
+                                        <local:TextEditor 
                                                            sTB_Content="{Binding TB_Content_Content , Mode=TwoWay}"
                                                            Visibility="{Binding TB_Content_Visability}"  />
 
