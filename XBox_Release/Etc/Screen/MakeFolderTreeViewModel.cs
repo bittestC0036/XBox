@@ -1,30 +1,21 @@
-﻿
-using Microsoft.WindowsAPICodePack.Dialogs;
+﻿using Microsoft.WindowsAPICodePack.Dialogs;
 using System;
+using System.Collections.Generic;
 using System.ComponentModel;
-using System.ComponentModel.Composition;
 using System.IO;
-
+using System.Linq;
 using System.Reflection;
-
+using System.Text;
+using System.Threading.Tasks;
 using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Media;
 
 namespace XBox
 {
-    [Export(typeof(IMainViewModel))]
-    public sealed class MainViewModel : ObservableObject, IMainViewModel, INotifyPropertyChanged
+    public class MakeFolderTreeViewModel : ObservableObject, INotifyPropertyChanged
     {
-        #region Creator
-        [ImportingConstructor]
-        public MainViewModel()
+        public MakeFolderTreeViewModel()
         {
-            bSingle = true;
-
-            MakeFolder_Content_Width = 1200;
-
-            DB_title_height = 300;
+            INITUI();
         }
 
         private void INITUI(string rootFolderPath = null)
@@ -34,14 +25,14 @@ namespace XBox
                 rootFolderPath = @"D:\Job"; // 설정한 폴더 경로로 변경하세요.
                 return;
             }
-            TB_RootPath_Text = rootFolderPath; 
+
+
+            TB_RootPath_Text = rootFolderPath;
         }
 
-        #endregion Creator
-
-        #region MakeFolderTree
 
         #region Binding Property
+
 
         private string _TB_RootPath_Text = "";
         public string TB_RootPath_Text
@@ -95,32 +86,42 @@ namespace XBox
             }
         }
 
-        private double _MakeFolder_Content_Width = 0;
-        public double MakeFolder_Content_Width
+        private double _dWidth = 0;
+        public double dWidth
         {
             get
             {
-                return _MakeFolder_Content_Width;
+                return _dWidth;
             }
             set
             {
-                _MakeFolder_Content_Width = value;
+                _dWidth = value;
                 RaisePropertyChanged();
             }
         }
 
+        private Visibility _TB_Content_Visability = Visibility.Visible;
+
+        public Visibility TB_Content_Visability
+        {
+            get { return _TB_Content_Visability; }
+            set
+            {
+                SetProperty(ref _TB_Content_Visability, value);
+            }
+        }
 
         #endregion Binding Property
 
-        #region Event
-
+        #region Event Command
         public void Window_Loaded(object dataContext, object view)
         {
-            var x = dataContext as MainViewModel;
+            dWidth = 1200;
         }
 
         public void Btn_SetPath()
         {
+            Reset();
             CommonOpenFileDialog cofd = new CommonOpenFileDialog();
             cofd.IsFolderPicker = true;
 
@@ -131,6 +132,41 @@ namespace XBox
                 INITUI(TB_RootPath_Text);
             }
         }
+
+        public void FindFileName()
+        {
+
+        }
+
+        public void StatusBarClick(object sender)
+        {
+            //string sData = sStatusBarText;
+            //sData = sData.Replace("Open","");
+            //if (string.IsNullOrWhiteSpace(sData))
+            //    return;
+            //
+            //if(File.Exists(sData))
+            //{
+            //    var fi_item = new FileInfo(sData);
+            //    if(sTxt_list.IndexOf(fi_item.Extension.ToUpper())!=-1)
+            //    {
+            //        System.Diagnostics.Process.Start("notepad", fi_item.FullName);
+            //    }
+            //    else if(sImage_list.IndexOf(fi_item.Extension.ToUpper()) != -1)
+            //    {
+            //        System.Diagnostics.Process.Start("mspaint", "\"" + fi_item.FullName + "\"");
+            //    }
+            //}
+            //else if(Directory.Exists(sData))
+            //{
+            //    System.Diagnostics.Process.Start("explorer.exe", sData);
+            //}
+            //else
+            //{
+            //
+            //}            
+        }
+
 
         public void SelectedItemChanged(object item)
         {
@@ -161,34 +197,25 @@ namespace XBox
             //sStatusBarText = (x.SelectedItem as UserControl).Tag.ToString();
         }
 
+        #endregion Event Command
+
+        #region Instance Method
+
+        private void Reset()
+        {
+            TB_RootPath_Text = "";
+        }
+
+        #endregion Instance Method
+
+        #region Event 
+
+
+
+
         #endregion Event
 
-        #endregion MakeFolderTree
-
-        #region DB 
-
-        #region Binding Property
-
-        public double _DB_title_height = 0;
-
-        public double DB_title_height
-        {
-            get
-            {
-                return _DB_title_height;
-            }
-            set
-            {
-                _DB_title_height = value;
-                RaisePropertyChanged();
-            }
-         }
-
-        #endregion Binding Property
-
-        #endregion DB
-
-        #region Log
+        #region CallBack Method
 
         private void Log(string sLog)
         {
@@ -222,6 +249,14 @@ namespace XBox
                 sw.Close();
             }
         }
-        #endregion Log
+
+        private void SetStatus(string sLog)
+        {
+            sStatusBarText = sLog;
+        }
+
+        #endregion CallBack Method
+
+
     }
 }

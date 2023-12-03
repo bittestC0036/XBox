@@ -12,151 +12,123 @@
              cal:Message.Attach="[Event Loaded]=[Action Window_Loaded($dataContext,$view)]"
              d:DesignHeight="600" d:DesignWidth="800"
              >
-    <avalonDock:DockingManager x:Name="dockManager"  Visibility="Visible"  >
-
-        <avalonDock:LayoutRoot x:Name="LayoutRoot">
-            <avalonDock:LayoutPanel>
-                <avalonDock:LayoutDocumentPaneGroup >
-                    <avalonDock:LayoutDocumentPane x:Name="TopTap"   >
-                        <avalonDock:LayoutDocument   x:Name="Tap1"  Title="Root Folder Path" Closing="Tap1_Closing">
-                            <Grid x:Name="Root">
-                                <Grid.Resources>
-                                    <Style TargetType="{x:Type TextBox}">
-                                        <Setter Property="FontSize" Value="15"/>
-                                    </Style>
-                                    <Style x:Key="Properties" TargetType="{x:Type TextBox}">
-                                        <Setter Property="FontSize"  Value="15"/>
-                                        <Setter Property="IsReadOnly" Value="True"/>
-                                    </Style>
-                                    <Style x:Key="StatusBar" TargetType="{x:Type TextBlock}">
-                                        <Setter Property="FontSize" Value="20"/>
-                                        <!--
-                                        <Setter Property="HorizontalAlignment" Value="Center"/>
-                                        -->
-                                        <Style.Triggers>
-                                            <Trigger Property="IsMouseOver" Value="True">
-                                                <Setter Property="Foreground" Value="HotPink"/>
-                                                <Setter Property="Background" Value="Black"/>
-                                            </Trigger>
-                                        </Style.Triggers>
-                                    </Style>
-                                    <Style x:Key="TB_RootPathStyle" TargetType="{x:Type TextBox}">
-                                        <Setter Property="FontSize" Value="17"/>
-                                    </Style>
-                                </Grid.Resources>
-                                <Grid.RowDefinitions>
-                                    <RowDefinition Height="5"/>
-                                    <RowDefinition Height="70"/>
-                                    <RowDefinition Height="Auto"/>
-                                    <RowDefinition Height="*"/>
-                                    <RowDefinition Height="25"/>
-                                    <RowDefinition Height="5"/>
-                                </Grid.RowDefinitions>
-                                <Grid Grid.Row="1" Background="LemonChiffon">
-                                    <Grid.ColumnDefinitions>
-                                        <ColumnDefinition Width="0.1*"/>
-                                        <ColumnDefinition Width="3*"/>
-                                        <ColumnDefinition Width="0.1*"/>
-                                        <ColumnDefinition Width="*"/>
-                                        <ColumnDefinition Width="0.1*"/>
-                                    </Grid.ColumnDefinitions>
-                                    <Grid.RowDefinitions>
-                                        <RowDefinition Height="*"/>
-                                        <RowDefinition Height="0.1*"/>
-                                        <RowDefinition Height="*"/>
-                                    </Grid.RowDefinitions>
-                                    <TextBox Grid.Column="1" IsReadOnly="True" Name="TB_RootPath" 
+    <TabControl >
+        <TabItem Header="Make Folder">
+            <avalonDock:DockingManager x:Name="dockManager"  Visibility="Visible" >
+                <avalonDock:LayoutRoot x:Name="LayoutRoot">
+                    <avalonDock:LayoutPanel>
+                        <avalonDock:LayoutDocumentPaneGroup >
+                            <avalonDock:LayoutDocumentPane x:Name="TopTap"   >
+                                <avalonDock:LayoutDocument   x:Name="Tap1"  Title="Root Folder Path" Closing="Tap1_Closing">
+                                    <Grid x:Name="Root">
+                                        <Grid.Resources>
+                                            <Style TargetType="{x:Type TextBox}">
+                                                <Setter Property="FontSize" Value="15"/>
+                                            </Style>
+                                            <Style x:Key="Properties" TargetType="{x:Type TextBox}">
+                                                <Setter Property="FontSize"  Value="15"/>
+                                                <Setter Property="IsReadOnly" Value="True"/>
+                                            </Style>
+                                            <Style x:Key="StatusBar" TargetType="{x:Type TextBlock}">
+                                                <Setter Property="FontSize" Value="20"/>
+                                                <Style.Triggers>
+                                                    <Trigger Property="IsMouseOver" Value="True">
+                                                        <Setter Property="Foreground" Value="HotPink"/>
+                                                        <Setter Property="Background" Value="Black"/>
+                                                    </Trigger>
+                                                </Style.Triggers>
+                                            </Style>
+                                            <Style x:Key="TB_RootPathStyle" TargetType="{x:Type TextBox}">
+                                                <Setter Property="FontSize" Value="17"/>
+                                            </Style>
+                                        </Grid.Resources>
+                                        <Grid.RowDefinitions>
+                                            <RowDefinition Height="5"/>
+                                            <RowDefinition Height="70"/>
+                                            <RowDefinition Height="Auto"/>
+                                            <RowDefinition Height="*"/>
+                                            <RowDefinition Height="25"/>
+                                            <RowDefinition Height="5"/>
+                                        </Grid.RowDefinitions>
+                                        <Grid Grid.Row="1" Background="LemonChiffon">
+                                            <Grid.ColumnDefinitions>
+                                                <ColumnDefinition Width="0.1*"/>
+                                                <ColumnDefinition Width="3*"/>
+                                                <ColumnDefinition Width="0.1*"/>
+                                                <ColumnDefinition Width="*"/>
+                                                <ColumnDefinition Width="0.1*"/>
+                                            </Grid.ColumnDefinitions>
+                                            <Grid.RowDefinitions>
+                                                <RowDefinition Height="*"/>
+                                                <RowDefinition Height="0.1*"/>
+                                                <RowDefinition Height="*"/>
+                                            </Grid.RowDefinitions>
+                                            <TextBox Grid.Column="1" IsReadOnly="True" Name="TB_RootPath" 
                                              Text="{Binding TB_RootPath_Text}"
                                              Style="{StaticResource TB_RootPathStyle}"   />
 
-                                    <Button  Grid.Column="3" Content="경로 설정" 
+                                            <Button  Grid.Column="3" Content="경로 설정" 
                                              cal:Message.Attach="[Event Click] = [Action Btn_SetPath()]"/>
 
-                                    <TextBox  Grid.Row="2" Grid.Column="1" Grid.ColumnSpan="3" Margin="0,0,0,5"
+                                            <TextBox  Grid.Row="2" Grid.Column="1" Grid.ColumnSpan="3" Margin="0,0,0,5"
                                               cal:Message.Attach="[Event TextChanged] = [Action FindFileName($self)]"/>
-                                </Grid>
+                                        </Grid>
 
-                                <GridSplitter Grid.Row="2"    
+                                        <GridSplitter Grid.Row="2"    
                                               HorizontalAlignment="Stretch"
                                               VerticalAlignment="Center"
                                               Background="Black" 
                                               ShowsPreview="True"
                                               Height="5"/>
 
-                                <Grid Grid.Row="3">
-                                    <Grid.ColumnDefinitions>
-                                        <ColumnDefinition Width="*"/>
-                                        <ColumnDefinition Width="Auto"/>
-                                        <ColumnDefinition Width="{Binding dWidth}"/>
-                                    </Grid.ColumnDefinitions>
+                                        <Grid Grid.Row="3">
+                                            <Grid.ColumnDefinitions>
+                                                <ColumnDefinition Width="*"/>
+                                                <ColumnDefinition Width="Auto"/>
+                                                <ColumnDefinition Width="{Binding MakeFolder_Content_Width}"/>
+                                            </Grid.ColumnDefinitions>
 
-                                    <Grid Grid.Column="0">
-                                        
-                                        <!--
-                                        <TreeView x:Name="folderTreeView" ItemsSource="{Binding FolderTreeview_items}"
-                                                  cal:Message.Attach="[Event PressKeyDown] = [Action FolderTreeView_PreviewKeyDown()]"/>
-                                        -->
-                                        
-                                        <!--
-                                            <local:FolderTree  ItemsSource="{Binding FolderTreeview_items}" />
-                                        -->
-                                        
-                                        <!--
-                                            <TreeView ItemsSource="{Binding FolderTreeview_items}" />
-                                            <local:FolderTree TB_RootPath_Text="{Binding TB_RootPath_Text}" />
-                                        -->
+                                            <Grid Grid.Column="0">
+                                                <local:FolderTree sTB_Content="{Binding TB_RootPath_Text}"       
+                                          cal:Message.Attach="[Event SelectedItemChanged]=[Action SelectedItemChanged($view)]"/>
+                                            </Grid>
 
-                                        <!--
-                                            <TreeView ItemsSource="{Binding FolderTreeview_items}" />
-                                        -->
-                                        <local:FolderTree sTB_Content="{Binding TB_RootPath_Text}"       
-                                                         
-                                                          cal:Message.Attach="[Event SelectedItemChanged]=[Action SelectedItemChanged($view)]"/>
-                                    </Grid>
-
-                                    <GridSplitter   Grid.Column="1"
+                                            <GridSplitter   Grid.Column="1"
                                                     Background="Black" 
                                                     ShowsPreview="True"
                                                     Width="5" 
                                                     HorizontalAlignment="Center"
                                                     VerticalAlignment="Stretch"/>
 
-                                    <Grid Grid.Column="2">
-                                        <Grid.RowDefinitions>
-                                            <RowDefinition Height="*" />
-                                            <RowDefinition Height="Auto" />
-                                            <RowDefinition Height="{Binding dHeight}" />
-                                        </Grid.RowDefinitions>
+                                            <Grid Grid.Column="2">
+                                                <Grid.RowDefinitions>
+                                                    <RowDefinition Height="*" />
+                                                </Grid.RowDefinitions>
 
 
-                                        <local:TextEditor 
+                                                <local:TextEditor 
                                                            sTB_Content="{Binding TB_Content_Content , Mode=TwoWay}"
-                                                           Visibility="{Binding TB_Content_Visability}"  />
+                                                           bisReadOnly="{Binding bSingle}"/>
 
-
-                                        <Image   x:Name="Img_Content"   Visibility="{Binding Img_Content_Visability }"  Source="{Binding Image_Content_Source}"/>
-
-                                        <GridSplitter Grid.Row="1"
-                                                      HorizontalAlignment="Stretch"
-                                                      VerticalAlignment="Center"
-                                                      Background="Black"
-                                                      ShowsPreview="True"
-                                                      Height="5"/>
-                                        <TextBox x:Name="TB_Properties"    Grid.Row="2"    Style="{StaticResource Properties}" Text="{Binding TB_Properties_Text}" />
-                                    </Grid>
-                                </Grid>
-                                <Grid Grid.Row="4" Background="YellowGreen">
-                                    <TextBlock x:Name="Tb_StatusBar" Style="{StaticResource StatusBar}" Text="{Binding sStatusBarText}" 
+                                                <Image   x:Name="Img_Content"   Visibility="Collapsed"  Source="{Binding Image_Content_Source}" />
+                                            </Grid>
+                                        </Grid>
+                                        <Grid Grid.Row="4" Background="YellowGreen">
+                                            <TextBlock x:Name="Tb_StatusBar" Style="{StaticResource StatusBar}" Text="{Binding sStatusBarText}" 
                                                cal:Message.Attach="[Event MouseDown] = [Action StatusBarClick($self)]"
                                                FontSize="12"/>
-                                </Grid>
-                            </Grid>
+                                        </Grid>
+                                    </Grid>
+                                </avalonDock:LayoutDocument>
+                            </avalonDock:LayoutDocumentPane>
+                        </avalonDock:LayoutDocumentPaneGroup>
+                    </avalonDock:LayoutPanel>
+                </avalonDock:LayoutRoot>
 
-                        </avalonDock:LayoutDocument>
-                    </avalonDock:LayoutDocumentPane>
-                </avalonDock:LayoutDocumentPaneGroup>
-            </avalonDock:LayoutPanel>
-        </avalonDock:LayoutRoot>
-        
-    </avalonDock:DockingManager>
+            </avalonDock:DockingManager>
+        </TabItem>
+        <TabItem  Header="DB Connector">
+
+        </TabItem>
+    </TabControl>
 </UserControl>

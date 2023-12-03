@@ -16,12 +16,11 @@ using System.Windows.Shapes;
 namespace XBox
 {
     /// <summary>
-    /// _Folder_.xaml에 대한 상호 작용 논리
+    /// MakeFolderTree.xaml에 대한 상호 작용 논리
     /// </summary>
-    //public delegate void _expandedCallBack(object sender, RoutedEventArgs e);
-    public partial class _Folder_ : TreeViewItem
+    public partial class MakeFolderTree : UserControl
     {
-        public _Folder_()
+        public MakeFolderTree()
         {
             InitializeComponent();
         }

@@ -2,11 +2,13 @@
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
+using System.Diagnostics;
 using System.IO;
 using System.Linq;
 using System.Reflection;
 using System.Runtime.CompilerServices;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
@@ -98,46 +100,64 @@ namespace XBox
 
                     if(x!=null)
                     {
-                        if(null==x.ItemsSource)
-                        {
-                            x.ItemsSource = FolderTreeview_items;
-                        }
-
                         if(!string.IsNullOrWhiteSpace(x.sTB_Content))
                         {
-                            //x.AddChild(MakeFolderTree(x.sTB_Content));
-                            FolderTreeview_items.Add(MakeFolderTree(x.sTB_Content));
+                            string sData = x.sTB_Content;
+
+                            var sw = new Stopwatch();
+                            sw.Start();
+
+                            FolderTreeview_items.Add(MakeFolderTree(sData));
+                            
+                            if (null == x.ItemsSource)
+                                x.ItemsSource = FolderTreeview_items;
+
+                            sw.Stop();
+                            System.Diagnostics.Debug.WriteLine(sw.ElapsedMilliseconds.ToString());
+
+
                         }
                         else
                         {
                             FolderTreeview_items.Clear();
-                            //x.Items.Clear();
                         }
+
+
                     }
+                    FolderTreeview_items[0].IsExpanded = true;
                     //RaiseEvent(new RoutedEventArgs(YourTextChangedEvent));
                 });
         }
 
+        //private void MIMI()
+        //{
+        //    Dispatcher.Invoke(() => FolderTreeview_items.Add(MakeFolderTree(x.sTB_Content));
+        //}
 
+
+
+        //[STAThread]
         private _Folder_ MakeFolderTree(string FolderPath)
         {
             var di_folder = new DirectoryInfo(FolderPath);
             var temp_tv_item = new _Folder_();
-
-            //temp_tv_item.Header = di_folder.Name;
+        
             temp_tv_item.TB_Header.Content = di_folder.Name;
             temp_tv_item.Tag = di_folder.FullName;
-            temp_tv_item.Selected += Folder_Selected;
+            //temp_tv_item.Selected += Folder_Selected;
             temp_tv_item.Expanded += Folder_Expanded;
-
+        
             try
             {
-                if (di_folder.GetDirectories().Count() > 0)
+                if (di_folder.GetDirectories().Length > 0)
                 {
                     foreach (var item in di_folder.GetDirectories())
                     {
-                        temp_tv_item.Items.Add(MakeFolderTree(item.FullName));
-
+                        if(!string.IsNullOrWhiteSpace(item.FullName))
+                        {
+                            temp_tv_item.Items.Add(MakeFolderTree(item.FullName));
+                            System.Diagnostics.Debug.WriteLine("item.FullName"+ item.FullName);
+                        }        
                     }
                 }
                 return temp_tv_item;
@@ -178,24 +198,27 @@ namespace XBox
                 var fi = di_spath.GetFiles();
                 for (int nCnt = 0; nCnt < fi.Count(); nCnt++)
                 {
-                    if (sTxt_list.IndexOf(fi[nCnt].Extension.ToUpper()) > -1)
+                    if(fi[nCnt].Exists)
                     {
-                        _TxT_ Temp = new _TxT_();
-                        Temp.Height = 40;
-                        Temp.TB_Header.Content = fi[nCnt].Name;
-                        Temp.Tag = fi[nCnt].FullName;
+                        if (sTxt_list.IndexOf(fi[nCnt].Extension.ToUpper()) > -1)
+                        {
+                            _TxT_ Temp = new _TxT_();
+                            Temp.Height = 40;
+                            Temp.TB_Header.Content = fi[nCnt].Name;
+                            Temp.Tag = fi[nCnt].FullName;
 
-                        AddFileList(Temp, x);
-                    }
+                            AddFileList(Temp, x);
+                        }
 
-                    else if (sImage_list.IndexOf(fi[nCnt].Extension.ToUpper()) > -1)
-                    {
-                        _Img_ Temp = new _Img_();
-                        Temp.Height = 40;
-                        Temp.TB_Header.Content = fi[nCnt].Name;
-                        Temp.Tag = fi[nCnt].FullName;
-                        Temp.Selected += Folder_Selected;
-                        AddFileList(Temp, x);
+                        else if (sImage_list.IndexOf(fi[nCnt].Extension.ToUpper()) > -1)
+                        {
+                            _Img_ Temp = new _Img_();
+                            Temp.Height = 40;
+                            Temp.TB_Header.Content = fi[nCnt].Name;
+                            Temp.Tag = fi[nCnt].FullName;
+                            Temp.Selected += Folder_Selected;
+                            AddFileList(Temp, x);
+                        }
                     }
                 }
             }

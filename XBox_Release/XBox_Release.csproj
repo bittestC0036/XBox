@@ -267,7 +267,10 @@
       <SubType>Designer</SubType>
     </ApplicationDefinition>
     <Compile Include="Etc\StandardBootstrapper.cs" />
-    <Compile Include="Etc\UserControl\FolderTree.xaml.cs">
+    <Compile Include="Etc\UserControl\DB\DBController.xaml.cs">
+      <DependentUpon>DBController.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Etc\UserControl\MakeFolderTree\FolderTree.xaml.cs">
       <DependentUpon>FolderTree.xaml</DependentUpon>
     </Compile>
     <Compile Include="Etc\UserControl\ICON\_Img_.xaml.cs">
@@ -310,10 +313,14 @@
     <Compile Include="Etc\UserControl\ICON\_Folder_.xaml.cs">
       <DependentUpon>_Folder_.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Etc\UserControl\TextEditor.xaml.cs">
+    <Compile Include="Etc\UserControl\MakeFolderTree\TextEditor.xaml.cs">
       <DependentUpon>TextEditor.xaml</DependentUpon>
     </Compile>
-    <Page Include="Etc\UserControl\FolderTree.xaml">
+    <Page Include="Etc\UserControl\DB\DBController.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Etc\UserControl\MakeFolderTree\FolderTree.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -361,7 +368,7 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Etc\UserControl\TextEditor.xaml">
+    <Page Include="Etc\UserControl\MakeFolderTree\TextEditor.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
@@ -420,5 +427,6 @@
   <ItemGroup>
     <None Include="Etc\Resources\zipFile_Image.png" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
