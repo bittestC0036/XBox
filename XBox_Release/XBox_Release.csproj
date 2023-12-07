@@ -267,9 +267,6 @@
       <SubType>Designer</SubType>
     </ApplicationDefinition>
     <Compile Include="Etc\StandardBootstrapper.cs" />
-    <Compile Include="Etc\UserControl\DB\DBController.xaml.cs">
-      <DependentUpon>DBController.xaml</DependentUpon>
-    </Compile>
     <Compile Include="Etc\UserControl\MakeFolderTree\FolderTree.xaml.cs">
       <DependentUpon>FolderTree.xaml</DependentUpon>
     </Compile>
@@ -316,10 +313,6 @@
     <Compile Include="Etc\UserControl\MakeFolderTree\TextEditor.xaml.cs">
       <DependentUpon>TextEditor.xaml</DependentUpon>
     </Compile>
-    <Page Include="Etc\UserControl\DB\DBController.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
     <Page Include="Etc\UserControl\MakeFolderTree\FolderTree.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -427,6 +420,8 @@
   <ItemGroup>
     <None Include="Etc\Resources\zipFile_Image.png" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Folder Include="Etc\UserControl\DB\" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
