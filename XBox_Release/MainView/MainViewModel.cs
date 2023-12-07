@@ -10,6 +10,7 @@ using System.Reflection;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Media;
+using Xceed.Wpf.AvalonDock.Layout;
 
 namespace XBox
 {
@@ -159,6 +160,13 @@ namespace XBox
                 }
             }
             //sStatusBarText = (x.SelectedItem as UserControl).Tag.ToString();
+        }
+
+        public void MouseDoubleClick(object item)
+        {
+            //LayoutRoot temp = new LayoutRoot();
+            //temp.ActiveContent
+            //temp.ActiveContent
         }
 
         #endregion Event

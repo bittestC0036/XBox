@@ -90,7 +90,8 @@
 
                                             <Grid Grid.Column="0">
                                                 <local:FolderTree sTB_Content="{Binding TB_RootPath_Text}"       
-                                          cal:Message.Attach="[Event SelectedItemChanged]=[Action SelectedItemChanged($view)]"/>
+                                          cal:Message.Attach="[Event SelectedItemChanged]=[Action SelectedItemChanged($view)];
+                                                              [Event MouseDoubleClick]=[Action MouseDoubleClick($view)]"/>
                                             </Grid>
 
                                             <GridSplitter   Grid.Column="1"
@@ -128,7 +129,135 @@
             </avalonDock:DockingManager>
         </TabItem>
         <TabItem  Header="DB Connector">
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="*" />
+                    <RowDefinition Height="9*" />
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition  Width="*" />
+                    <ColumnDefinition  Width="9*" />
+                </Grid.ColumnDefinitions>
+                <Grid Grid.Column="0" Grid.ColumnSpan="2">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition/>
+                        <ColumnDefinition/>
+                        <ColumnDefinition/>
+                        <ColumnDefinition/>
+                        <ColumnDefinition/>
+                        <ColumnDefinition/>
+                        <ColumnDefinition/>
+                        <ColumnDefinition/>
+                    </Grid.ColumnDefinitions>
+                    <Button Grid.Column="0"   Content="데이터베이스명 0" Margin="5"  FontSize="20"  />
+                    <Button Grid.Column="1"   Content="데이터베이스명 1" Margin="5"  FontSize="20"  />
+                    <Button Grid.Column="2"   Content="데이터베이스명 2" Margin="5"  FontSize="20"  />
+                    <Button Grid.Column="3"   Content="데이터베이스명 3" Margin="5"  FontSize="20"  />
+                    <Button Grid.Column="4"   Content="데이터베이스명 4" Margin="5"  FontSize="20"  />
+                    <Button Grid.Column="5"   Content="데이터베이스명 5" Margin="5"  FontSize="20"  />
+                    <Button Grid.Column="6"   Content="데이터베이스명 6" Margin="5"  FontSize="20"  />
+                    <Button Grid.Column="7"   Content="데이터베이스명 7" Margin="5"  FontSize="20"  />
+                </Grid>
+                <Grid Grid.Row="1">
+                    <Grid.RowDefinitions>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                    </Grid.RowDefinitions>
+                    <Button Grid.Row="0 "    Content="테이블명1 " Margin="5"  FontSize="20"  />
+                    <Button Grid.Row="1 "    Content="테이블명2 " Margin="5"  FontSize="20"  />
+                    <Button Grid.Row="2 "    Content="테이블명3 " Margin="5"  FontSize="20"  />
+                    <Button Grid.Row="3 "    Content="테이블명4 " Margin="5"  FontSize="20"  />
+                    <Button Grid.Row="4 "    Content="테이블명5 " Margin="5"  FontSize="20"  />
+                    <Button Grid.Row="5 "    Content="테이블명6 " Margin="5"  FontSize="20"  />
+                    <Button Grid.Row="6 "    Content="테이블명7 " Margin="5"  FontSize="20"  />
+                    <Button Grid.Row="7 "    Content="테이블명8 " Margin="5"  FontSize="20"  />
+                    <Button Grid.Row="8 "    Content="테이블명9 " Margin="5"  FontSize="20"  />
+                    <Button Grid.Row="9"     Content="테이블명10" Margin="5"  FontSize="20"  />
+                    <Button Grid.Row="10"    Content="테이블명11" Margin="5"  FontSize="20"  />
+                </Grid>
+                <!-- Content-->
+                <Grid Grid.Column="1" Grid.Row="1">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="*"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="*"/>
+                    </Grid.RowDefinitions>
+                    <DataGrid x:Name="dgTorpedoCombat" Grid.Row="0"  IsReadOnly="True">
+                        <DataGrid.Columns>
+                            <DataGridTextColumn Header="컬럼 0" Width="*"   IsReadOnly="True"/>
+                            <DataGridTextColumn Header="컬럼 1" Width="*"   IsReadOnly="True"/>
+                            <DataGridTextColumn Header="컬럼 2" Width="*"   IsReadOnly="True"/>
+                            <DataGridTextColumn Header="컬럼 3" Width="*"  IsReadOnly="True"/>
+                            <DataGridTextColumn Header="컬럼 4" Width="*"   IsReadOnly="True"/>
+                            <DataGridTextColumn Header="컬럼 5" Width="*"   IsReadOnly="True"/>
+                            <DataGridTextColumn Header="컬럼 6" Width="*"  IsReadOnly="True"/>
+                            <DataGridTextColumn Header="컬럼 7" Width="*"   IsReadOnly="True"/>
+                            <DataGridTextColumn Header="컬럼 8" Width="*"   IsReadOnly="True"/>
+                            <DataGridTextColumn Header="컬럼 9" Width="*"   IsReadOnly="True"/>
+                        </DataGrid.Columns>
+                    </DataGrid>
+                    <TabControl Grid.Row="2">
+                        <TabItem Header="Insert">
+                            <Grid ShowGridLines="True">
+                                <Grid.RowDefinitions>
+                                    <RowDefinition/>
+                                    <RowDefinition/>
+                                </Grid.RowDefinitions>
+                                <Grid Grid.Row="0" ShowGridLines="True" >
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition/>
+                                        <ColumnDefinition/>
+                                        <ColumnDefinition/>
+                                        <ColumnDefinition/>
+                                        <ColumnDefinition/>
+                                        <ColumnDefinition/>
+                                        <ColumnDefinition/>
+                                        <ColumnDefinition/>
+                                        <ColumnDefinition/>
+                                        <ColumnDefinition/>
+                                        <ColumnDefinition/>
+                                    </Grid.ColumnDefinitions>
+                                    <Label Grid.Row="0" />
+                                </Grid>
 
+                                <Grid Grid.Row="1" ShowGridLines="True" >
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition/>
+                                        <ColumnDefinition/>
+                                        <ColumnDefinition/>
+                                        <ColumnDefinition/>
+                                        <ColumnDefinition/>
+                                        <ColumnDefinition/>
+                                        <ColumnDefinition/>
+                                        <ColumnDefinition/>
+                                        <ColumnDefinition/>
+                                        <ColumnDefinition/>
+                                        <ColumnDefinition/>
+                                    </Grid.ColumnDefinitions>
+                                    <Label Grid.Row="0" />
+                                </Grid>
+                            </Grid>
+                        </TabItem>
+
+                        <TabItem Header="Delete">
+
+                        </TabItem>
+
+                        <TabItem Header="Update">
+
+                        </TabItem>
+                    </TabControl>
+                </Grid>
+            </Grid>
         </TabItem>
     </TabControl>
 </UserControl>
