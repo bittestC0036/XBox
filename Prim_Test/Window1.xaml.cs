@@ -74,7 +74,6 @@ namespace Prim_Test
         }
 
         public event PropertyChangedEventHandler PropertyChanged;
-
         protected void OnPropertyChanged([CallerMemberName] string PropertyName = null)
         {
             if (PropertyChanged != null)
