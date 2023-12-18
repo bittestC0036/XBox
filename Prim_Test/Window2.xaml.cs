@@ -233,9 +233,11 @@ namespace Prim_Test
 
                 Mat temp = new Mat();
 
-                Cv2.Resize(image, temp, new Size() { Height = (int)displayedImage.ActualHeight, Width = (int)displayedImage.ActualWidth });
-
-                image = temp;
+                if((displayedImage.ActualHeight!=0)&& displayedImage.ActualWidth!=0)
+                {
+                    Cv2.Resize(image, temp, new Size() { Height = (int)displayedImage.ActualHeight, Width = (int)displayedImage.ActualWidth });
+                    image = temp;
+                }
 
                 displayedImage.Source = ConvertMatToImageSource(image);
 
