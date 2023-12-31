@@ -11,16 +11,6 @@
 *.userprefs
 
 # Build results
-[Dd]ebug/
-[Dd]ebugPublic/
-[Rr]elease/
-[Rr]eleases/
-x64/
-x86/
-build/
-bld/
-[Bb]in/
-[Oo]bj/
 
 # Visual Studo 2015 cache/options directory
 .vs/
@@ -134,15 +124,6 @@ publish/
 *.pubxml
 *.publishproj
 
-# NuGet Packages
-
-# The packages folder can be ignored because of Package Restore
-**/packages/*
-# except build/, which is used as an MSBuild target.
-!**/packages/build/
-# Uncomment if necessary however generally it will be regenerated when needed
-#!**/packages/repositories.config
-
 # Windows Azure Build Output
 csx/
 *.build.csdef
@@ -186,11 +167,5 @@ UpgradeLog*.htm
 # Microsoft Fakes
 FakesAssemblies/
 
-# Node.js Tools for Visual Studio
-.ntvs_analysis.dat
-
 # Visual Studio 6 build log
 *.plg
-
-# Visual Studio 6 workspace options file
-*.opt
