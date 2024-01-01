@@ -44,6 +44,8 @@ namespace XBox
 
         #region Binding Property
 
+        public MainView _MainView_ = null;
+
         private string _TB_RootPath_Text = "";
         public string TB_RootPath_Text
         {
@@ -118,6 +120,8 @@ namespace XBox
         public void Window_Loaded(object dataContext, object view)
         {
             var x = dataContext as MainViewModel;
+
+            _MainView_ = (MainView)view;
         }
 
         public void Btn_SetPath()
@@ -162,12 +166,79 @@ namespace XBox
             //sStatusBarText = (x.SelectedItem as UserControl).Tag.ToString();
         }
 
+
         public void MouseDoubleClick(object item)
         {
-            //LayoutRoot temp = new LayoutRoot();
-            //temp.ActiveContent
-            //temp.ActiveContent
+            var x = item as FolderTree;
+
+            if (x.SelectedItem is _TxT_)
+            {
+                try
+                {
+                    var m_x = x.SelectedItem as _TxT_;
+
+                    var fi = new FileInfo(m_x.Tag.ToString());
+
+                    var TEMP = new LayoutDocument();
+
+                    TEMP.Title = m_x.TB_Header.ToString().Split(':')[1];
+
+                    var TEMP_TextEditor = new TextEditor();
+
+                    TB_RootPath_Text = m_x.Tag.ToString();
+
+                    TEMP_TextEditor.TB_Content.Text = File.ReadAllText(m_x.Tag.ToString());
+                    //TEMP_TextEditor.sTB_Content = File.ReadAllText(m_x.Tag.ToString());
+
+                    TEMP_TextEditor.Tag = m_x.Tag.ToString();
+
+                    TEMP_TextEditor.TB_Content.IsReadOnly = false;
+
+                    TEMP.Content = TEMP_TextEditor;
+
+                    bool bCheck = true;
+
+
+
+                    for (int nCnt = 0; nCnt < _MainView_.TopTap.Children.Count; nCnt++)
+                    {
+                        bCheck = bCheck & _MainView_.TopTap.Children[nCnt].Title != TEMP.Title;
+                    }
+
+                    if (true == bCheck)
+                    {
+                        _MainView_.TopTap.InsertChildAt(_MainView_.TopTap.Children.Count, TEMP);
+
+                        _MainView_.TopTap.SelectedContentIndex = _MainView_.TopTap.Children.Count;
+
+                        if (_MainView_.TopTap.Children.Count == 0)
+                        {
+                            _MainView_.TopTap.Children[_MainView_.TopTap.Children.Count].IsActive = true;
+                        }
+                        else
+                        {
+                            _MainView_.TopTap.Children[_MainView_.TopTap.Children.Count - 1].IsActive = true;
+                        }
+                    }
+                    //x.AddFileList(m_x, (m_x.Parent as _Folder_));
+                }
+                catch (Exception ex)
+                {
+                    System.Diagnostics.Debug.WriteLine(ex.Message + "\n\r" + ex.StackTrace);
+                }
+
+
+                //for (int nCnt = 0; nCnt < TopTap_items.Count; nCnt++)
+                //{
+                //    bCheck = bCheck & TopTap_items[nCnt].Title != TEMP.Title;
+                //}
+            }
+            else if (x.SelectedItem is _Img_)
+            {
+
+            }
         }
+
 
         #endregion Event
 

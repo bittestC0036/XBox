@@ -104,18 +104,13 @@ namespace XBox
                         {
                             string sData = x.sTB_Content;
 
-                            var sw = new Stopwatch();
-                            sw.Start();
+                            if(MakeFolderTree(sData)!=null)
+                            {
+                                FolderTreeview_items.Add(MakeFolderTree(sData));
 
-                            FolderTreeview_items.Add(MakeFolderTree(sData));
-                            
-                            if (null == x.ItemsSource)
-                                x.ItemsSource = FolderTreeview_items;
-
-                            sw.Stop();
-                            System.Diagnostics.Debug.WriteLine(sw.ElapsedMilliseconds.ToString());
-
-
+                                if (null == x.ItemsSource)
+                                    x.ItemsSource = FolderTreeview_items;
+                            }
                         }
                         else
                         {
@@ -125,18 +120,9 @@ namespace XBox
 
                     }
                     FolderTreeview_items[0].IsExpanded = true;
-                    //RaiseEvent(new RoutedEventArgs(YourTextChangedEvent));
                 });
         }
 
-        //private void MIMI()
-        //{
-        //    Dispatcher.Invoke(() => FolderTreeview_items.Add(MakeFolderTree(x.sTB_Content));
-        //}
-
-
-
-        //[STAThread]
         private _Folder_ MakeFolderTree(string FolderPath)
         {
             var di_folder = new DirectoryInfo(FolderPath);
