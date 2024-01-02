@@ -116,7 +116,7 @@
                                         </Grid>
                                         <Grid Grid.Row="4" Background="YellowGreen">
                                             <TextBlock x:Name="Tb_StatusBar" Style="{StaticResource StatusBar}" Text="{Binding sStatusBarText}" 
-                                               cal:Message.Attach="[Event MouseDown] = [Action StatusBarClick($self)]"
+                                               cal:Message.Attach="[Event MouseDown] = [Action StatusBarClick()]"
                                                FontSize="12"/>
                                         </Grid>
                                     </Grid>

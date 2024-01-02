@@ -3,6 +3,7 @@ using Microsoft.WindowsAPICodePack.Dialogs;
 using System;
 using System.ComponentModel;
 using System.ComponentModel.Composition;
+using System.Diagnostics;
 using System.IO;
 
 using System.Reflection;
@@ -113,6 +114,7 @@ namespace XBox
         }
 
 
+
         #endregion Binding Property
 
         #region Event
@@ -166,7 +168,6 @@ namespace XBox
             //sStatusBarText = (x.SelectedItem as UserControl).Tag.ToString();
         }
 
-
         public void MouseDoubleClick(object item)
         {
             var x = item as FolderTree;
@@ -188,17 +189,12 @@ namespace XBox
                     TB_RootPath_Text = m_x.Tag.ToString();
 
                     TEMP_TextEditor.TB_Content.Text = File.ReadAllText(m_x.Tag.ToString());
-                    //TEMP_TextEditor.sTB_Content = File.ReadAllText(m_x.Tag.ToString());
-
+                    TEMP_TextEditor.TB_Content.Tag = m_x.Tag;
                     TEMP_TextEditor.Tag = m_x.Tag.ToString();
-
                     TEMP_TextEditor.TB_Content.IsReadOnly = false;
-
                     TEMP.Content = TEMP_TextEditor;
 
                     bool bCheck = true;
-
-
 
                     for (int nCnt = 0; nCnt < _MainView_.TopTap.Children.Count; nCnt++)
                     {
@@ -239,6 +235,22 @@ namespace XBox
             }
         }
 
+        public void StatusBarClick()
+        {
+            //string sData = sStatusBarText;
+
+            var fi = new FileInfo(sStatusBarText);
+
+            var di = new DirectoryInfo(sStatusBarText);
+
+            if ((false == fi.Exists) && (false == di.Exists))
+                return;
+
+            if (true==di.Exists)
+            {
+                Process.Start("explorer"+ fi.FullName);
+            }
+        }
 
         #endregion Event
 
