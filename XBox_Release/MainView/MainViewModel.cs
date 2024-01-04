@@ -195,10 +195,12 @@ namespace XBox
                     TEMP.Content = TEMP_TextEditor;
 
                     bool bCheck = true;
-
-                    for (int nCnt = 0; nCnt < _MainView_.TopTap.Children.Count; nCnt++)
+                    int nCnt;
+                    for (nCnt = 0; nCnt < _MainView_.TopTap.Children.Count; nCnt++)
                     {
                         bCheck = bCheck & _MainView_.TopTap.Children[nCnt].Title != TEMP.Title;
+                        if (bCheck == false)
+                            break;
                     }
 
                     if (true == bCheck)
@@ -215,6 +217,9 @@ namespace XBox
                         {
                             _MainView_.TopTap.Children[_MainView_.TopTap.Children.Count - 1].IsActive = true;
                         }
+                    }else
+                    {
+                        _MainView_.TopTap.Children[nCnt].IsActive = true;
                     }
                     //x.AddFileList(m_x, (m_x.Parent as _Folder_));
                 }
@@ -237,18 +242,17 @@ namespace XBox
 
         public void StatusBarClick()
         {
-            //string sData = sStatusBarText;
-
             var fi = new FileInfo(sStatusBarText);
 
             var di = new DirectoryInfo(sStatusBarText);
 
-            if ((false == fi.Exists) && (false == di.Exists))
-                return;
-
-            if (true==di.Exists)
+            if (fi.Exists)
             {
-                Process.Start("explorer"+ fi.FullName);
+                Process.Start("explorer.exe", $"/select,\"{fi.FullName}\"");
+            }
+            else
+            {
+                Process.Start("explorer.exe", di.FullName);
             }
         }
 

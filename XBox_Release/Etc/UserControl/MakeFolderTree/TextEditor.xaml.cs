@@ -325,8 +325,8 @@ namespace XBox
 
         private void TBScrollViewer_ScrollChanged(object sender, ScrollChangedEventArgs e)
         {
-            LineNumberScrollViewer.ScrollToHorizontalOffset(TBScrollViewer.HorizontalOffset); System.Diagnostics.Debug.WriteLine("TBScrollViewer.HorizontalOffset is" + TBScrollViewer.HorizontalOffset);
-            LineNumberScrollViewer.ScrollToVerticalOffset(TBScrollViewer.VerticalOffset); System.Diagnostics.Debug.WriteLine("TBScrollViewer.VerticalOffset" + TBScrollViewer.VerticalOffset);
+            LineNumberScrollViewer.ScrollToHorizontalOffset(TBScrollViewer.HorizontalOffset); //System.Diagnostics.Debug.WriteLine("TBScrollViewer.HorizontalOffset is" + TBScrollViewer.HorizontalOffset);
+            LineNumberScrollViewer.ScrollToVerticalOffset(TBScrollViewer.VerticalOffset);     //System.Diagnostics.Debug.WriteLine("TBScrollViewer.VerticalOffset" + TBScrollViewer.VerticalOffset);
         }
 
         private void TB_Content_PreviewKeyDown(object sender, KeyEventArgs e)

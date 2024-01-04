@@ -93,9 +93,6 @@ namespace XBox
             DependencyPropertyDescriptor.FromProperty(sTB_ContentProperty, typeof(TextEditor))
                 .AddValueChanged(this, (sender, args) =>
                 {
-                    // 여기에 Text 변경 시 실행할 코드를 추가
-                    // 예를 들어 YourTextChanged 이벤트를 발생시킬 수 있습니다.
-
                     var x = sender as FolderTree;
 
                     if(x!=null)
@@ -103,10 +100,10 @@ namespace XBox
                         if(!string.IsNullOrWhiteSpace(x.sTB_Content))
                         {
                             string sData = x.sTB_Content;
-
-                            if(MakeFolderTree(sData)!=null)
+                            var temp = MakeFolderTree(sData);
+                            if (temp != null)
                             {
-                                FolderTreeview_items.Add(MakeFolderTree(sData));
+                                FolderTreeview_items.Add(temp);
 
                                 if (null == x.ItemsSource)
                                     x.ItemsSource = FolderTreeview_items;
@@ -138,13 +135,7 @@ namespace XBox
                 if (di_folder.GetDirectories().Length > 0)
                 {
                     foreach (var item in di_folder.GetDirectories())
-                    {
-                        if(!string.IsNullOrWhiteSpace(item.FullName))
-                        {
                             temp_tv_item.Items.Add(MakeFolderTree(item.FullName));
-                            System.Diagnostics.Debug.WriteLine("item.FullName"+ item.FullName);
-                        }        
-                    }
                 }
                 return temp_tv_item;
             }
