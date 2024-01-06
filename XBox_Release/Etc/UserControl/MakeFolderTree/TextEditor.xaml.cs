@@ -127,13 +127,19 @@ namespace XBox
         {
             InitializeComponent();
 
+            //this.DataContext = this;
+
             Binding binding = new Binding("Property_Text");
-            binding.Source = this;
+            binding.Source = this.DataContext;
             this.TB_Property.SetBinding(TextBox.TextProperty, binding);
 
             Binding binding2 = new Binding("bisReadOnly");
-            binding2.Source = this;
+            binding2.Source = this.DataContext;
             this.TB_Content.SetBinding(TextBox.IsReadOnlyProperty, binding2);
+
+            Binding binding3 = new Binding("sTB_Content");
+            binding3.Source = this;
+            this.SetBinding(TreeView.TagProperty, binding3);
 
 
             SetTextType();

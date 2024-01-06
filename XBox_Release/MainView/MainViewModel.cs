@@ -165,7 +165,6 @@ namespace XBox
                     sStatusBarText = m_x.Tag.ToString();
                 }
             }
-            //sStatusBarText = (x.SelectedItem as UserControl).Tag.ToString();
         }
 
         public void MouseDoubleClick(object item)
@@ -242,6 +241,9 @@ namespace XBox
 
         public void StatusBarClick()
         {
+            if (string.IsNullOrWhiteSpace(sStatusBarText))
+                return;
+
             var fi = new FileInfo(sStatusBarText);
 
             var di = new DirectoryInfo(sStatusBarText);

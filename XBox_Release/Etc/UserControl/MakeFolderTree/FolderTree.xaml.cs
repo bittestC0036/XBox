@@ -88,6 +88,7 @@ namespace XBox
 
             Binding binding = new Binding("sTB_Content");
             binding.Source = this;
+            this.SetBinding(TreeView.TagProperty, binding);
 
             // PropertyChanged 이벤트 핸들러 추가
             DependencyPropertyDescriptor.FromProperty(sTB_ContentProperty, typeof(TextEditor))
