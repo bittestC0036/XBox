@@ -1,4 +1,4 @@
-﻿using Microsoft.WindowsAPICodePack.Dialogs;
+﻿
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -15,7 +15,6 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
-using Xceed.Wpf.AvalonDock.Layout;
 
 namespace XBox
 {
@@ -31,13 +30,7 @@ namespace XBox
 
         private void Tap1_Closing(object sender, System.ComponentModel.CancelEventArgs e)
         {
-            var x = sender as LayoutDocument;
 
-            if (x.Title == Tap1.Title)
-            {
-                MessageBox.Show("Not Support Function. Plesae Call Engineer");
-                e.Cancel = true;
-            }
         }
     }
 }
