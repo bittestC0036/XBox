@@ -10,6 +10,7 @@ using System.Reflection;
 
 using System.Windows;
 using System.Windows.Controls;
+using System.Windows.Input;
 using System.Windows.Media;
 
 
@@ -143,76 +144,18 @@ namespace XBox
         {
             var x = item as FolderTree;
 
-            if (x.SelectedItem is _Folder_)
-            {
-                var m_x = x.SelectedItem as _Folder_;
-                TB_Content_Content = m_x.Tag.ToString();
-                sStatusBarText = m_x.Tag.ToString();
-            }
-            else
-            {
-                if (x.SelectedItem is _TxT_)
-                {
-                    var m_x = x.SelectedItem as _TxT_;
-                    TB_Content_Content = m_x.Tag.ToString();
-                    sStatusBarText = m_x.Tag.ToString();
-                    bSingle = true;
-                }
-                else if (x.SelectedItem is _Img_)
-                {
-                    var m_x = x.SelectedItem as _Img_;
+            if (x == null) return;
 
-                    sStatusBarText = m_x.Tag.ToString();
-                }
-            }
+            
         }
 
         public void MouseDoubleClick(object item)
         {
-            var x = item as FolderTree;
+            //var x = item as MainView;
 
-            if (x.SelectedItem is _TxT_)
-            {
-                try
-                {
-                    var m_x = x.SelectedItem as _TxT_;
+            var x = item as MouseButtonEventArgs;
 
-                    var fi = new FileInfo(m_x.Tag.ToString());
-
-                    //var TEMP = new LayoutDocument();
-                    //
-                    //TEMP.Title = m_x.TB_Header.ToString().Split(':')[1];
-                    //
-                    //var TEMP_TextEditor = new TextEditor();
-                    //
-                    //TB_RootPath_Text = m_x.Tag.ToString();
-                    //
-                    //TEMP_TextEditor.TB_Content.Text = File.ReadAllText(m_x.Tag.ToString());
-                    //TEMP_TextEditor.TB_Content.Tag = m_x.Tag;
-                    //TEMP_TextEditor.Tag = m_x.Tag.ToString();
-                    //TEMP_TextEditor.TB_Content.IsReadOnly = false;
-                    //TEMP.Content = TEMP_TextEditor;
-                    //
-                    //bool bCheck = true;
-                    //int nCnt;
-
-
-                }
-                catch (Exception ex)
-                {
-                    System.Diagnostics.Debug.WriteLine(ex.Message + "\n\r" + ex.StackTrace);
-                }
-
-
-                //for (int nCnt = 0; nCnt < TopTap_items.Count; nCnt++)
-                //{
-                //    bCheck = bCheck & TopTap_items[nCnt].Title != TEMP.Title;
-                //}
-            }
-            else if (x.SelectedItem is _Img_)
-            {
-
-            }
+            if (x == null) return;
         }
 
         public void StatusBarClick()

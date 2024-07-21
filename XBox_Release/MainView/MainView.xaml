@@ -83,9 +83,10 @@
                     </Grid.ColumnDefinitions>
 
                     <Grid Grid.Column="0">
-                        <local:FolderTree sTB_Content="{Binding TB_RootPath_Text}"       
+                        <local:FolderTree x:Name="FolderTree"
+                                          sTB_Content="{Binding TB_RootPath_Text}"       
                                           cal:Message.Attach="[Event SelectedItemChanged]=[Action SelectedItemChanged($view)];
-                                                              [Event MouseDoubleClick]=[Action MouseDoubleClick($view)]"/>
+                                                              [Event MouseDoubleClick]=[Action MouseDoubleClick($sender)]"/>
                     </Grid>
 
                     <GridSplitter   Grid.Column="1"
@@ -117,7 +118,7 @@
                 </Grid>
             </Grid>
         </TabItem>
-        <TabItem  Header="DB Connector">
+        <TabItem  Header="DB Connector" Visibility="Collapsed">
             <Grid>
                 <Grid.RowDefinitions>
                     <RowDefinition Height="*" />
