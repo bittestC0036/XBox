@@ -11,7 +11,7 @@ using System.Reflection;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Media;
-using Xceed.Wpf.AvalonDock.Layout;
+
 
 namespace XBox
 {
@@ -179,48 +179,24 @@ namespace XBox
 
                     var fi = new FileInfo(m_x.Tag.ToString());
 
-                    var TEMP = new LayoutDocument();
+                    //var TEMP = new LayoutDocument();
+                    //
+                    //TEMP.Title = m_x.TB_Header.ToString().Split(':')[1];
+                    //
+                    //var TEMP_TextEditor = new TextEditor();
+                    //
+                    //TB_RootPath_Text = m_x.Tag.ToString();
+                    //
+                    //TEMP_TextEditor.TB_Content.Text = File.ReadAllText(m_x.Tag.ToString());
+                    //TEMP_TextEditor.TB_Content.Tag = m_x.Tag;
+                    //TEMP_TextEditor.Tag = m_x.Tag.ToString();
+                    //TEMP_TextEditor.TB_Content.IsReadOnly = false;
+                    //TEMP.Content = TEMP_TextEditor;
+                    //
+                    //bool bCheck = true;
+                    //int nCnt;
 
-                    TEMP.Title = m_x.TB_Header.ToString().Split(':')[1];
 
-                    var TEMP_TextEditor = new TextEditor();
-
-                    TB_RootPath_Text = m_x.Tag.ToString();
-
-                    TEMP_TextEditor.TB_Content.Text = File.ReadAllText(m_x.Tag.ToString());
-                    TEMP_TextEditor.TB_Content.Tag = m_x.Tag;
-                    TEMP_TextEditor.Tag = m_x.Tag.ToString();
-                    TEMP_TextEditor.TB_Content.IsReadOnly = false;
-                    TEMP.Content = TEMP_TextEditor;
-
-                    bool bCheck = true;
-                    int nCnt;
-                    for (nCnt = 0; nCnt < _MainView_.TopTap.Children.Count; nCnt++)
-                    {
-                        bCheck = bCheck & _MainView_.TopTap.Children[nCnt].Title != TEMP.Title;
-                        if (bCheck == false)
-                            break;
-                    }
-
-                    if (true == bCheck)
-                    {
-                        _MainView_.TopTap.InsertChildAt(_MainView_.TopTap.Children.Count, TEMP);
-
-                        _MainView_.TopTap.SelectedContentIndex = _MainView_.TopTap.Children.Count;
-
-                        if (_MainView_.TopTap.Children.Count == 0)
-                        {
-                            _MainView_.TopTap.Children[_MainView_.TopTap.Children.Count].IsActive = true;
-                        }
-                        else
-                        {
-                            _MainView_.TopTap.Children[_MainView_.TopTap.Children.Count - 1].IsActive = true;
-                        }
-                    }else
-                    {
-                        _MainView_.TopTap.Children[nCnt].IsActive = true;
-                    }
-                    //x.AddFileList(m_x, (m_x.Parent as _Folder_));
                 }
                 catch (Exception ex)
                 {
