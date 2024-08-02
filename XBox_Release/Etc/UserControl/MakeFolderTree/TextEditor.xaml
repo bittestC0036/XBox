@@ -48,18 +48,8 @@
             </ScrollViewer>
         </Grid>
 
-        <GridSplitter Grid.Row="1"
-                                                      HorizontalAlignment="Stretch"
-                                                      VerticalAlignment="Center"
-                                                      Background="Black"
-                                                      ShowsPreview="True"
-                                                      Height="5"/>
+        <GridSplitter Grid.Row="1" HorizontalAlignment="Stretch" VerticalAlignment="Center" Background="Black" ShowsPreview="True" Height="5"/>
 
-        <!--
-        <Grid Grid.Row="2" Visibility="{Binding PropertyVisability}">
-            <TextBox Text="{Binding Property_Text}"/>
-        </Grid>
-        -->
         <TextBox x:Name="TB_Property" Grid.Row="2" Text="{Binding Property_Text}"
                  IsReadOnly="True"/>
     </Grid>

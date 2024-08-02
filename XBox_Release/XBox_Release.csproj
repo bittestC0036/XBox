@@ -165,6 +165,7 @@
       <SubType>Designer</SubType>
     </ApplicationDefinition>
     <Compile Include="Etc\StandardBootstrapper.cs" />
+    <Compile Include="Etc\UserControl\IWindowServices.cs" />
     <Compile Include="Etc\UserControl\MakeFolderTree\FolderTree.xaml.cs">
       <DependentUpon>FolderTree.xaml</DependentUpon>
     </Compile>
@@ -174,6 +175,8 @@
     <Compile Include="Etc\UserControl\Number.xaml.cs">
       <DependentUpon>Number.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Etc\UserControl\ObservableErrorInfo.cs" />
+    <Compile Include="Etc\UserControl\ScreenViewModel.cs" />
     <Compile Include="Etc\UserControl\Watch.xaml.cs">
       <DependentUpon>Watch.xaml</DependentUpon>
     </Compile>

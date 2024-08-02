@@ -1,0 +1,95 @@
+﻿<Window x:Class="XBox.Etc.UserControl.SplashWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:XBox.Etc.UserControl"
+        mc:Ignorable="d"
+        WindowStyle="None"
+        Background="Transparent"
+        Title="SplashWindow" Height="400" Width="400">
+    <Grid>
+
+        <!-- 12 Clock  -->
+        <Rectangle  x:Name="clock12" Width="30" Height="100" Stroke="Black" StrokeThickness="4" Margin="0,-200,0,0" />
+
+        <!-- 1 Clock  -->
+        <Rectangle  x:Name="clock1" Width="30" Height="100" Stroke="Black" StrokeThickness="4" Margin="160,0,0,160" RenderTransformOrigin="0.5,0.5" >
+            <Rectangle.RenderTransform>
+                <TransformGroup>
+                    <ScaleTransform/>
+                    <SkewTransform/>
+                    <RotateTransform Angle="45"/>
+                    <TranslateTransform/>
+                </TransformGroup>
+            </Rectangle.RenderTransform>
+        </Rectangle>
+
+        <!-- 3 Clock  -->
+        <Rectangle  x:Name="clock3" Width="30" Height="100" Stroke="Black" StrokeThickness="4" Margin="200,0,0,0" RenderTransformOrigin="0.5,0.5" >
+            <Rectangle.RenderTransform>
+                <TransformGroup>
+                    <ScaleTransform/>
+                    <SkewTransform/>
+                    <RotateTransform Angle="90"/>
+                    <TranslateTransform/>
+                </TransformGroup>
+            </Rectangle.RenderTransform>
+        </Rectangle>
+
+        <!-- 5 Clock  -->
+        <Rectangle  x:Name="clock5" Width="30" Height="100" Stroke="Black" StrokeThickness="4" Margin="160,0,0,-160" RenderTransformOrigin="0.5,0.5" >
+            <Rectangle.RenderTransform>
+                <TransformGroup>
+                    <ScaleTransform/>
+                    <SkewTransform/>
+                    <RotateTransform Angle="135"/>
+                    <TranslateTransform/>
+                </TransformGroup>
+            </Rectangle.RenderTransform>
+        </Rectangle>
+
+        <!-- 6 Clock  -->
+        <Rectangle  x:Name="clock6" Width="30" Height="100" Stroke="Black" StrokeThickness="4" Margin="0,200,0,0" />
+
+        <!-- 7 Clock  -->
+        <Rectangle  x:Name="clock7" Width="30" Height="100" Stroke="Black" StrokeThickness="4" Margin="-160,0,0,-160" RenderTransformOrigin="0.5,0.5" >
+            <Rectangle.RenderTransform>
+                <TransformGroup>
+                    <ScaleTransform/>
+                    <SkewTransform/>
+                    <RotateTransform Angle="215"/>
+                    <TranslateTransform/>
+                </TransformGroup>
+            </Rectangle.RenderTransform>
+        </Rectangle>
+
+        <!-- 9 Clock  -->
+        <Rectangle  x:Name="clock9" Width="30" Height="100" Stroke="Black" StrokeThickness="4" Margin="-200,0,0,0" RenderTransformOrigin="0.5,0.5" >
+            <Rectangle.RenderTransform>
+                <TransformGroup>
+                    <ScaleTransform/>
+                    <SkewTransform/>
+                    <RotateTransform Angle="90"/>
+                    <TranslateTransform/>
+                </TransformGroup>
+            </Rectangle.RenderTransform>
+        </Rectangle>
+
+        <!-- 11 Clock  -->
+        <Rectangle x:Name="clock11"  Width="30" Height="100" Stroke="Black" StrokeThickness="4" Margin="-160,0,0,160" RenderTransformOrigin="0.5,0.5" >
+            <Rectangle.RenderTransform>
+                <TransformGroup>
+                    <ScaleTransform/>
+                    <SkewTransform/>
+                    <RotateTransform Angle="135"/>
+                    <TranslateTransform/>
+                </TransformGroup>
+            </Rectangle.RenderTransform>
+        </Rectangle>
+
+        <!-- Center -->
+        <Ellipse x:Name="clock_Center" Width="50" Height="50" Stroke="Black" StrokeThickness="4" Fill="WhiteSmoke" Canvas.Left="135" Canvas.Top="100" />
+
+    </Grid>
+</Window>

@@ -142,18 +142,33 @@ namespace XBox
 
         public void SelectedItemChanged(object item)
         {
-            var x = item as FolderTree;
 
-            if (x == null) return;
+            if (item is _TxT_)
+            {
+                var m_x = item as _TxT_;
+                TB_Content_Content = m_x.Tag.ToString();
+                sStatusBarText = m_x.Tag.ToString();
+                bSingle = true;
+            }
+            else if (item is _Img_)
+            {
+                var m_x = item as _Img_;
 
-            
+                sStatusBarText = m_x.Tag.ToString();
+            }
+            else
+            {
+                var m_x = item as _Folder_;
+
+                sStatusBarText = m_x.Tag.ToString();
+            }
+
         }
-
-        public void MouseDoubleClick(object item)
+        
+        public void MouseDoubleClick(object sender)
         {
-            //var x = item as MainView;
 
-            var x = item as MouseButtonEventArgs;
+            var x = sender as _Folder_;
 
             if (x == null) return;
         }
