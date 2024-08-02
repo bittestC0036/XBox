@@ -397,11 +397,6 @@ namespace XBox
             }
         }
 
-        private void TBL_LineNumber_MouseDown(object sender, MouseButtonEventArgs e)
-        {
-
-        }
-
         #endregion
 
 
@@ -430,15 +425,8 @@ namespace XBox
             sFilePath = txt.Tag.ToString();
             fi = new FileInfo(sFilePath);
 
-
-            sFinfo = string.Format("File Name :{0}         \n" +
-                                       "Create Date:{1}        \n" +
-                                       "Modification Date:{2}  \n",
-                                       fi.Name,
-                                       fi.CreationTime.ToString("yyyy-MM-HH-mm"),
-                                       fi.LastWriteTime);
+            sFinfo = string.Format("File Name :{0}         \n" +"Create Date:{1}        \n" + "Modification Date:{2}  \n", fi.Name, fi.CreationTime.ToString("yyyy-MM-HH-mm"),  fi.LastWriteTime);
             Property_Text = sFinfo;
-            //TB_Property.Text = sFinfo;
         }
 
         private void ShowImgPropertise(_Img_ Img)

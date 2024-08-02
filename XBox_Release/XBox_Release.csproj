@@ -177,6 +177,9 @@
     </Compile>
     <Compile Include="Etc\UserControl\ObservableErrorInfo.cs" />
     <Compile Include="Etc\UserControl\ScreenViewModel.cs" />
+    <Compile Include="Etc\UserControl\SplashWindow.xaml.cs">
+      <DependentUpon>SplashWindow.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Etc\UserControl\Watch.xaml.cs">
       <DependentUpon>Watch.xaml</DependentUpon>
     </Compile>
@@ -225,6 +228,10 @@
     <Page Include="Etc\UserControl\Number.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Etc\UserControl\SplashWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Etc\UserControl\Watch.xaml">
       <Generator>MSBuild:Compile</Generator>

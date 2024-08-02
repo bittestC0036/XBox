@@ -20,37 +20,22 @@
                 <ColumnDefinition  Width="*" />
             </Grid.ColumnDefinitions>
 
-            <ScrollViewer  Name="LineNumberScrollViewer" Grid.Column="0" 
-                       HorizontalScrollBarVisibility="Hidden"
-                       VerticalScrollBarVisibility="Hidden"                       
-                       ScrollViewer.ScrollChanged="TBScrollViewer_ScrollChanged"
-                       >
-                <TextBlock Name="TBL_LineNumber" TextWrapping="Wrap"
-                       MouseDown="TBL_LineNumber_MouseDown"
-                       HorizontalAlignment="Center">
-                </TextBlock>
+            <ScrollViewer  Name="LineNumberScrollViewer" Grid.Column="0"  HorizontalScrollBarVisibility="Hidden" VerticalScrollBarVisibility="Hidden" ScrollViewer.ScrollChanged="TBScrollViewer_ScrollChanged">
+             <TextBlock Name="TBL_LineNumber" TextWrapping="Wrap" HorizontalAlignment="Center"/>
             </ScrollViewer>
 
             <ScrollViewer Name="TBScrollViewer" Grid.Column="1" HorizontalScrollBarVisibility="Auto" 
-                      VerticalScrollBarVisibility="Auto"
-                      ScrollChanged="TBScrollViewer_ScrollChanged">
-                <TextBox Name="TB_Content" 
-                     TextWrapping="Wrap" 
-                     VerticalScrollBarVisibility="Auto" 
-                     HorizontalScrollBarVisibility="Auto"
-                     BorderThickness="2" BorderBrush="White"
-                     ScrollViewer.ScrollChanged="Content_ScrollChanged"
-                     PreviewKeyDown="TB_Content_PreviewKeyDown"
-                     TextChanged="Content_TextChanged"
-                     AcceptsReturn="True"
-                     IsReadOnly="{Binding bisReadOnly}">
+                      VerticalScrollBarVisibility="Auto" ScrollChanged="TBScrollViewer_ScrollChanged">
+                <TextBox Name="TB_Content" TextWrapping="Wrap" 
+                     VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Auto"
+                     BorderThickness="2" BorderBrush="White" ScrollViewer.ScrollChanged="Content_ScrollChanged"
+                     PreviewKeyDown="TB_Content_PreviewKeyDown" TextChanged="Content_TextChanged" AcceptsReturn="True" IsReadOnly="{Binding bisReadOnly}">
                 </TextBox>
             </ScrollViewer>
         </Grid>
 
         <GridSplitter Grid.Row="1" HorizontalAlignment="Stretch" VerticalAlignment="Center" Background="Black" ShowsPreview="True" Height="5"/>
 
-        <TextBox x:Name="TB_Property" Grid.Row="2" Text="{Binding Property_Text}"
-                 IsReadOnly="True"/>
+        <TextBox x:Name="TB_Property" Grid.Row="2" Text="{Binding Property_Text}" IsReadOnly="True"/>
     </Grid>
 </UserControl>
