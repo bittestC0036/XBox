@@ -81,13 +81,19 @@ namespace XBox
             binding.Source = this;
             this.SetBinding(TreeView.TagProperty, binding);
 
+
+
             // PropertyChanged 이벤트 핸들러 추가
             DependencyPropertyDescriptor.FromProperty(sTB_ContentProperty, typeof(TextEditor))
                 .AddValueChanged(this, (sender, args) =>
                 {
                     var x = sender as FolderTree;
 
-                    if(x!=null)
+                    Process p = new Process();
+                    p.StartInfo.FileName = @"D:\Pot\XBox\XBox\SplashWindow\bin\Debug\SplashWindow.exe";
+                    p.Start();
+
+                    if (x!=null)
                     {
                         if(!string.IsNullOrWhiteSpace(x.sTB_Content))
                         {
@@ -105,10 +111,11 @@ namespace XBox
                         {
                             FolderTreeview_items.Clear();
                         }
-
-
                     }
+
                     FolderTreeview_items[0].IsExpanded = true;
+
+                    p.CloseMainWindow();
                 });
         }
 

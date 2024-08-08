@@ -83,7 +83,7 @@
                     <Grid Grid.Column="0">
                         <local:FolderTree x:Name="FolderTree"
                                           sTB_Content="{Binding TB_RootPath_Text}"       
-                    cal:Message.Attach="[Event SelectedItemChanged]=[Action SelectedItemChanged($this)]; [Event MouseDoubleClick]=[Action MouseDoubleClick($this)]"/>
+                    cal:Message.Attach="[Event SelectedItemChanged]=[Action SelectedItemChanged($view)]; [Event MouseDoubleClick]=[Action MouseDoubleClick($this)]"/>
 
                     </Grid>
 

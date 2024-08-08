@@ -133,7 +133,6 @@ C:\Users\kim\Documents\GitHub\XBox\XBox_Release\obj\Debug\XBox_Release.csproj.Co
 C:\Users\kim\Documents\GitHub\XBox\XBox_Release\obj\Debug\XBox_Release.csproj.CopyComplete
 C:\Users\kim\Documents\GitHub\XBox\XBox_Release\obj\Debug\XBox.exe
 C:\Users\kim\Documents\GitHub\XBox\XBox_Release\obj\Debug\XBox.pdb
-D:\Pot\XBox\XBox\XBox_Release\obj\Debug\XBox_Release.csproj.AssemblyReference.cache
 D:\Pot\XBox\XBox\XBox_Release\obj\Debug\Etc\UserControl\MakeFolderTree\FolderTree.baml
 D:\Pot\XBox\XBox\XBox_Release\obj\Debug\Etc\UserControl\ICON\_Img_.baml
 D:\Pot\XBox\XBox\XBox_Release\obj\Debug\Etc\UserControl\ICON\_TxT_.baml
@@ -202,3 +201,5 @@ D:\Pot\XBox\XBox\XBox_Release\obj\Debug\XBox_Release.csproj.CoreCompileInputs.ca
 D:\Pot\XBox\XBox\XBox_Release\obj\Debug\XBox_Release.csproj.CopyComplete
 D:\Pot\XBox\XBox\XBox_Release\obj\Debug\XBox.exe
 D:\Pot\XBox\XBox\XBox_Release\obj\Debug\XBox.pdb
+D:\Pot\XBox\XBox\XBox_Release\obj\Debug\Etc\UserControl\SplashWindow.g.cs
+D:\Pot\XBox\XBox\XBox_Release\obj\Debug\Etc\UserControl\SplashWindow.baml
