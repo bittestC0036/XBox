@@ -87,35 +87,40 @@ namespace XBox
             DependencyPropertyDescriptor.FromProperty(sTB_ContentProperty, typeof(TextEditor))
                 .AddValueChanged(this, (sender, args) =>
                 {
+
+                    if (this.Visibility != Visibility.Visible)
+                        return;
+
                     var x = sender as FolderTree;
 
                     Process p = new Process();
-                    p.StartInfo.FileName = @"D:\Pot\XBox\XBox\SplashWindow\bin\Debug\SplashWindow.exe";
-                    p.Start();
 
-                    if (x!=null)
+
+                    if (!string.IsNullOrWhiteSpace(x.sTB_Content))
                     {
-                        if(!string.IsNullOrWhiteSpace(x.sTB_Content))
+                        System.Diagnostics.Debug.WriteLine("sTB_Content is " + sTB_Content);
+                        p.StartInfo.FileName = @"D:\Pot\XBox\XBox\SplashWindow\bin\Debug\SplashWindow.exe";
+                        p.Start();
+                    
+                        string sData = x.sTB_Content;
+                        var temp = MakeFolderTree(sData);
+                        if (temp != null)
                         {
-                            string sData = x.sTB_Content;
-                            var temp = MakeFolderTree(sData);
-                            if (temp != null)
-                            {
-                                FolderTreeview_items.Add(temp);
-
-                                if (null == x.ItemsSource)
-                                    x.ItemsSource = FolderTreeview_items;
-                            }
+                            FolderTreeview_items.Add(temp);
+                    
+                            if (null == x.ItemsSource)
+                                x.ItemsSource = FolderTreeview_items;
                         }
-                        else
-                        {
-                            FolderTreeview_items.Clear();
-                        }
+                    }
+                    else
+                    {
+                        FolderTreeview_items.Clear();
                     }
 
                     FolderTreeview_items[0].IsExpanded = true;
 
                     p.CloseMainWindow();
+                    p.Close();
                 });
         }
 
@@ -127,7 +132,7 @@ namespace XBox
         
             temp_tv_item.TB_Header.Content = di_folder.Name;
             temp_tv_item.Tag = di_folder.FullName;
-            //temp_tv_item.Selected += Folder_Selected;
+            temp_tv_item.Selected += Folder_Selected;
             temp_tv_item.Expanded += Folder_Expanded;
         
             try
@@ -158,6 +163,7 @@ namespace XBox
                     if (sBeforeFolder_Path != x.Tag.ToString())
                     {
                         sBeforeFolder_Path = x.Tag.ToString();
+                        x.IsExpanded = true;
                         //ShowFolderPropertise(x);
                     }
 

@@ -156,7 +156,7 @@ namespace XBox
 
                 sStatusBarText = m_x.Tag.ToString();
             }
-            else
+            else if (item is _Folder_)
             {
                 var m_x = item as _Folder_;
 
@@ -167,7 +167,6 @@ namespace XBox
         
         public void MouseDoubleClick(object sender)
         {
-
             var x = sender as _Folder_;
 
             if (x == null) return;
@@ -230,9 +229,7 @@ namespace XBox
             string sDirPath = Path.Combine(fileInfo.DirectoryName, "Log");
 
             Directory.CreateDirectory(sDirPath);
-
             {
-                //string date = DateTime.Now.ToString("yyyy'-'MM'-'dd");
 
                 string date = DateTime.Now.ToString("yyyy'_'MM'_'dd");
 
