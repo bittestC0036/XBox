@@ -10,10 +10,9 @@
              d:DataContext="{d:DesignInstance {x:Type local:MainViewModel},
              IsDesignTimeCreatable=False}"
              cal:Message.Attach="[Event Loaded]=[Action Window_Loaded($dataContext,$view)]"
-             d:DesignHeight="600" d:DesignWidth="800"
-             >
-    <TabControl >
-        <TabItem Header="Make Folder">
+             d:DesignHeight="600" d:DesignWidth="800">
+    <TabControl  >
+        <TabItem Header="Make Folder" Visibility="Collapsed">
             <Grid x:Name="Root">
                 <Grid.Resources>
                     <Style TargetType="{x:Type TextBox}">
@@ -61,17 +60,12 @@
                                              Text="{Binding TB_RootPath_Text}"
                                              Style="{StaticResource TB_RootPathStyle}"   />
 
-                    <Button  Grid.Column="3" Content="경로 설정" 
-                                             cal:Message.Attach="[Event Click] = [Action Btn_SetPath()]"/>
+                    <Button  Grid.Column="3" Content="경로 설정" cal:Message.Attach="[Event Click] = [Action Btn_SetPath()]"/>
 
                     <TextBox  Grid.Row="2" Grid.Column="1" Grid.ColumnSpan="3" Margin="0,0,0,5" cal:Message.Attach="[Event TextChanged] = [Action FindFileName($self)]"/>
                 </Grid>
 
-                <GridSplitter Grid.Row="2"    HorizontalAlignment="Stretch"
-                                              VerticalAlignment="Center"
-                                              Background="Black" 
-                                              ShowsPreview="True"
-                                              Height="5"/>
+                <GridSplitter Grid.Row="2"    HorizontalAlignment="Stretch"                                              VerticalAlignment="Center"                                              Background="Black"                                               ShowsPreview="True"    Height="5"/>
 
                 <Grid Grid.Row="3">
                     <Grid.ColumnDefinitions>
@@ -81,10 +75,7 @@
                     </Grid.ColumnDefinitions>
 
                     <Grid Grid.Column="0">
-                        <local:FolderTree x:Name="FolderTree"
-                                          sTB_Content="{Binding TB_RootPath_Text}"       
-                    cal:Message.Attach="[Event SelectedItemChanged]=[Action SelectedItemChanged($this)]; [Event MouseDoubleClick]=[Action MouseDoubleClick($this)]"/>
-
+                        <local:FolderTree x:Name="FolderTree"  sTB_Content="{Binding TB_RootPath_Text}"                           cal:Message.Attach="[Event SelectedItemChanged]=[Action SelectedItemChanged($this)]; [Event MouseDoubleClick]=[Action MouseDoubleClick($this)]"/>
                     </Grid>
 
                     <GridSplitter   Grid.Column="1" Background="Black" ShowsPreview="True" Width="5"  HorizontalAlignment="Center" VerticalAlignment="Stretch"/>
@@ -96,10 +87,6 @@
 
                         <local:TextEditor sTB_Content="{Binding TB_Content_Content , Mode=TwoWay}" bisReadOnly="{Binding bSingle}"/>
 
-                         <!--
-                            <Image   x:Name="Img_Content"   Visibility="Collapsed"  Source="{Binding Image_Content_Source}" />
-                         -->
-                        
                     </Grid>
                 </Grid>
                 <Grid Grid.Row="4" Background="YellowGreen">

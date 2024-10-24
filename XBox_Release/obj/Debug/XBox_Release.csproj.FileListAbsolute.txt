@@ -203,3 +203,4 @@ D:\Pot\XBox\XBox\XBox_Release\obj\Debug\XBox.exe
 D:\Pot\XBox\XBox\XBox_Release\obj\Debug\XBox.pdb
 D:\Pot\XBox\XBox\XBox_Release\obj\Debug\Etc\UserControl\SplashWindow.g.cs
 D:\Pot\XBox\XBox\XBox_Release\obj\Debug\Etc\UserControl\SplashWindow.baml
+D:\Pot\XBox\XBox\XBox_Release\obj\Debug\XBox_Release.csproj.AssemblyReference.cache

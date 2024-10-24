@@ -1,6 +1,7 @@
 ﻿
 using Microsoft.WindowsAPICodePack.Dialogs;
 using System;
+using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.ComponentModel.Composition;
 using System.Diagnostics;
@@ -142,13 +143,29 @@ namespace XBox
 
         public void SelectedItemChanged(object item)
         {
+            FIleHandler(item);
+        }
+        
+        public void MouseDoubleClick(object sender)
+        {
+            FIleHandler(sender,true);
+        }
 
+        private void FIleHandler(object item,bool bTap=false)
+        {
             if (item is _TxT_)
             {
                 var m_x = item as _TxT_;
                 TB_Content_Content = m_x.Tag.ToString();
+
                 sStatusBarText = m_x.Tag.ToString();
                 bSingle = true;
+
+                if(bTap)
+                {
+
+                    //m_x
+                }
             }
             else if (item is _Img_)
             {
@@ -162,14 +179,6 @@ namespace XBox
 
                 sStatusBarText = m_x.Tag.ToString();
             }
-
-        }
-        
-        public void MouseDoubleClick(object sender)
-        {
-            var x = sender as _Folder_;
-
-            if (x == null) return;
         }
 
         public void StatusBarClick()
@@ -251,5 +260,22 @@ namespace XBox
             }
         }
         #endregion Log
+
+
+        private ObservableCollection<TabItem> _tabItems = new ObservableCollection<TabItem>();
+
+        public ObservableCollection<TabItem> tabItems
+        {
+            get
+            {
+                return _tabItems;
+            }
+            set
+            {
+                _tabItems = value;
+                RaisePropertyChanged();
+
+            }
+        }
     }
 }

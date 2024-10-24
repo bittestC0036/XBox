@@ -66,6 +66,8 @@ namespace XBox
 
         //public ObservableObject<>
 
+        Process p = new Process();
+
         public FolderTree()
         {
             InitializeComponent();
@@ -93,12 +95,9 @@ namespace XBox
 
                     var x = sender as FolderTree;
 
-                    Process p = new Process();
-
 
                     if (!string.IsNullOrWhiteSpace(x.sTB_Content))
                     {
-                        System.Diagnostics.Debug.WriteLine("sTB_Content is " + sTB_Content);
                         p.StartInfo.FileName = @"D:\Pot\XBox\XBox\SplashWindow\bin\Debug\SplashWindow.exe";
                         p.Start();
                     
