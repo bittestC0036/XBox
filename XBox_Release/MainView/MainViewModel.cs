@@ -220,18 +220,11 @@ namespace XBox
                     {
                         _MainView_.TopTap.Children[nCnt].IsActive = true;
                     }
-                    //x.AddFileList(m_x, (m_x.Parent as _Folder_));
                 }
                 catch (Exception ex)
                 {
                     System.Diagnostics.Debug.WriteLine(ex.Message + "\n\r" + ex.StackTrace);
                 }
-
-
-                //for (int nCnt = 0; nCnt < TopTap_items.Count; nCnt++)
-                //{
-                //    bCheck = bCheck & TopTap_items[nCnt].Title != TEMP.Title;
-                //}
             }
             else if (x.SelectedItem is _Img_)
             {

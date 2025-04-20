@@ -82,72 +82,33 @@ namespace XBox
             SetTextType();
 
             sTxt_list = sTxt_list.FindAll(s => !string.IsNullOrWhiteSpace(s));
-
             sImage_list = sImage_list.FindAll(s => !string.IsNullOrWhiteSpace(s));
 
-
-            Binding binding = new Binding("sTB_Content");
-            binding.Source = this;
-            this.SetBinding(TreeView.TagProperty, binding);
+            this.SetBinding(TreeView.TagProperty, new Binding("sTB_Content") { Source = this });
 
             // PropertyChanged 이벤트 핸들러 추가
             DependencyPropertyDescriptor.FromProperty(sTB_ContentProperty, typeof(TextEditor))
                 .AddValueChanged(this, (sender, args) =>
                 {
-                    var x = sender as FolderTree;
+                    if (this == null || string.IsNullOrWhiteSpace(sTB_Content))
+                        return;
 
-                    if(x!=null)
+
+                    var temp = MakeFolderTree(sTB_Content);
+                    if (temp != null)
                     {
-                        if(!string.IsNullOrWhiteSpace(x.sTB_Content))
-                        {
-                            string sData = x.sTB_Content;
-                            var temp = MakeFolderTree(sData);
-                            if (temp != null)
-                            {
-                                FolderTreeview_items.Add(temp);
+                        FolderTreeview_items.Clear();
+                        FolderTreeview_items.Add(temp);
 
-                                if (null == x.ItemsSource)
-                                    x.ItemsSource = FolderTreeview_items;
-                            }
-                        }
-                        else
-                        {
-                            FolderTreeview_items.Clear();
-                        }
+                        if (ItemsSource == null)
+                            ItemsSource = FolderTreeview_items;
 
-
+                        if (FolderTreeview_items.Count > 0)
+                            FolderTreeview_items[0].IsExpanded = true;
                     }
-                    FolderTreeview_items[0].IsExpanded = true;
                 });
         }
 
-        /*
-        private _Folder_ MakeFolderTree(string FolderPath)
-        {
-            var di_folder = new DirectoryInfo(FolderPath);
-            var temp_tv_item = new _Folder_();
-        
-            temp_tv_item.TB_Header.Content = di_folder.Name;
-            temp_tv_item.Tag = di_folder.FullName;
-            //temp_tv_item.Selected += Folder_Selected;
-            temp_tv_item.Expanded += Folder_Expanded;
-        
-            try
-            {
-                if (di_folder.GetDirectories().Length > 0)
-                {
-                    foreach (var item in di_folder.GetDirectories())
-                            temp_tv_item.Items.Add(MakeFolderTree(item.FullName));
-                }
-                return temp_tv_item;
-            }
-            catch (Exception ex)
-            {
-                System.Diagnostics.Debug.WriteLine(string.Format("{0}\n\r{1}", ex.Message, ex.StackTrace));
-                return null;
-            }
-        }
-        */
 
         private _Folder_ MakeFolderTree(string FolderPath)
         {
@@ -162,8 +123,11 @@ namespace XBox
             {
                 if (di_folder.GetDirectories().Length > 0)
                 {
-                    foreach (var item in di_folder.GetDirectories())
-                        temp_tv_item.Items.Add(MakeFolderTree(item.FullName));
+                    foreach (var item in di_folder.GetDirectories()){
+                        var Folder2 = MakeFolderTree(item.FullName);
+                        if (Folder2 != null)
+                            temp_tv_item.Items.Add(Folder2);
+                    }
                 }
                 return temp_tv_item;
             }

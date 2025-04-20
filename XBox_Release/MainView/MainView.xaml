@@ -111,9 +111,6 @@
                                                            sTB_Content="{Binding TB_Content_Content , Mode=TwoWay}"
                                                            bisReadOnly="{Binding bSingle}"/>
 
-                                                <!--
-                                                <Image   x:Name="Img_Content"   Visibility="Collapsed"  Source="{Binding Image_Content_Source}" />
-                                                -->
                                             </Grid>
                                         </Grid>
                                         <Grid Grid.Row="4" Background="YellowGreen">
