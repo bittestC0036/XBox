@@ -121,6 +121,7 @@ namespace XBox
                 });
         }
 
+        /*
         private _Folder_ MakeFolderTree(string FolderPath)
         {
             var di_folder = new DirectoryInfo(FolderPath);
@@ -137,6 +138,32 @@ namespace XBox
                 {
                     foreach (var item in di_folder.GetDirectories())
                             temp_tv_item.Items.Add(MakeFolderTree(item.FullName));
+                }
+                return temp_tv_item;
+            }
+            catch (Exception ex)
+            {
+                System.Diagnostics.Debug.WriteLine(string.Format("{0}\n\r{1}", ex.Message, ex.StackTrace));
+                return null;
+            }
+        }
+        */
+
+        private _Folder_ MakeFolderTree(string FolderPath)
+        {
+            var di_folder = new DirectoryInfo(FolderPath);
+            var temp_tv_item = new _Folder_();
+
+            temp_tv_item.TB_Header.Content = di_folder.Name;
+            temp_tv_item.Tag = di_folder.FullName;
+            temp_tv_item.Expanded += Folder_Expanded;
+
+            try
+            {
+                if (di_folder.GetDirectories().Length > 0)
+                {
+                    foreach (var item in di_folder.GetDirectories())
+                        temp_tv_item.Items.Add(MakeFolderTree(item.FullName));
                 }
                 return temp_tv_item;
             }
@@ -197,6 +224,20 @@ namespace XBox
                             Temp.Selected += Folder_Selected;
                             AddFileList(Temp, x);
                         }
+                    }
+                }
+                var dirs = di_spath.GetDirectories();
+                for(int nCnt =0; nCnt<dirs.Count();nCnt++)
+                {
+                    _Folder_ Temp = new _Folder_();
+                    Temp.Height = 40;
+                    Temp.TB_Header.Content = dirs[nCnt].Name;
+                    Temp.Tag = dirs[nCnt].FullName;
+                    Temp.Expanded += Folder_Expanded;
+                    
+                    if((x.Items.IndexOf(Temp))!=-1)
+                    {
+                        x.Items.Add(Temp);
                     }
                 }
             }

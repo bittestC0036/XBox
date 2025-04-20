@@ -1,4 +1,3 @@
-C:\Users\kim\Documents\GitHub\XBox\XBox_Release\obj\Debug\XBox_Release.csproj.AssemblyReference.cache
 C:\Users\kim\Documents\GitHub\XBox\XBox_Release\obj\Debug\XBox.exe.config
 C:\Users\kim\Documents\GitHub\XBox\XBox_Release\obj\Debug\Etc\UserControl\MakeFolderTree\FolderTree.baml
 C:\Users\kim\Documents\GitHub\XBox\XBox_Release\obj\Debug\Etc\UserControl\ICON\_Img_.baml
@@ -94,14 +93,10 @@ C:\Users\kim\Documents\GitHub\XBox\XBox_Release\bin\Debug\System.Windows.Forms.x
 C:\Users\kim\Documents\GitHub\XBox\XBox_Release\bin\Debug\Unity.Abstractions.pdb
 C:\Users\kim\Documents\GitHub\XBox\XBox_Release\bin\Debug\Unity.Container.pdb
 C:\Users\kim\Documents\GitHub\XBox\XBox_Release\bin\Debug\WindowsFormsIntegration.xml
-C:\Users\kim\Documents\GitHub\XBox\XBox_Release\bin\Debug\Xceed.Wpf.AvalonDock.xml
-C:\Users\kim\Documents\GitHub\XBox\XBox_Release\bin\Debug\Xceed.Wpf.AvalonDock.Themes.Aero.xml
 C:\Users\kim\Documents\GitHub\XBox\XBox_Release\bin\Debug\Xceed.Wpf.AvalonDock.Themes.FluentDesign.xml
 C:\Users\kim\Documents\GitHub\XBox\XBox_Release\bin\Debug\Xceed.Wpf.AvalonDock.Themes.MaterialDesign.xml
-C:\Users\kim\Documents\GitHub\XBox\XBox_Release\bin\Debug\Xceed.Wpf.AvalonDock.Themes.Metro.xml
 C:\Users\kim\Documents\GitHub\XBox\XBox_Release\bin\Debug\Xceed.Wpf.AvalonDock.Themes.MetroAccent.xml
 C:\Users\kim\Documents\GitHub\XBox\XBox_Release\bin\Debug\Xceed.Wpf.AvalonDock.Themes.Office2007.xml
-C:\Users\kim\Documents\GitHub\XBox\XBox_Release\bin\Debug\Xceed.Wpf.AvalonDock.Themes.VS2010.xml
 C:\Users\kim\Documents\GitHub\XBox\XBox_Release\bin\Debug\Xceed.Wpf.AvalonDock.Themes.Windows10.xml
 C:\Users\kim\Documents\GitHub\XBox\XBox_Release\bin\Debug\Xceed.Wpf.Themes.xml
 C:\Users\kim\Documents\GitHub\XBox\XBox_Release\bin\Debug\Xceed.Wpf.Themes.FluentDesign.xml
@@ -110,7 +105,6 @@ C:\Users\kim\Documents\GitHub\XBox\XBox_Release\bin\Debug\Xceed.Wpf.Themes.Mater
 C:\Users\kim\Documents\GitHub\XBox\XBox_Release\bin\Debug\Xceed.Wpf.Themes.Metro.xml
 C:\Users\kim\Documents\GitHub\XBox\XBox_Release\bin\Debug\Xceed.Wpf.Themes.Office2007.xml
 C:\Users\kim\Documents\GitHub\XBox\XBox_Release\bin\Debug\Xceed.Wpf.Themes.Windows10.xml
-C:\Users\kim\Documents\GitHub\XBox\XBox_Release\bin\Debug\Xceed.Wpf.Toolkit.xml
 C:\Users\kim\Documents\GitHub\XBox\XBox_Release\bin\Debug\de\Xceed.Wpf.AvalonDock.resources.dll
 C:\Users\kim\Documents\GitHub\XBox\XBox_Release\bin\Debug\es\Xceed.Wpf.AvalonDock.resources.dll
 C:\Users\kim\Documents\GitHub\XBox\XBox_Release\bin\Debug\fr\Xceed.Wpf.AvalonDock.resources.dll
@@ -130,6 +124,11 @@ C:\Users\kim\Documents\GitHub\XBox\XBox_Release\obj\Debug\XBox.g.resources
 C:\Users\kim\Documents\GitHub\XBox\XBox_Release\obj\Debug\XBox.Properties.Resources.resources
 C:\Users\kim\Documents\GitHub\XBox\XBox_Release\obj\Debug\XBox_Release.csproj.GenerateResource.cache
 C:\Users\kim\Documents\GitHub\XBox\XBox_Release\obj\Debug\XBox_Release.csproj.CoreCompileInputs.cache
-C:\Users\kim\Documents\GitHub\XBox\XBox_Release\obj\Debug\XBox_Release.csproj.CopyComplete
 C:\Users\kim\Documents\GitHub\XBox\XBox_Release\obj\Debug\XBox.exe
 C:\Users\kim\Documents\GitHub\XBox\XBox_Release\obj\Debug\XBox.pdb
+C:\Users\kim\Documents\GitHub\XBox\XBox_Release\obj\Debug\XBox_Release.csproj.AssemblyReference.cache
+C:\Users\kim\Documents\GitHub\XBox\XBox_Release\obj\Debug\XBox_Release.csproj.SuggestedBindingRedirects.cache
+C:\Users\kim\Documents\GitHub\XBox\XBox_Release\obj\Debug\XBox_Rel.00510963.Up2Date
+C:\Users\kim\Documents\GitHub\XBox\XBox_Release\bin\Debug\cs-CZ\Xceed.Wpf.AvalonDock.resources.dll
+C:\Users\kim\Documents\GitHub\XBox\XBox_Release\bin\Debug\ja-JP\Xceed.Wpf.AvalonDock.resources.dll
+C:\Users\kim\Documents\GitHub\XBox\XBox_Release\bin\Debug\nl-BE\Xceed.Wpf.AvalonDock.resources.dll

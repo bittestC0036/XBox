@@ -130,7 +130,7 @@
 
             </avalonDock:DockingManager>
         </TabItem>
-        <TabItem  Header="DB Connector">
+        <TabItem  Header="DB Connector" Visibility="Collapsed">
             <Grid>
                 <Grid.RowDefinitions>
                     <RowDefinition Height="*" />
