@@ -10,8 +10,7 @@
              d:DataContext="{d:DesignInstance {x:Type local:MainViewModel},
              IsDesignTimeCreatable=False}"
              cal:Message.Attach="[Event Loaded]=[Action Window_Loaded($dataContext,$view)]"
-             d:DesignHeight="600" d:DesignWidth="800"
-             >
+             d:DesignHeight="600" d:DesignWidth="800">
     <TabControl >
         <TabItem Header="Make Folder">
             <avalonDock:DockingManager x:Name="dockManager"  Visibility="Visible" >
@@ -74,12 +73,7 @@
                                               cal:Message.Attach="[Event TextChanged] = [Action FindFileName($self)]"/>
                                         </Grid>
 
-                                        <GridSplitter Grid.Row="2"    
-                                              HorizontalAlignment="Stretch"
-                                              VerticalAlignment="Center"
-                                              Background="Black" 
-                                              ShowsPreview="True"
-                                              Height="5"/>
+                                        <GridSplitter Grid.Row="2"  HorizontalAlignment="Stretch"  VerticalAlignment="Center"                                              Background="Black"                                               ShowsPreview="True"                                              Height="5"/>
 
                                         <Grid Grid.Row="3">
                                             <Grid.ColumnDefinitions>
@@ -94,12 +88,7 @@
                                                               [Event MouseDoubleClick]=[Action MouseDoubleClick($view)]"/>
                                             </Grid>
 
-                                            <GridSplitter   Grid.Column="1"
-                                                    Background="Black" 
-                                                    ShowsPreview="True"
-                                                    Width="5" 
-                                                    HorizontalAlignment="Center"
-                                                    VerticalAlignment="Stretch"/>
+                                            <GridSplitter   Grid.Column="1" Background="Black"                                                     ShowsPreview="True"                                                    Width="5"                                                     HorizontalAlignment="Center" VerticalAlignment="Stretch"/>
 
                                             <Grid Grid.Column="2">
                                                 <Grid.RowDefinitions>

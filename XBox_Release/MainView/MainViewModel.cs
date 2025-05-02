@@ -27,7 +27,10 @@ namespace XBox
             MakeFolder_Content_Width = 1200;
 
             DB_title_height = 300;
+
         }
+
+        private Loading loading = new Loading();
 
         private void INITUI(string rootFolderPath = null)
         {
@@ -131,11 +134,16 @@ namespace XBox
             CommonOpenFileDialog cofd = new CommonOpenFileDialog();
             cofd.IsFolderPicker = true;
 
+
             if (cofd.ShowDialog() == CommonFileDialogResult.Ok)
             {
                 TB_RootPath_Text = cofd.FileName;
 
+                loading.Visibility = Visibility.Visible;
+
                 INITUI(TB_RootPath_Text);
+
+                loading.Visibility = Visibility.Collapsed;
             }
         }
 
