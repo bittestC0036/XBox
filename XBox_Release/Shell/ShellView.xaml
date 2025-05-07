@@ -8,6 +8,7 @@
         xmlns:local="clr-namespace:XBox"
         d:DataContext="{d:DesignInstance {x:Type local:ShellViewModel},IsDesignTimeCreatable=False}"
         Title="XBox" 
+        WindowStartupLocation="CenterScreen"
         Height="{Binding dHeight}" Width="{Binding dWidth}">
     <ContentControl  cal:View.Model="{Binding MainViewModel}"  />
 </Window>

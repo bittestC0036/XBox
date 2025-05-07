@@ -1,10 +1,14 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.ComponentModel;
+using System.Configuration;
+using System.Diagnostics;
 using System.IO;
 using System.Linq;
 using System.Reflection;
 using System.Runtime.CompilerServices;
+using System.Runtime.Remoting.Channels;
 using System.Text;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
@@ -17,17 +21,13 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using Xceed.Wpf.Toolkit.PropertyGrid.Attributes;
 
 namespace XBox
 {
     /// <summary>
     /// TextEditor.xaml에 대한 상호 작용 논리
     /// </summary>
-    public delegate void StatusBarCallBack(string sLog);
-    public delegate void SearchCallBack(string sLog);
-    public delegate void MoveToLineCallBack(int nIndex);
-    public delegate void ReplaceCallBack(string sSearchWord, string sReplaceWord);
-
     public partial class TextEditor : UserControl, INotifyPropertyChanged
     {
         public List<string> sTxt_list = new List<string>();
@@ -36,371 +36,144 @@ namespace XBox
 
         public List<string> vs = new List<string>();
 
-        public event StatusBarCallBack StatusBarCallBack;
-        public event SearchCallBack SearchCallBack;
-        public event MoveToLineCallBack MoveToLineCallBack;
-        public event ReplaceCallBack ReplaceCallBack;
+        // ① DependencyProperty 정의
+        public static readonly DependencyProperty sTB_ContentProperty =
+            DependencyProperty.Register(
+                "sTB_Content",
+                typeof(string),
+                typeof(TextEditor),
+                new FrameworkPropertyMetadata(
+                    "",
+                    FrameworkPropertyMetadataOptions.BindsTwoWayByDefault
+                    //,OnSTB_ContentChanged
+                    ));
 
-        public SearchWindow SearchWindow;
-
-        public ReplaceWindow ReplaceWindow;
-
-        public MoveToLineWindow MoveToLineWindow;
-
-        public int nKeyCnt = -1; // 총 있는 값
-
-        public int nfoundnCnt = -1; // 총 있는 값
-
-        public object sTB_Content
+        // ② CLR Wrapper
+        public string sTB_Content
         {
-            get {
-                //this.TB_Content
-                return (object)GetValue(sTB_ContentProperty);
-            }
-            set {
-                    SetValue(sTB_ContentProperty, value); 
-                }
-            
+            get => (string)GetValue(sTB_ContentProperty);
+            set => SetValue(sTB_ContentProperty, value);
         }
 
-        public static DependencyProperty sTB_ContentProperty =
-            DependencyProperty.Register("sTB_Content", typeof(object),typeof(TextEditor),
-            new FrameworkPropertyMetadata("", FrameworkPropertyMetadataOptions.BindsTwoWayByDefault));
+        // ③ 값 변경 시 콜백
+        //private static void OnSTB_ContentChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
+        //{
+        //    var editor = d as TextEditor;
+        //    var newValue = e.NewValue as string;
 
-        private bool _bisReadOnly = true;
-        public bool bisReadOnly
+
+        //    if (Directory.Exists(newValue))
+        //    {
+        //        var di = new DirectoryInfo(newValue);
+        //    }
+        //    else
+        //    {
+
+        //    }
+        //}
+
+        public class DataItem
         {
-            get
-            {
-                return _bisReadOnly;
-                //return (bool)GetValue(bisReadOnly_Property);
-            }
-            set
-            {
-                bisReadOnly = value;
-                OnPropertyChanged();
-                //SetValue(bisReadOnly_Property, value);
-            }
+            public string Key { get; set; }
+            public string Value { get; set; }
         }
 
-        public static DependencyProperty bisReadOnly_Property =
-        DependencyProperty.Register("bisReadOnly", typeof(bool), typeof(TextEditor),
-        new FrameworkPropertyMetadata(true, FrameworkPropertyMetadataOptions.BindsTwoWayByDefault));
-
-
-        private string _Property_Text = "";
-        public string Property_Text
+        private ObservableCollection<DataItem> _items = new ObservableCollection<DataItem>();
+        public ObservableCollection<DataItem> Items
         {
-            get
-            {
-                return _Property_Text;
-            }
+            get => _items;
             set
             {
-                _Property_Text = value;
-                OnPropertyChanged();
-            }
-        }
-
-        private Visibility _PropertyVisability = Visibility.Visible;
-        public Visibility PropertyVisability
-        {
-            get
-            {
-                return _PropertyVisability;
-            }
-            set
-            {
-                if (value == Visibility.Visible)
-                {
-                    PropertyVisability = Visibility.Visible;
-                }
-                else
-                {
-                    PropertyVisability = Visibility.Collapsed;
-                }
-                OnPropertyChanged();
+                _items = value;
+                OnPropertyChanged(nameof(Items)); // 바뀌었음을 알림
             }
         }
 
         public TextEditor()
         {
             InitializeComponent();
+            Property.ItemsSource = Items;
 
-            //this.DataContext = this;
-
-            Binding binding = new Binding("Property_Text");
-            binding.Source = this.DataContext;
-            this.TB_Property.SetBinding(TextBox.TextProperty, binding);
-
-            Binding binding2 = new Binding("bisReadOnly");
-            binding2.Source = this.DataContext;
-            this.TB_Content.SetBinding(TextBox.IsReadOnlyProperty, binding2);
-
-            Binding binding3 = new Binding("sTB_Content");
-            binding3.Source = this;
-            this.SetBinding(TreeView.TagProperty, binding3);
-
-
-            SetTextType();
-
-            // PropertyChanged 이벤트 핸들러 추가
             DependencyPropertyDescriptor.FromProperty(sTB_ContentProperty, typeof(TextEditor))
-                .AddValueChanged(this, (sender, args) =>
+                .AddValueChanged(this, (s, e) =>
                 {
-                     var x = sender as TextEditor;
+                    var x = s as TextEditor;
+
+                    SetContent(x.sTB_Content);
+
+                    SetProperty(x.sTB_Content);
 
 
-                    if(File.Exists(x.sTB_Content.ToString()))
-                    {
-                        if (x.TB_Content.Tag != x.sTB_Content)
-                        {
-                            x.TB_Content.Text = File.ReadAllText(x.sTB_Content.ToString());
-                            x.TB_Content.Tag = sTB_Content;
-                            Content_TextChanged(x.TB_Content, null);
-                        }
-                    }else
-                    {
-                        x.TB_Content.Text = string.Empty;
-                    }
-
-
-                    var fi = new FileInfo(sTB_Content.ToString());
-
-                    if(sTxt_list.IndexOf(fi.Extension.ToUpper())!=-1)
-                    {
-                        _TxT_ temp = new _TxT_();
-                        temp.Tag = sTB_Content;
-                        ShowTXTPropertise(temp);
-                    }
-                    else if(sImage_list.IndexOf(fi.Extension)!=-1)
-                    {
-                        _Img_ temp = new _Img_();
-                        temp.Tag = sTB_Content;
-                        ShowImgPropertise(temp);
-                    }
-                    else if(Directory.Exists(sTB_Content.ToString()))
-                    {
-                        _Folder_ temp = new _Folder_();
-                        temp.Tag = sTB_Content;
-                        ShowFolderPropertise(temp);
-                    }
                 });
+        }
 
-                DependencyPropertyDescriptor.FromProperty(bisReadOnly_Property, typeof(TextEditor))
-                .AddValueChanged(this, (sender, args) =>
+        private void SetContent(string sTB_Content)
+        {
+            Debug.WriteLine($"[SetContent] 경로: {sTB_Content}");
+
+            if (File.Exists(sTB_Content))
+            {
+                string content = File.ReadAllText(sTB_Content);
+                Debug.WriteLine($"[SetContent] 내용 길이: {content.Length}");
+
+                TB_Content.Text = content;
+
+                int lineCount = content.Split('\n').Length;
+
+                var lineNumbers = new StringBuilder();
+                for (int i = 1; i <= lineCount; i++)
                 {
+                    lineNumbers.AppendLine(i.ToString());
+                }
 
-                 // 여기에 Text 변경 시 실행할 코드를 추가
-                 // 예를 들어 YourTextChanged 이벤트를 발생시킬 수 있습니다.
-                 
-                 var x = sender as TextEditor;
-                    x.bisReadOnly = true;
-                });
+                TBL_LineNumber.Text = lineNumbers.ToString();
+            }
+            else
+            {
+                Debug.WriteLine("[SetContent] 파일이 존재하지 않음");
+                TB_Content.Text = string.Empty;
+                TBL_LineNumber.Text = string.Empty;
+            }
+        }
 
-            SearchWindow = new SearchWindow();
-            SearchWindow.BtnSearch.Click += BtnSearch_Click;
 
-            ReplaceWindow = new ReplaceWindow();
-            ReplaceWindow.Btn_Replace.Click += Btn_Replace_Click;
+        private void ContentScrollViewer_ScrollChanged(object sender, ScrollChangedEventArgs e)
+        {
+            // 수직 스크롤 위치만 맞춰줌
+            LineNumberScrollViewer.ScrollToVerticalOffset(e.VerticalOffset);
+        }
 
-            MoveToLineWindow = new MoveToLineWindow();
 
-            SearchWindow.Visibility = Visibility.Collapsed;
-            ReplaceWindow.Visibility = Visibility.Collapsed;
-            MoveToLineWindow.Visibility = Visibility.Collapsed;
 
+        private void SetProperty(string sTB_Content)
+        {
+
+            if (Items.Count > 0)
+                Items.Clear();
+
+            if (Directory.Exists(sTB_Content))
+            {
+                var di = new DirectoryInfo(sTB_Content);
+
+                Items.Add(new DataItem { Key = "Name", Value = di.Name });
+                Items.Add(new DataItem { Key = "Create DateTime", Value = di.CreationTime.ToString("yyyy.MM.dd-HH:mm") });
+                Items.Add(new DataItem { Key = "Modify DateTime", Value = di.LastWriteTime.ToString("yyyy.MM.dd-HH:mm") });
+
+
+            }
+            else
+            {
+                var fi = new FileInfo(sTB_Content);
+
+                Items.Add(new DataItem { Key = "Name", Value = fi.Name });
+                Items.Add(new DataItem { Key = "Create DateTime", Value = fi.CreationTime.ToString("yyyy.MM.dd-HH:mm") });
+                Items.Add(new DataItem { Key = "Modify DateTime", Value = fi.LastWriteTime.ToString("yyyy.MM.dd-HH:mm") });
+            }
+
+            Property.ItemsSource = Items;
         }
 
         #region Opt Windows
-
-        public string sBeforeSearchKeyword = string.Empty;
-        public string sBeforeReplace_SearchKeyword = string.Empty;
-        public string sBeforeReplace_ReplaceKeyword = string.Empty;
-
-        int index_Search = -1;
-        int index_Replace = -1;
-
-        private void BtnSearch_Click(object sender, RoutedEventArgs e)
-        {
-            string sSearchKeyword = SearchWindow.TB_Keyword.Text.ToString();
-
-            if (sBeforeSearchKeyword != sSearchKeyword)
-            {
-                index_Search = -1;
-            }
-
-            if (string.IsNullOrWhiteSpace(sSearchKeyword))
-            {
-                MessageBox.Show(string.Format("Please Check Keywrod again"));
-                return;
-            }
-
-
-            index_Search = TB_Content.Text.ToString().IndexOf(sSearchKeyword, index_Search + 1);
-
-            if (index_Search >= 0)
-            {
-                TB_Content.Select(index_Search, sSearchKeyword.Length); // 해당 위치로 선택
-                TB_Content.Focus(); // TextBox에 포커스 설정
-            }
-
-            if (TB_Content.Text.ToString().IndexOf(sSearchKeyword, index_Search + 1) >= 0)
-            {
-                SearchWindow.BtnSearch.Content = "다음 찾기";
-            }
-            else
-            {
-                SearchWindow.BtnSearch.Content = "찾기";
-            }
-
-            if (index_Search == -1)
-            {
-                MessageBox.Show($"'{sSearchKeyword}'를 찾을 수 없습니다.");
-            }
-        }
-
-        private void Btn_Replace_Click(object sender, RoutedEventArgs e)
-        {
-            string sSearchKeyword = ReplaceWindow.TB_Search.Text.ToString();
-
-            string sReplaceKeyword = ReplaceWindow.TB_Replace.Text.ToString();
-
-            if (sBeforeSearchKeyword != sSearchKeyword)
-            {
-                index_Replace = -1;
-            }
-
-            if (string.IsNullOrWhiteSpace(sSearchKeyword))
-            {
-                MessageBox.Show(string.Format("Please Check Keywrod again"));
-                return;
-            }
-
-
-            index_Replace = TB_Content.Text.ToString().IndexOf(sSearchKeyword, index_Replace + 1);
-
-            if (index_Replace >= 0)
-            {
-                TB_Content.Select(index_Replace, sSearchKeyword.Length); // 해당 위치로 선택
-                TB_Content.Focus(); // TextBox에 포커스 설정
-            }
-
-            if (TB_Content.Text.ToString().IndexOf(sSearchKeyword, index_Replace + 1) >= 0)
-            {
-                SearchWindow.BtnSearch.Content = "다음 바꾸기";
-            }
-            else
-            {
-                SearchWindow.BtnSearch.Content = "바꾸기";
-            }
-
-            if (index_Replace == -1)
-            {
-                MessageBox.Show($"'{sSearchKeyword}'를 찾을 수 없습니다.");
-            }
-        }
-
-        private void Content_TextChanged(object sender, TextChangedEventArgs e)
-        {
-            var x = sender as TextBox;
-
-            TBL_LineNumber.Text = "";
-
-            for (int nCnt = 1; nCnt <= x.Text.Split('\n').Count(); nCnt++)
-            {
-                TBL_LineNumber.Text += (nCnt).ToString() + Environment.NewLine;
-            }
-
-
-            int caretIndex = x.CaretIndex;
-            int lineIndex = x.GetLineIndexFromCharacterIndex(caretIndex);
-            int lineLength = x.GetLineLength(lineIndex);
-
-            if (lineLength < 0)
-                return;
-        }
-
-        private void Content_ScrollChanged(object sender, ScrollChangedEventArgs e)
-        {
-            var x = sender as TextBox;
-
-            if (x == null)
-                return;
-        }
-
-        private void TBScrollViewer_ScrollChanged(object sender, ScrollChangedEventArgs e)
-        {
-            LineNumberScrollViewer.ScrollToHorizontalOffset(TBScrollViewer.HorizontalOffset); //System.Diagnostics.Debug.WriteLine("TBScrollViewer.HorizontalOffset is" + TBScrollViewer.HorizontalOffset);
-            LineNumberScrollViewer.ScrollToVerticalOffset(TBScrollViewer.VerticalOffset);     //System.Diagnostics.Debug.WriteLine("TBScrollViewer.VerticalOffset" + TBScrollViewer.VerticalOffset);
-        }
-
-        private void TB_Content_PreviewKeyDown(object sender, KeyEventArgs e)
-        {
-            var x = sender as TextBox;
-
-            if (x == null)
-                return;
-
-            if (Keyboard.Modifiers == ModifierKeys.Control && e.Key == Key.S)
-            {
-                // Ctrl + S가 눌렸을 때 원하는 동작 수행 // 예를 들어, 파일 저장 기능을 호출하거나 다른 작업을 수행할 수 있습니다.
-                if (x.Text != File.ReadAllText(x.Tag.ToString()))
-                {
-                    var sw = new StreamWriter(x.Tag.ToString());
-                    sw.Write(x.Text.ToString());
-                    sw.Flush();
-                    sw.Close();
-                }
-                e.Handled = true; // 이벤트 처리 완료
-                StatusBarCallBack("File is saved Succesfully"); //StatusBarCallBack(string.Format("{0} : {1}",x.Tag.ToString()," is Save Sucessfully"));
-            }
-            else if (Keyboard.Modifiers == ModifierKeys.Control && e.Key == Key.G) // 줄 이동
-            {
-                if (MoveToLineWindow.Visibility != Visibility.Visible)
-                {
-                    MoveToLineWindow.Show();
-                }
-                StatusBarCallBack("줄 이동");
-            }
-            else if (Keyboard.Modifiers == ModifierKeys.Control && e.Key == Key.F) //찾기
-            {
-                if (SearchWindow.Visibility != Visibility.Visible)
-                {
-                    SearchWindow.Show();
-                }
-                StatusBarCallBack("찾기");
-            }
-            else if (Keyboard.Modifiers == ModifierKeys.Control && e.Key == Key.H) //바꾸기
-            {
-                if (ReplaceWindow.Visibility != Visibility.Visible)
-                {
-                    ReplaceWindow.Show();
-                }
-                StatusBarCallBack("바꾸기");
-            }
-        }
-
-        private void SearchWindow_SearchCallBack(string sLog)
-        {
-            string sTextEditor_Content = this.TB_Content.Text.ToString();
-            int nCnt = -1;
-
-            if (sTextEditor_Content.IndexOf(sLog) > -1)
-            {
-                MatchCollection matches = Regex.Matches(sTextEditor_Content, sLog);
-            }
-            else
-            {
-                MessageBox.Show(string.Format("{0} is nothing .\n" +
-                    "Please Check it again", sLog));
-            }
-        }
-
-        private void TBL_LineNumber_MouseDown(object sender, MouseButtonEventArgs e)
-        {
-
-        }
 
         #endregion
 
@@ -417,7 +190,6 @@ namespace XBox
             }
         }
         #endregion
-
 
         #region  Show File Opt
 
@@ -437,7 +209,7 @@ namespace XBox
                                        fi.Name,
                                        fi.CreationTime.ToString("yyyy-MM-HH-mm"),
                                        fi.LastWriteTime);
-            Property_Text = sFinfo;
+            //Property_Text = sFinfo;
             //TB_Property.Text = sFinfo;
         }
 
@@ -457,7 +229,7 @@ namespace XBox
                                        fi.Name,
                                        fi.CreationTime.ToString("yyyy-MM-HH-mm"),
                                        fi.LastWriteTime);
-            Property_Text = sFinfo;
+            //Property_Text = sFinfo;
         }
 
         private void ShowFolderPropertise(_Folder_ x)
@@ -475,9 +247,7 @@ namespace XBox
                                           di.CreationTime.ToString("yyyy-MM-HH-mm"),
                                           di.LastWriteTime
                                           );
-            Property_Text = sDirInfo;
-
-
+            //Property_Text = sDirInfo;
         }
 
         #endregion

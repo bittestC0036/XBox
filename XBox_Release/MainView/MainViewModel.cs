@@ -26,11 +26,10 @@ namespace XBox
 
             MakeFolder_Content_Width = 1200;
 
-            DB_title_height = 300;
+            DB_title_height = 500;
 
         }
 
-        private Loading loading = new Loading();
 
         private void INITUI(string rootFolderPath = null)
         {
@@ -139,16 +138,14 @@ namespace XBox
             {
                 TB_RootPath_Text = cofd.FileName;
 
-                loading.Visibility = Visibility.Visible;
-
                 INITUI(TB_RootPath_Text);
 
-                loading.Visibility = Visibility.Collapsed;
             }
         }
 
         public void SelectedItemChanged(object item)
         {
+            Console.WriteLine("SelectedItemChanged");
             var x = item as FolderTree;
 
             if (x.SelectedItem is _Folder_)
@@ -169,8 +166,9 @@ namespace XBox
                 else if (x.SelectedItem is _Img_)
                 {
                     var m_x = x.SelectedItem as _Img_;
-
+                    TB_Content_Content += m_x.Tag.ToString();
                     sStatusBarText = m_x.Tag.ToString();
+                    bSingle = true;
                 }
             }
         }
@@ -195,6 +193,8 @@ namespace XBox
 
                     TB_RootPath_Text = m_x.Tag.ToString();
 
+                    TEMP_TextEditor.sTB_Content = TB_RootPath_Text;
+
                     TEMP_TextEditor.TB_Content.Text = File.ReadAllText(m_x.Tag.ToString());
                     TEMP_TextEditor.TB_Content.Tag = m_x.Tag;
                     TEMP_TextEditor.Tag = m_x.Tag.ToString();
@@ -210,7 +210,7 @@ namespace XBox
                             break;
                     }
 
-                    if (true == bCheck)
+                    if (bCheck)
                     {
                         _MainView_.TopTap.InsertChildAt(_MainView_.TopTap.Children.Count, TEMP);
 
@@ -224,7 +224,8 @@ namespace XBox
                         {
                             _MainView_.TopTap.Children[_MainView_.TopTap.Children.Count - 1].IsActive = true;
                         }
-                    }else
+                    }
+                    else
                     {
                         _MainView_.TopTap.Children[nCnt].IsActive = true;
                     }
