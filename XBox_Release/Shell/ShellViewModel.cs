@@ -47,12 +47,10 @@ namespace XBox
 
         [ImportingConstructor]
         public ShellViewModel(IMainViewModel mainViewModel)
-        //public ShellViewModel()
         {
             dHeight = 600;
             dWidth  = 450;
             _mainViewModel = mainViewModel;
-            //mainViewModel.ShowMessage("Hello1234");
         }
         public void Dispose()
         {

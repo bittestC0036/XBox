@@ -19,7 +19,6 @@ namespace XBox
     /// </summary>
     public partial class ReplaceWindow : Window
     {
-        public event ReplaceCallBack ReplaceCallback;
         public ReplaceWindow()
         {
             InitializeComponent();

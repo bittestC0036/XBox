@@ -236,6 +236,13 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Etc\Screen2\ColorDetectorView.xaml.cs">
+      <DependentUpon>ColorDetectorView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Etc\Screen2\FolderTreeView.xaml.cs">
+      <DependentUpon>FolderTreeView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Etc\Screen2\FolderTreeViewModel.cs" />
     <Compile Include="Etc\StandardBootstrapper.cs" />
     <Compile Include="Etc\UserControl\MakeFolderTree\FolderTree.xaml.cs">
       <DependentUpon>FolderTree.xaml</DependentUpon>
@@ -283,6 +290,14 @@
     <Compile Include="Etc\UserControl\MakeFolderTree\TextEditor.xaml.cs">
       <DependentUpon>TextEditor.xaml</DependentUpon>
     </Compile>
+    <Page Include="Etc\Screen2\ColorDetectorView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Etc\Screen2\FolderTreeView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Etc\UserControl\MakeFolderTree\FolderTree.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>

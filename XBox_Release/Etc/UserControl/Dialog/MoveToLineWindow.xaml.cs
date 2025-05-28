@@ -19,7 +19,6 @@ namespace XBox
     /// </summary>
     public partial class MoveToLineWindow : Window
     {
-        public event MoveToLineCallBack MoveToLineCallBack;
         public MoveToLineWindow()
         {
             InitializeComponent();

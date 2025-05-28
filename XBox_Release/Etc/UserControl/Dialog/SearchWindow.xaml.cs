@@ -19,7 +19,6 @@ namespace XBox
     /// </summary>
     public partial class SearchWindow : Window
     {
-        public event SearchCallBack SearchCallBack;
         public SearchWindow()
         {
             InitializeComponent();

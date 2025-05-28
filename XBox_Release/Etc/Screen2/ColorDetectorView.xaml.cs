@@ -16,11 +16,11 @@ using System.Windows.Shapes;
 namespace XBox
 {
     /// <summary>
-    /// MakeFolderTree.xaml에 대한 상호 작용 논리
+    /// ColorDetectorView.xaml에 대한 상호 작용 논리
     /// </summary>
-    public partial class MakeFolderTree : UserControl
+    public partial class ColorDetectorView : UserControl
     {
-        public MakeFolderTree()
+        public ColorDetectorView()
         {
             InitializeComponent();
         }

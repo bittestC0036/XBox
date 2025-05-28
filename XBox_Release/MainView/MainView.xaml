@@ -7,236 +7,31 @@
              mc:Ignorable="d" 
              xmlns:avalonDock="http://schemas.xceed.com/wpf/xaml/avalondock"
              xmlns:cal="http://www.caliburnproject.org"
-             d:DataContext="{d:DesignInstance {x:Type local:MainViewModel},
-             IsDesignTimeCreatable=False}"
+             d:DataContext="{d:DesignInstance {x:Type local:MainViewModel}, IsDesignTimeCreatable=False}"
              cal:Message.Attach="[Event Loaded]=[Action Window_Loaded($dataContext,$view)]"
              d:DesignHeight="600" d:DesignWidth="800">
-    <TabControl >
-        <TabItem Header="Make Folder">
-            <avalonDock:DockingManager x:Name="dockManager"  Visibility="Visible" >
-                <avalonDock:LayoutRoot x:Name="LayoutRoot">
-                    <avalonDock:LayoutPanel>
-                        <avalonDock:LayoutDocumentPaneGroup >
-                            <avalonDock:LayoutDocumentPane x:Name="TopTap"   >
-                                <avalonDock:LayoutDocument   x:Name="Tap1"  Title="Root Folder Path" Closing="Tap1_Closing">
-                                    <Grid x:Name="Root">
-                                        <Grid.Resources>
-                                            <Style TargetType="{x:Type TextBox}">
-                                                <Setter Property="FontSize" Value="15"/>
-                                            </Style>
-                                            <Style x:Key="Properties" TargetType="{x:Type TextBox}">
-                                                <Setter Property="FontSize"  Value="15"/>
-                                                <Setter Property="IsReadOnly" Value="True"/>
-                                            </Style>
-                                            <Style x:Key="StatusBar" TargetType="{x:Type TextBlock}">
-                                                <Setter Property="FontSize" Value="20"/>
-                                                <Style.Triggers>
-                                                    <Trigger Property="IsMouseOver" Value="True">
-                                                        <Setter Property="Foreground" Value="HotPink"/>
-                                                        <Setter Property="Background" Value="Black"/>
-                                                    </Trigger>
-                                                </Style.Triggers>
-                                            </Style>
-                                            <Style x:Key="TB_RootPathStyle" TargetType="{x:Type TextBox}">
-                                                <Setter Property="FontSize" Value="17"/>
-                                            </Style>
-                                        </Grid.Resources>
-                                        <Grid.RowDefinitions>
-                                            <RowDefinition Height="5"/>
-                                            <RowDefinition Height="70"/>
-                                            <RowDefinition Height="Auto"/>
-                                            <RowDefinition Height="*"/>
-                                            <RowDefinition Height="25"/>
-                                            <RowDefinition Height="5"/>
-                                        </Grid.RowDefinitions>
-                                        <Grid Grid.Row="1" Background="LemonChiffon">
-                                            <Grid.ColumnDefinitions>
-                                                <ColumnDefinition Width="0.1*"/>
-                                                <ColumnDefinition Width="3*"/>
-                                                <ColumnDefinition Width="0.1*"/>
-                                                <ColumnDefinition Width="*"/>
-                                                <ColumnDefinition Width="0.1*"/>
-                                            </Grid.ColumnDefinitions>
-                                            <Grid.RowDefinitions>
-                                                <RowDefinition Height="*"/>
-                                                <RowDefinition Height="0.1*"/>
-                                                <RowDefinition Height="*"/>
-                                            </Grid.RowDefinitions>
-                                            <TextBox Grid.Column="1" IsReadOnly="True" Name="TB_RootPath" 
-                                             Text="{Binding TB_RootPath_Text}"
-                                             Style="{StaticResource TB_RootPathStyle}"   />
-
-                                            <Button  Grid.Column="3" Content="경로 설정" cal:Message.Attach="[Event Click] = [Action Btn_SetPath()]"/>
-
-                                            <TextBox  Grid.Row="2" Grid.Column="1" Grid.ColumnSpan="3" Margin="0,0,0,5" cal:Message.Attach="[Event TextChanged] = [Action FindFileName($self)]"/>
-                                        </Grid>
-
-                                        <GridSplitter Grid.Row="2"  HorizontalAlignment="Stretch"  VerticalAlignment="Center" Background="Black" ShowsPreview="True" Height="5"/>
-
-                                        <Grid Grid.Row="3">
-                                            <Grid.ColumnDefinitions>
-                                                <ColumnDefinition Width="*"/>
-                                                <ColumnDefinition Width="Auto"/>
-                                                <ColumnDefinition Width="{Binding MakeFolder_Content_Width}"/>
-                                            </Grid.ColumnDefinitions>
-
-                                            <Grid Grid.Column="0">
-                                                <local:FolderTree sTB_Content="{Binding TB_RootPath_Text}" cal:Message.Attach="[Event SelectedItemChanged]=[Action SelectedItemChanged($view)]; [Event MouseDoubleClick]=[Action MouseDoubleClick($view)]"/>
-                                            </Grid>
-
-                                            <GridSplitter   Grid.Column="1" Background="Black" ShowsPreview="True" Width="5" HorizontalAlignment="Center" VerticalAlignment="Stretch"/>
-
-                                            <Grid Grid.Column="2">
-                                                <Grid.RowDefinitions>
-                                                    <RowDefinition Height="*" />
-                                                </Grid.RowDefinitions>
-                                                <local:TextEditor sTB_Content="{Binding TB_Content_Content, Mode=TwoWay}" />
-                                            </Grid>
-                                        </Grid>
-                                        <Grid Grid.Row="4" Background="YellowGreen">
-                                            <TextBlock x:Name="Tb_StatusBar" Style="{StaticResource StatusBar}" Text="{Binding sStatusBarText}" 
-                                               cal:Message.Attach="[Event MouseDown] = [Action StatusBarClick()]"
-                                               FontSize="12"/>
-                                        </Grid>
-                                    </Grid>
-                                </avalonDock:LayoutDocument>
-                            </avalonDock:LayoutDocumentPane>
-                        </avalonDock:LayoutDocumentPaneGroup>
-                    </avalonDock:LayoutPanel>
-                </avalonDock:LayoutRoot>
-
-            </avalonDock:DockingManager>
-        </TabItem>
-        <TabItem  Header="DB Connector" Visibility="Collapsed">
-            <Grid>
-                <Grid.RowDefinitions>
-                    <RowDefinition Height="*" />
-                    <RowDefinition Height="9*" />
-                </Grid.RowDefinitions>
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition  Width="*" />
-                    <ColumnDefinition  Width="9*" />
-                </Grid.ColumnDefinitions>
-                <Grid Grid.Column="0" Grid.ColumnSpan="2">
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition/>
-                        <ColumnDefinition/>
-                        <ColumnDefinition/>
-                        <ColumnDefinition/>
-                        <ColumnDefinition/>
-                        <ColumnDefinition/>
-                        <ColumnDefinition/>
-                        <ColumnDefinition/>
-                    </Grid.ColumnDefinitions>
-                    <Button Grid.Column="0"   Content="데이터베이스명 0" Margin="5"  FontSize="20"  />
-                    <Button Grid.Column="1"   Content="데이터베이스명 1" Margin="5"  FontSize="20"  />
-                    <Button Grid.Column="2"   Content="데이터베이스명 2" Margin="5"  FontSize="20"  />
-                    <Button Grid.Column="3"   Content="데이터베이스명 3" Margin="5"  FontSize="20"  />
-                    <Button Grid.Column="4"   Content="데이터베이스명 4" Margin="5"  FontSize="20"  />
-                    <Button Grid.Column="5"   Content="데이터베이스명 5" Margin="5"  FontSize="20"  />
-                    <Button Grid.Column="6"   Content="데이터베이스명 6" Margin="5"  FontSize="20"  />
-                    <Button Grid.Column="7"   Content="데이터베이스명 7" Margin="5"  FontSize="20"  />
-                </Grid>
-                <Grid Grid.Row="1">
-                    <Grid.RowDefinitions>
-                        <RowDefinition/>
-                        <RowDefinition/>
-                        <RowDefinition/>
-                        <RowDefinition/>
-                        <RowDefinition/>
-                        <RowDefinition/>
-                        <RowDefinition/>
-                        <RowDefinition/>
-                        <RowDefinition/>
-                        <RowDefinition/>
-                        <RowDefinition/>
-                    </Grid.RowDefinitions>
-                    <Button Grid.Row="0 "    Content="테이블명1 " Margin="5"  FontSize="20"  />
-                    <Button Grid.Row="1 "    Content="테이블명2 " Margin="5"  FontSize="20"  />
-                    <Button Grid.Row="2 "    Content="테이블명3 " Margin="5"  FontSize="20"  />
-                    <Button Grid.Row="3 "    Content="테이블명4 " Margin="5"  FontSize="20"  />
-                    <Button Grid.Row="4 "    Content="테이블명5 " Margin="5"  FontSize="20"  />
-                    <Button Grid.Row="5 "    Content="테이블명6 " Margin="5"  FontSize="20"  />
-                    <Button Grid.Row="6 "    Content="테이블명7 " Margin="5"  FontSize="20"  />
-                    <Button Grid.Row="7 "    Content="테이블명8 " Margin="5"  FontSize="20"  />
-                    <Button Grid.Row="8 "    Content="테이블명9 " Margin="5"  FontSize="20"  />
-                    <Button Grid.Row="9"     Content="테이블명10" Margin="5"  FontSize="20"  />
-                    <Button Grid.Row="10"    Content="테이블명11" Margin="5"  FontSize="20"  />
-                </Grid>
-                <!-- Content-->
-                <Grid Grid.Column="1" Grid.Row="1">
-                    <Grid.RowDefinitions>
-                        <RowDefinition Height="*"/>
-                        <RowDefinition Height="Auto"/>
-                        <RowDefinition Height="*"/>
-                    </Grid.RowDefinitions>
-                    <DataGrid x:Name="dgTorpedoCombat" Grid.Row="0"  IsReadOnly="True">
-                        <DataGrid.Columns>
-                            <DataGridTextColumn Header="컬럼 0" Width="*"   IsReadOnly="True"/>
-                            <DataGridTextColumn Header="컬럼 1" Width="*"   IsReadOnly="True"/>
-                            <DataGridTextColumn Header="컬럼 2" Width="*"   IsReadOnly="True"/>
-                            <DataGridTextColumn Header="컬럼 3" Width="*"  IsReadOnly="True"/>
-                            <DataGridTextColumn Header="컬럼 4" Width="*"   IsReadOnly="True"/>
-                            <DataGridTextColumn Header="컬럼 5" Width="*"   IsReadOnly="True"/>
-                            <DataGridTextColumn Header="컬럼 6" Width="*"  IsReadOnly="True"/>
-                            <DataGridTextColumn Header="컬럼 7" Width="*"   IsReadOnly="True"/>
-                            <DataGridTextColumn Header="컬럼 8" Width="*"   IsReadOnly="True"/>
-                            <DataGridTextColumn Header="컬럼 9" Width="*"   IsReadOnly="True"/>
-                        </DataGrid.Columns>
-                    </DataGrid>
-                    <TabControl Grid.Row="2">
-                        <TabItem Header="Insert">
-                            <Grid ShowGridLines="True">
-                                <Grid.RowDefinitions>
-                                    <RowDefinition/>
-                                    <RowDefinition/>
-                                </Grid.RowDefinitions>
-                                <Grid Grid.Row="0" ShowGridLines="True" >
-                                    <Grid.ColumnDefinitions>
-                                        <ColumnDefinition/>
-                                        <ColumnDefinition/>
-                                        <ColumnDefinition/>
-                                        <ColumnDefinition/>
-                                        <ColumnDefinition/>
-                                        <ColumnDefinition/>
-                                        <ColumnDefinition/>
-                                        <ColumnDefinition/>
-                                        <ColumnDefinition/>
-                                        <ColumnDefinition/>
-                                        <ColumnDefinition/>
-                                    </Grid.ColumnDefinitions>
-                                    <Label Grid.Row="0" />
-                                </Grid>
-
-                                <Grid Grid.Row="1" ShowGridLines="True" >
-                                    <Grid.ColumnDefinitions>
-                                        <ColumnDefinition/>
-                                        <ColumnDefinition/>
-                                        <ColumnDefinition/>
-                                        <ColumnDefinition/>
-                                        <ColumnDefinition/>
-                                        <ColumnDefinition/>
-                                        <ColumnDefinition/>
-                                        <ColumnDefinition/>
-                                        <ColumnDefinition/>
-                                        <ColumnDefinition/>
-                                        <ColumnDefinition/>
-                                    </Grid.ColumnDefinitions>
-                                    <Label Grid.Row="0" />
-                                </Grid>
-                            </Grid>
-                        </TabItem>
-
-                        <TabItem Header="Delete">
-
-                        </TabItem>
-
-                        <TabItem Header="Update">
-
-                        </TabItem>
-                    </TabControl>
-                </Grid>
-            </Grid>
-        </TabItem>
-    </TabControl>
+    <Grid ShowGridLines="True">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="50"/>
+            <RowDefinition/>
+        </Grid.RowDefinitions>
+        <StackPanel Grid.Row="0">
+            <ItemsControl ItemsSource="{Binding MenuItems}">
+                <ItemsControl.ItemsPanel>
+                    <ItemsPanelTemplate>
+                        <StackPanel Orientation="Horizontal" />
+                    </ItemsPanelTemplate>
+                </ItemsControl.ItemsPanel>
+                <ItemsControl.ItemTemplate>
+                    <DataTemplate>
+                        <Button Content="{Binding}"
+                        Command="{Binding DataContext.ChangeViewCommand, RelativeSource={RelativeSource AncestorType=UserControl}}"
+                        CommandParameter="{Binding}" Margin="5"/>
+                    </DataTemplate>
+                </ItemsControl.ItemTemplate>
+            </ItemsControl>
+        </StackPanel>
+        <!-- 선택된 View -->
+        <ContentControl Grid.Row="1" Content="{Binding CurrentView}" BorderBrush="Beige"  BorderThickness="2" />
+    </Grid>
 </UserControl>

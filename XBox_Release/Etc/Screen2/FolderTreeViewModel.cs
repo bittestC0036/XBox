@@ -1,25 +1,22 @@
-﻿
-using Microsoft.WindowsAPICodePack.Dialogs;
+﻿using Microsoft.WindowsAPICodePack.Dialogs;
 using System;
+using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.ComponentModel.Composition;
 using System.Diagnostics;
 using System.IO;
-
-using System.Reflection;
-
-using System.Windows;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
 using System.Windows.Controls;
 using System.Windows.Input;
-using System.Windows.Media;
 using Xceed.Wpf.AvalonDock.Layout;
 
 namespace XBox
 {
-
-    [Export(typeof(IMainViewModel))]
-    public sealed class MainViewModel : ObservableObject, IMainViewModel, INotifyPropertyChanged
+    //[Export(typeof(IMainViewModel))]
+    public sealed class FolderTreeViewModel : ObservableObject, IMainViewModel, INotifyPropertyChanged
     {
 
         public ICommand ChangeViewCommand { get; }
@@ -34,7 +31,7 @@ namespace XBox
 
         #region Creator
         [ImportingConstructor]
-        public MainViewModel()
+        public FolderTreeViewModel()
         {
             bSingle = true;
 
@@ -67,7 +64,7 @@ namespace XBox
                 rootFolderPath = @"D:\Job"; // 설정한 폴더 경로로 변경하세요.
                 return;
             }
-            TB_RootPath_Text = rootFolderPath; 
+            TB_RootPath_Text = rootFolderPath;
         }
 
         #endregion Creator
@@ -76,7 +73,7 @@ namespace XBox
 
         #region Binding Property
 
-        public MainView _MainView_ = null;
+        public FolderTreeView _MainView_ = null;
 
         private string _TB_RootPath_Text = "";
         public string TB_RootPath_Text
@@ -154,7 +151,7 @@ namespace XBox
         {
             var x = dataContext as MainViewModel;
 
-            _MainView_ = (MainView)view;
+            _MainView_ = (FolderTreeView)view;
         }
 
         public void Btn_SetPath()
@@ -202,7 +199,7 @@ namespace XBox
             }
         }
 
-        /*
+        
         public void MouseDoubleClick(object item)
         {
             var x = item as FolderTree;
@@ -270,7 +267,7 @@ namespace XBox
 
             }
         }
-        */
+
         public void StatusBarClick()
         {
             if (string.IsNullOrWhiteSpace(sStatusBarText))
@@ -299,16 +296,6 @@ namespace XBox
         public ObservableCollection<string> MenuItems { get; } =
          new ObservableCollection<string> { "FolderTreeView", "ColorDetectorView", "About" };
 
-    }
-
-    // RelayCommand는 간단한 ICommand 구현체
-    public class RelayCommand<T> : ICommand
-    {
-        private readonly System.Action<T> _execute;
-        public RelayCommand(System.Action<T> execute) => _execute = execute;
-        public bool CanExecute(object parameter) => true;
-        public void Execute(object parameter) => _execute((T)parameter);
-        public event System.EventHandler CanExecuteChanged;
     }
 
 }
